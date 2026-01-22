@@ -49,7 +49,7 @@ export default function Certifications() {
   const [data, setData] = useState<Certification[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/certifications")
+    fetch("https://nitesh-portfolio-backend.onrender.com/api/certifications")
       .then(res => res.json())
       .then(data => setData(data));
   }, []);

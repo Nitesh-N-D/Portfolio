@@ -15,7 +15,7 @@ export default function Experience() {
   const [data, setData] = useState<Experience[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/experience")
+    fetch("https://nitesh-portfolio-backend.onrender.com/api/experience")
       .then(res => res.json())
       .then(data => setData(data));
   }, []);

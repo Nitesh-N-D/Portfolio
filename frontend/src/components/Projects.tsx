@@ -53,7 +53,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://nitesh-portfolio-backend.onrender.com/api/projects")
       .then(res => res.json())
       .then(data => setProjects(data));
   }, []);
