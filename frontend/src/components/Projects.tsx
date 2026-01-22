@@ -1,4 +1,45 @@
+// import { useEffect, useState } from "react";
+// import Reveal from "./Reveal";
+
+// interface Project {
+//   id: number;
+//   title: string;
+//   description: string;
+//   tech_stack: string;
+//   image_url: string;
+// }
+
+// export default function Projects() {
+//   const [projects, setProjects] = useState<Project[]>([]);
+
+//   useEffect(() => {
+//     fetch("http://localhost:5000/api/projects")
+//       .then(res => res.json())
+//       .then(data => setProjects(data));
+//   }, []);
+
+//   return (
+//     <Reveal>
+//       <section id="projects">
+//         <h2>Projects</h2>
+
+//         <div className="grid">
+//           {projects.map(p => (
+//             <div className="card" key={p.id}>
+//               <img src={p.image_url} style={{ width: "100%", borderRadius: "12px", marginBottom: "16px" }} />
+//               <h3>{p.title}</h3>
+//               <p>{p.description}</p>
+//               <small style={{ color: "#38bdf8" }}>{p.tech_stack}</small>
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+//     </Reveal>
+//   );
+// }
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import Reveal from "./Reveal";
 
 interface Project {
   id: number;
@@ -6,8 +47,6 @@ interface Project {
   description: string;
   tech_stack: string;
   image_url: string;
-  github_url: string;
-  live_url: string;
 }
 
 export default function Projects() {
@@ -20,19 +59,138 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects">
-      <h2>Projects</h2>
+    <Reveal>
+      <section id="projects" style={styles.section}>
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+          <h2 style={styles.heading}>Projects</h2>
+          <p style={styles.subtitle}>
+            A selection of projects demonstrating my skills in full-stack development,
+            system design, and problem solving.
+          </p>
 
-      <div className="grid">
-        {projects.map(p => (
-          <div className="card" key={p.id}>
-            <img src={p.image_url} />
-            <h3>{p.title}</h3>
-            <p>{p.description}</p>
-            <small>{p.tech_stack}</small>
+          <div style={styles.grid}>
+            {projects.map(project => (
+              <motion.div
+                key={project.id}
+                style={styles.card}
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 180 }}
+              >
+                {/* Image */}
+                <div style={styles.imageWrapper}>
+                  <img
+                    src={project.image_url}
+                    alt={project.title}
+                    style={styles.image}
+                  />
+                </div>
+
+                {/* Content */}
+                <div style={styles.content}>
+                  <h3 style={styles.title}>{project.title}</h3>
+                  <p style={styles.description}>{project.description}</p>
+
+                  <div style={styles.stack}>
+                    {project.tech_stack.split(",").map((tech, i) => (
+                      <span key={i} style={styles.badge}>
+                        {tech.trim()}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        ))}
-      </div>
-    </section>
+        </motion.div>
+      </section>
+    </Reveal>
   );
 }
+
+/* ==================== STYLES ==================== */
+
+const styles = {
+  section: {
+    padding: "100px 10%",
+    background: "#020617"
+  },
+
+  heading: {
+    fontSize: "28px",
+    fontWeight: 600,
+    color: "#38bdf8",
+    marginBottom: "10px"
+  },
+
+  subtitle: {
+    fontSize: "14px",
+    color: "#94a3b8",
+    marginBottom: "48px",
+    maxWidth: "650px"
+  },
+
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+    gap: "36px"
+  },
+
+  card: {
+    background: "rgba(15, 23, 42, 0.7)",
+    border: "1px solid #1e293b",
+    borderRadius: "18px",
+    overflow: "hidden",
+    backdropFilter: "blur(14px)",
+    transition: "all 0.3s ease"
+  },
+
+  imageWrapper: {
+    width: "100%",
+    height: "200px",
+    overflow: "hidden"
+  },
+
+  image: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover" as const
+  },
+
+  content: {
+    padding: "26px"
+  },
+
+  title: {
+    fontSize: "18px",
+    fontWeight: 600,
+    color: "#e5e7eb",
+    marginBottom: "10px"
+  },
+
+  description: {
+    fontSize: "14px",
+    color: "#94a3b8",
+    lineHeight: 1.6,
+    marginBottom: "18px"
+  },
+
+  stack: {
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: "10px"
+  },
+
+  badge: {
+    background: "rgba(56,189,248,0.12)",
+    color: "#38bdf8",
+    borderRadius: "999px",
+    padding: "6px 14px",
+    fontSize: "12px",
+    fontWeight: 500
+  }
+};

@@ -5,8 +5,8 @@ export default function Reveal({ children }: { children: React.ReactNode }) {
     <motion.div
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
     >
       {children}
     </motion.div>
