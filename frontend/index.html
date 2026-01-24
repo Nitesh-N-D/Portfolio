@@ -1,16 +1,3 @@
-<!-- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nitesh-Portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html> -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,7 +21,7 @@
     />
     <meta name="author" content="N.D. Nitesh" />
 
-    <!-- Open Graph (LinkedIn / WhatsApp) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="N.D. Nitesh | Full Stack Developer" />
     <meta
       property="og:description"
@@ -55,6 +42,9 @@
 
   <body>
     <div id="root"></div>
+    <!-- Vite client preamble must come first -->
+    <script type="module" src="/@vite/client"></script>
+    <!-- Your app entry -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
