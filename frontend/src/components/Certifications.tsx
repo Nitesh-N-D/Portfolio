@@ -250,3 +250,89 @@
 //     marginTop: "6px"
 //   }
 // };
+import { motion } from "framer-motion";
+import Reveal from "./Reveal";
+import { certifications } from "../data/certifications";
+
+export default function Certifications() {
+  return (
+    <Reveal>
+      <section id="certifications" style={styles.section}>
+        <h2 style={styles.heading}>Certifications</h2>
+        <p style={styles.subtitle}>
+          Professional certifications from trusted platforms.
+        </p>
+
+        <div style={styles.grid}>
+          {certifications.map((c, index) => (
+            <motion.div
+              key={index}
+              style={styles.card}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <img
+                src={c.image}
+                alt={c.title}
+                style={styles.image}
+              />
+
+              <div style={styles.content}>
+                <h3 style={styles.title}>{c.title}</h3>
+                <p style={styles.provider}>{c.provider}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </Reveal>
+  );
+}
+
+const styles = {
+  section: {
+    padding: "90px 10%",
+    background: "#020617"
+  },
+  heading: {
+    fontSize: "26px",
+    fontWeight: 600,
+    color: "#38bdf8",
+    marginBottom: "8px"
+  },
+  subtitle: {
+    fontSize: "14px",
+    color: "#94a3b8",
+    marginBottom: "40px"
+  },
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "32px"
+  },
+  card: {
+    background: "rgba(15,23,42,0.7)",
+    border: "1px solid #1e293b",
+    borderRadius: "16px",
+    overflow: "hidden",
+    transition: "all 0.3s ease"
+  },
+  image: {
+    width: "100%",
+    height: "180px",
+    objectFit: "cover" as const
+  },
+  content: {
+    padding: "20px"
+  },
+  title: {
+    fontSize: "15px",
+    fontWeight: 600,
+    color: "#e5e7eb"
+  },
+  provider: {
+    fontSize: "13px",
+    color: "#38bdf8",
+    marginTop: "6px"
+  }
+};

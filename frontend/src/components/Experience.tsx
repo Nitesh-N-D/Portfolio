@@ -240,3 +240,86 @@
 //     color: "#64748b"
 //   }
 // };
+import { motion } from "framer-motion";
+import Reveal from "./Reveal";
+import { experience } from "../data/experience";
+
+export default function Experience() {
+  return (
+    <Reveal>
+      <section id="experience" style={styles.section}>
+        <h2 style={styles.heading}>Experience</h2>
+
+        <div style={styles.timeline}>
+          {experience.map(exp => (
+            <motion.div key={exp.id} style={styles.item} whileHover={{ x: 6 }}>
+              <div style={styles.dot} />
+
+              <div style={styles.card}>
+                <h3 style={styles.role}>{exp.role}</h3>
+                <p style={styles.company}>{exp.company}</p>
+                <p style={styles.description}>{exp.description}</p>
+                <span style={styles.date}>
+                  {exp.start} — {exp.end}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </Reveal>
+  );
+}
+
+const styles = {
+  section: {
+    padding: "100px 10%",
+    background: "#020617"
+  },
+  heading: {
+    fontSize: "28px",
+    color: "#38bdf8",
+    fontWeight: 600,
+    marginBottom: "40px"
+  },
+  timeline: {
+    borderLeft: "2px solid #1e293b",
+    paddingLeft: "40px"
+  },
+  item: {
+    position: "relative" as const,
+    marginBottom: "40px"
+  },
+  dot: {
+    position: "absolute" as const,
+    left: "-51px",
+    top: "20px",
+    width: "14px",
+    height: "14px",
+    background: "#38bdf8",
+    borderRadius: "50%"
+  },
+  card: {
+    background: "rgba(15,23,42,0.7)",
+    border: "1px solid #1e293b",
+    borderRadius: "16px",
+    padding: "24px"
+  },
+  role: {
+    color: "#e5e7eb",
+    fontWeight: 600
+  },
+  company: {
+    color: "#38bdf8",
+    fontSize: "14px"
+  },
+  description: {
+    color: "#94a3b8",
+    fontSize: "14px",
+    margin: "10px 0"
+  },
+  date: {
+    fontSize: "12px",
+    color: "#64748b"
+  }
+};
