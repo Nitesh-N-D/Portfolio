@@ -296,6 +296,9 @@ input, textarea {
 }
 
 * { box-sizing: border-box; }
+html, body {
+  background: #020617;
+}
 
 body {
   margin: 0;
