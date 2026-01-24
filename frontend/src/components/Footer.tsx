@@ -1,72 +1,24 @@
-// export default function Footer() {
-//   return (
-//     <footer style={styles.footer}>
-//       <div style={styles.container}>
-//         <p style={styles.text}>
-//           © {new Date().getFullYear()} Nitesh Portfolio. All rights reserved.
-//         </p>
-
-//         <div style={styles.links}>
-//           <a href="https://github.com/Nitesh-N-D" target="_blank">GitHub</a>
-//           <a href="https://linkedin.com/in/nitesh-n-d-249ab6325" target="_blank">LinkedIn</a>
-//           <a href="mailto:niteshdwaraka@gmail.com">Email</a>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }
-
-// /* ==================== STYLES ==================== */
-
-// const styles = {
-//   footer: {
-//     background: "#020617",
-//     borderTop: "1px solid #1e293b",
-//     padding: "36px 10%",
-//     marginTop: "120px"
-//   },
-
-//   container: {
-//     display: "flex",
-//     flexWrap: "wrap" as const,
-//     justifyContent: "space-between",
-//     alignItems: "center",
-//     gap: "20px"
-//   },
-
-//   text: {
-//     fontSize: "13px",
-//     color: "#94a3b8"
-//   },
-
-//   links: {
-//     display: "flex",
-//     gap: "24px",
-//     fontSize: "13px"
-//   }
-// };
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 export default function Footer() {
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
-        {/* LEFT: BRAND */}
+        {/* LEFT */}
         <div style={styles.brand}>
-          <h4 style={styles.name}>N.D. Nitesh</h4>
-          <p style={styles.text}>
-            © {new Date().getFullYear()} All rights reserved.
-          </p>
+          <span style={styles.name}>Nitesh N D</span>
+          <span style={styles.role}>
+            Software Engineer · Full Stack Developer
+          </span>
+          <span style={styles.copy}>
+            © {new Date().getFullYear()} All rights reserved
+          </span>
         </div>
 
-        {/* RIGHT: LINKS */}
-        <div style={styles.links}>
-          <a
-            href="mailto:niteshdwaraka@gmail.com"
-            style={styles.link}
-            aria-label="Email"
-          >
-            <FiMail size={16} />
+        {/* RIGHT */}
+        <nav style={styles.links}>
+          <a href="mailto:niteshdwaraka@gmail.com" style={styles.link}>
+            <FiMail size={15} />
             <span>Email</span>
           </a>
 
@@ -75,9 +27,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             style={styles.link}
-            aria-label="GitHub"
           >
-            <FiGithub size={16} />
+            <FiGithub size={15} />
             <span>GitHub</span>
           </a>
 
@@ -86,12 +37,11 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             style={styles.link}
-            aria-label="LinkedIn"
           >
-            <FiLinkedin size={16} />
+            <FiLinkedin size={15} />
             <span>LinkedIn</span>
           </a>
-        </div>
+        </nav>
       </div>
     </footer>
   );
@@ -103,8 +53,8 @@ const styles = {
   footer: {
     background: "#020617",
     borderTop: "1px solid #1e293b",
-    padding: "40px 10%",
-    marginTop: "120px"
+    padding: "28px 10%",     // ↓ reduced
+    marginTop: "40px"        // ↓ reduced
   },
 
   container: {
@@ -112,13 +62,13 @@ const styles = {
     flexWrap: "wrap" as const,
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "28px"
+    gap: "24px"
   },
 
   brand: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "6px"
+    gap: "4px"
   },
 
   name: {
@@ -127,23 +77,27 @@ const styles = {
     color: "#e5e7eb"
   },
 
-  text: {
+  role: {
     fontSize: "13px",
     color: "#94a3b8"
   },
 
+  copy: {
+    fontSize: "12px",
+    color: "#64748b"
+  },
+
   links: {
     display: "flex",
-    gap: "22px",
-    fontSize: "13px"
+    gap: "20px"
   },
 
   link: {
     display: "flex",
     alignItems: "center",
-    gap: "8px",
+    gap: "6px",
+    fontSize: "13px",
     color: "#94a3b8",
-    textDecoration: "none",
-    transition: "0.25s"
+    textDecoration: "none"
   }
 };
