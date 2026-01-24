@@ -18,7 +18,7 @@
 /* ===================== GLOBAL ===================== */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* navbar height */
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -29,14 +29,14 @@ body {
 
 /* ===================== TYPOGRAPHY ===================== */
 h1 {
-  font-size: 44px;
-  font-weight: 600;
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 700;
 }
 
 h2 {
-  font-size: 26px;
+  font-size: clamp(22px, 3vw, 28px);
   color: var(--primary);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 h3 {
@@ -50,19 +50,49 @@ small {
   color: var(--muted);
 }
 
-.muted {
-  color: var(--muted);
-}
-
-.primary {
-  color: var(--primary);
-}
-
-/* ===================== LAYOUT ===================== */
+/* ===================== SECTIONS (FIXED) ===================== */
 .section {
-  padding: 100px 10%;
+  min-height: 100vh;
+  padding: 100px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Inner content wrapper */
+.section-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Centered variant (Hero, About) */
+.section-center {
+  text-align: center;
+}
+
+.section-center .actions,
+.section-center .stats,
+.section-center .socials {
+  justify-content: center;
+}
+/* ===================== CENTERED SECTION ===================== */
+
+.section-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+}
+
+.section-content {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+}
+
+
+/* ===================== GRID ===================== */
 .grid {
   display: grid;
   gap: 28px;
@@ -98,7 +128,7 @@ a:hover {
 .actions {
   display: flex;
   gap: 14px;
-  margin-top: 16px;
+  margin-top: 28px;
   flex-wrap: wrap;
 }
 
@@ -148,7 +178,7 @@ textarea {
   font-family: inherit;
 }
 
-/* ===================== NAV LINK UNDERLINE ===================== */
+/* ===================== NAV ===================== */
 nav a {
   position: relative;
   font-size: 14px;
@@ -181,4 +211,16 @@ footer {
   border-top: 1px solid var(--border);
   font-size: 13px;
   color: var(--muted);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 5%;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
 }
