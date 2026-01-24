@@ -1,183 +1,3 @@
-/* html {
-  scroll-behavior: smooth;
-}
-
-nav a {
-  color: #cbd5f5;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-nav a:hover {
-  color: #38bdf8;
-}
-body {
-  margin: 0;
-  font-family: Inter, system-ui, Arial;
-  background: #020617;
-  color: #e5e7eb;
-}
-
-section {
-  padding: 70px 10%;
-}
-
-h1 { font-size: 38px; }
-h2 { font-size: 26px; margin-bottom: 24px; color: #38bdf8; }
-h3 { font-size: 18px; }
-
-p, small { font-size: 14px; color: #cbd5f5; }
-
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(2,6,23,0.9);
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 10%;
-  border-bottom: 1px solid #1e293b;
-}
-
-.nav-links a {
-  margin-left: 20px;
-  color: #cbd5f5;
-  text-decoration: none;
-}
-
-.hero {
-  padding-top: 140px;
-  text-align: center;
-}
-
-.hero-actions {
-  margin-top: 20px;
-}
-
-.btn {
-  padding: 10px 20px;
-  background: #38bdf8;
-  color: #020617;
-  border-radius: 6px;
-  margin-right: 12px;
-  text-decoration: none;
-  border: none;
-}
-
-.btn-outline {
-  border: 1px solid #38bdf8;
-  color: #38bdf8;
-  padding: 10px 20px;
-  border-radius: 6px;
-}
-
-.card {
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 24px;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  border-top: 1px solid #1e293b;
-}
-.card {
-  background: linear-gradient(180deg, #020617, #020617);
-  border: 1px solid #1e293b;
-  border-radius: 16px;
-  padding: 22px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0 transparent;
-}
-
-.card:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 40px rgba(56,189,248,0.15);
-  border-color: #38bdf8;
-}
-.btn {
-  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-  color: #020617;
-  padding: 12px 26px;
-  border-radius: 30px;
-  font-weight: 600;
-}
-
-.btn-outline {
-  border: 1px solid #38bdf8;
-  padding: 12px 26px;
-  border-radius: 30px;
-}
-nav a:hover {
-  color: #60a5fa;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background: #60a5fa;
-  transition: width 0.25s ease;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-.btn {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: white;
-  padding: 12px 22px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  border: none;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(59,130,246,0.3);
-}
-
-.btn-outline {
-  border: 1px solid #3b82f6;
-  color: #3b82f6;
-  padding: 12px 22px;
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-.btn-outline:hover {
-  background: rgba(59,130,246,0.1);
-  transform: translateY(-2px);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #60a5fa;
-}
-/* main.css */
-
 :root {
   --bg: #020617;
   --bg-soft: #020617cc;
@@ -369,4 +189,188 @@ h2 {
   padding: 10px 18px;
   border-radius: 10px;
   text-decoration: none;
+} */
+/* ===================== ROOT VARIABLES ===================== */
+:root {
+  --bg: #020617;
+  --card: rgba(15, 23, 42, 0.7);
+  --border: #1e293b;
+  --primary: #38bdf8;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+}
+
+/* ===================== RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===================== GLOBAL ===================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* navbar height */
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===================== TYPOGRAPHY ===================== */
+h1 {
+  font-size: 44px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 26px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+p,
+small {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.primary {
+  color: var(--primary);
+}
+
+/* ===================== LAYOUT ===================== */
+.section {
+  padding: 100px 10%;
+}
+
+.grid {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* ===================== LINKS ===================== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #60a5fa;
+}
+
+/* ===================== CARDS ===================== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px rgba(56, 189, 248, 0.12);
+}
+
+/* ===================== BUTTONS ===================== */
+.actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #020617;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+}
+
+.btn-outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  background: transparent;
+  transition: 0.25s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(56, 189, 248, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ===================== FORMS ===================== */
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  background: #020617;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  margin-bottom: 14px;
+  font-family: inherit;
+}
+
+/* ===================== NAV LINK HOVER UNDERLINE ===================== */
+nav a {
+  position: relative;
+  font-size: 14px;
+  color: var(--text);
+}
+
+nav a:hover {
+  color: var(--primary);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.25s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  text-align: center;
+  padding: 30px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
 }

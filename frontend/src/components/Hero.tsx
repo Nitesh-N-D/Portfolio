@@ -393,10 +393,10 @@ const styles = {
     background: "#020617"
   },
 
-  container: {
-    maxWidth: "900px",
-    textAlign: "center" as const
-  },
+ container: {
+  maxWidth: "900px",
+  textAlign: "left" as const
+},
 
   title: {
     fontSize: "clamp(40px, 6vw, 56px)",
