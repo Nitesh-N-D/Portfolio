@@ -1,40 +1,61 @@
 // import { motion } from "framer-motion";
 // import Reveal from "./Reveal";
+// import { profile } from "../data/profile";
 
 // export default function About() {
 //   return (
 //     <section id="about" style={styles.section}>
 //       <Reveal>
 //         <motion.div
-//           initial={{ opacity: 0, y: 60 }}
+//           initial={{ opacity: 0, y: 20 }}
 //           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.7 }}
+//           transition={{ duration: 0.45, ease: "easeOut" }}
 //           viewport={{ once: true }}
+//           style={styles.wrapper}
 //         >
-//           <h2 style={styles.heading}>About Me</h2>
+//           <h2 style={styles.heading}>About</h2>
+//           <p style={styles.role}>{profile.title}</p>
 
-//           <div style={styles.card}>
+//           <div style={styles.content}>
 //             <p style={styles.text}>
-//               I am a Computer Science Engineering student passionate about building
-//               scalable full-stack applications and high-performance backend platforms.
-//               I focus on writing clean, maintainable code and designing systems that
-//               solve real-world problems efficiently.
+//               I am a <strong>Computer Science Engineering student</strong> with a
+//               strong interest in building{" "}
+//               <strong>scalable, reliable, and maintainable software systems</strong>.
+//               I enjoy working across the full stack — from crafting intuitive user
+//               interfaces to developing backend services and data-driven applications.
 //             </p>
 
-//             <div style={styles.stats}>
-//               <div style={styles.statBox}>
-//                 <h3 style={styles.statNumber}>2+</h3>
-//                 <p style={styles.statLabel}>Years of Learning</p>
+//             <p style={styles.text}>
+//               My development approach emphasizes{" "}
+//               <strong>clean code</strong>,{" "}
+//               <strong>system design fundamentals</strong>, and{" "}
+//               <strong>real-world problem solving</strong>. Through academic projects,
+//               internships, and self-driven learning, I have translated requirements
+//               into production-ready solutions while continuously improving
+//               performance, usability, and code quality.
+//             </p>
+
+//             <p style={styles.focus}>
+//               <strong>Primary focus areas:</strong> Full Stack Development (React,
+//               Node.js), Backend APIs & Databases, Data Structures & Algorithms,
+//               Version Control, and Collaborative Development.
+//             </p>
+
+//             {/* PROFESSIONAL STATS */}
+//             <div style={styles.statsRow}>
+//               <div style={styles.stat}>
+//                 <span style={styles.statValue}>10+</span>
+//                 <span style={styles.statLabel}>Projects Built</span>
 //               </div>
 
-//               <div style={styles.statBox}>
-//                 <h3 style={styles.statNumber}>10+</h3>
-//                 <p style={styles.statLabel}>Projects Built</p>
+//               <div style={styles.stat}>
+//                 <span style={styles.statValue}>2+</span>
+//                 <span style={styles.statLabel}>Years of Hands-on Learning</span>
 //               </div>
 
-//               <div style={styles.statBox}>
-//                 <h3 style={styles.statNumber}>5+</h3>
-//                 <p style={styles.statLabel}>Technologies</p>
+//               <div style={styles.stat}>
+//                 <span style={styles.statValue}>5+</span>
+//                 <span style={styles.statLabel}>Core Technologies</span>
 //               </div>
 //             </div>
 //           </div>
@@ -44,120 +65,133 @@
 //   );
 // }
 
-// /* ==================== STYLES ==================== */
+// /* ===================== STYLES ===================== */
 
 // const styles = {
 //   section: {
-//     padding: "100px 10%",
-//     background: "radial-gradient(circle at top, #020617 0%, #020617 60%)"
+//     padding: "90px 10%",
+//     background: "#020617"
+//   },
+
+//   wrapper: {
+//     maxWidth: "920px"
 //   },
 
 //   heading: {
-//     fontSize: "28px",
-//     fontWeight: 600,
-//     color: "#38bdf8",
-//     marginBottom: "30px"
-//   },
-
-//   card: {
-//     background: "rgba(15, 23, 42, 0.6)",
-//     border: "1px solid #1e293b",
-//     borderRadius: "16px",
-//     padding: "36px",
-//     backdropFilter: "blur(14px)",
-//     maxWidth: "800px"
-//   },
-
-//   text: {
-//     fontSize: "15px",
-//     color: "#cbd5f5",
-//     lineHeight: 1.8,
-//     marginBottom: "36px"
-//   },
-
-//   stats: {
-//     display: "grid",
-//     gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-//     gap: "24px"
-//   },
-
-//   statBox: {
-//     background: "rgba(2, 6, 23, 0.6)",
-//     border: "1px solid #1e293b",
-//     borderRadius: "12px",
-//     padding: "20px",
-//     textAlign: "center" as const
-//   },
-
-//   statNumber: {
-//     fontSize: "22px",
+//     fontSize: "26px",
 //     fontWeight: 600,
 //     color: "#38bdf8",
 //     marginBottom: "6px"
 //   },
 
+//   role: {
+//     fontSize: "14px",
+//     color: "#94a3b8",
+//     marginBottom: "28px"
+//   },
+
+//   content: {
+//     borderLeft: "3px solid #1e293b",
+//     paddingLeft: "28px"
+//   },
+
+//   text: {
+//     fontSize: "15px",
+//     lineHeight: 1.75,
+//     color: "#cbd5f5",
+//     marginBottom: "18px"
+//   },
+
+//   focus: {
+//     fontSize: "14px",
+//     lineHeight: 1.7,
+//     color: "#94a3b8",
+//     marginTop: "6px",
+//     marginBottom: "28px"
+//   },
+
+//   statsRow: {
+//     display: "flex",
+//     flexWrap: "wrap" as const,
+//     gap: "32px",
+//     marginTop: "10px"
+//   },
+
+//   stat: {
+//     display: "flex",
+//     flexDirection: "column" as const
+//   },
+
+//   statValue: {
+//     fontSize: "20px",
+//     fontWeight: 600,
+//     color: "#38bdf8",
+//     lineHeight: 1.2
+//   },
+
 //   statLabel: {
 //     fontSize: "13px",
-//     color: "#94a3b8"
+//     color: "#94a3b8",
+//     marginTop: "4px"
 //   }
 // };
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
+import { profile } from "../data/profile";
 
 export default function About() {
   return (
     <section id="about" style={styles.section}>
       <Reveal>
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
-          style={styles.container}
+          style={styles.wrapper}
         >
-          <h2 style={styles.heading}>About Me</h2>
+          <h2 style={styles.heading}>About</h2>
+          <p style={styles.role}>{profile.title}</p>
 
-          <div style={styles.card}>
-            {/* MAIN DESCRIPTION */}
+          <div style={styles.content}>
             <p style={styles.text}>
               I am a <strong>Computer Science Engineering student</strong> with a
-              strong interest in building <strong>scalable, reliable, and
-              maintainable software systems</strong>. I enjoy working across the
-              full stack — from crafting responsive user interfaces to designing
-              backend APIs and database-driven applications.
+              strong interest in building{" "}
+              <strong>scalable, reliable, and maintainable software systems</strong>.
+              I enjoy working across the full stack — from crafting intuitive user
+              interfaces to developing backend services and data-driven applications.
             </p>
 
             <p style={styles.text}>
-              My approach to development emphasizes <strong>clean code</strong>,
-              <strong>system design fundamentals</strong>, and
-              <strong> real-world problem solving</strong>. Through hands-on
-              projects and internships, I have gained experience in translating
-              requirements into working software while continuously improving
+              My development approach emphasizes{" "}
+              <strong>clean code</strong>,{" "}
+              <strong>system design fundamentals</strong>, and{" "}
+              <strong>real-world problem solving</strong>. Through academic projects,
+              internships, and self-driven learning, I have translated requirements
+              into production-ready solutions while continuously improving
               performance, usability, and code quality.
             </p>
 
-            {/* CORE STRENGTHS */}
-            <div style={styles.highlights}>
-              <div>Frontend Development (React, UI/UX)</div>
-              <div>Backend APIs & Databases</div>
-              <div>Problem Solving & Data Structures</div>
-              <div>Version Control & Team Collaboration</div>
-            </div>
+            <p style={styles.focus}>
+              <strong>Primary focus areas:</strong> Full Stack Development (React,
+              Node.js), Backend APIs & Databases, Data Structures & Algorithms,
+              Version Control, and Collaborative Development.
+            </p>
 
-            {/* STATS */}
-            <div style={styles.stats}>
-              <div style={styles.statBox}>
-                <span style={styles.statNumber}>10+</span>
+            {/* PROFESSIONAL STATS */}
+            <div style={styles.statsRow}>
+              <div style={styles.stat}>
+                <span style={styles.statValue}>10+</span>
                 <span style={styles.statLabel}>Projects Built</span>
               </div>
 
-              <div style={styles.statBox}>
-                <span style={styles.statNumber}>2+</span>
-                <span style={styles.statLabel}>Years of Learning</span>
+              <div style={styles.stat}>
+                <span style={styles.statValue}>2+</span>
+                <span style={styles.statLabel}>Years of Hands-on Learning</span>
               </div>
 
-              <div style={styles.statBox}>
-                <span style={styles.statNumber}>5+</span>
+              <div style={styles.stat}>
+                <span style={styles.statValue}>5+</span>
                 <span style={styles.statLabel}>Core Technologies</span>
               </div>
             </div>
@@ -168,77 +202,73 @@ export default function About() {
   );
 }
 
-/* ==================== STYLES ==================== */
+/* ===================== STYLES ===================== */
 
 const styles = {
   section: {
-    padding: "100px 10%",
-    background: "#020617",
-    display: "flex",
-    justifyContent: "center"
+    padding: "90px 10%",
+    background: "#020617"
   },
 
-  container: {
-    maxWidth: "900px",
-    width: "100%"
+  wrapper: {
+    maxWidth: "920px"
   },
 
   heading: {
-    fontSize: "28px",
-    fontWeight: 600,
-    color: "#38bdf8",
-    marginBottom: "32px"
-  },
-
-  card: {
-    background: "rgba(15, 23, 42, 0.6)",
-    border: "1px solid #1e293b",
-    borderRadius: "18px",
-    padding: "40px",
-    backdropFilter: "blur(14px)"
-  },
-
-  text: {
-    fontSize: "15px",
-    lineHeight: 1.8,
-    color: "#cbd5f5",
-    marginBottom: "20px"
-  },
-
-  highlights: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: "14px",
-    margin: "30px 0",
-    fontSize: "14px",
-    color: "#94a3b8"
-  },
-
-  stats: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-    gap: "24px",
-    marginTop: "28px"
-  },
-
-  statBox: {
-    background: "rgba(2, 6, 23, 0.6)",
-    border: "1px solid #1e293b",
-    borderRadius: "14px",
-    padding: "20px",
-    textAlign: "center" as const
-  },
-
-  statNumber: {
-    display: "block",
-    fontSize: "22px",
+    fontSize: "26px",
     fontWeight: 600,
     color: "#38bdf8",
     marginBottom: "6px"
   },
 
+  role: {
+    fontSize: "14px",
+    color: "#94a3b8",
+    marginBottom: "28px"
+  },
+
+  content: {
+    borderLeft: "3px solid #1e293b",
+    paddingLeft: "28px"
+  },
+
+  text: {
+    fontSize: "15px",
+    lineHeight: 1.75,
+    color: "#cbd5f5",
+    marginBottom: "18px"
+  },
+
+  focus: {
+    fontSize: "14px",
+    lineHeight: 1.7,
+    color: "#94a3b8",
+    marginTop: "6px",
+    marginBottom: "28px"
+  },
+
+  statsRow: {
+    display: "flex",
+    flexWrap: "wrap" as const,
+    gap: "32px",
+    marginTop: "10px"
+  },
+
+  stat: {
+    display: "flex",
+    flexDirection: "column" as const
+  },
+
+  statValue: {
+    fontSize: "20px",
+    fontWeight: 600,
+    color: "#38bdf8",
+    lineHeight: 1.2
+  },
+
   statLabel: {
     fontSize: "13px",
-    color: "#94a3b8"
+    color: "#94a3b8",
+    marginTop: "4px"
   }
 };
