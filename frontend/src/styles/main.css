@@ -1,4 +1,3 @@
-
 /* ===================== ROOT VARIABLES ===================== */
 :root {
   --bg: #020617;
@@ -149,7 +148,7 @@ textarea {
   font-family: inherit;
 }
 
-/* ===================== NAV LINK HOVER UNDERLINE ===================== */
+/* ===================== NAV LINK UNDERLINE ===================== */
 nav a {
   position: relative;
   font-size: 14px;
