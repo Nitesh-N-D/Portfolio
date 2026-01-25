@@ -32,17 +32,24 @@ export default function App() {
       ) : (
         <>
           <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Education />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Certifications />
-            <Achievements />
-            <Contact />
-          </main>
+          <main
+  style={{
+    width: "100%",
+    maxWidth: "100vw",
+    overflowX: "hidden",
+  }}
+>
+  <Hero />
+  <About />
+  <Education />
+  <Skills />
+  <Projects />
+  <Experience />
+  <Certifications />
+  <Achievements />
+  <Contact />
+</main>
+
           <Footer />
         </>
       )}

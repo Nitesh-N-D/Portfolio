@@ -731,7 +731,7 @@ const styles = {
     top: "64px",
     width: "100%",
     background: "rgba(2,6,23,0.98)",
-    padding: "16px 10%",
+    padding: "16px 24px",
     display: "flex",
     flexDirection: "column" as const,
     gap: "14px",
