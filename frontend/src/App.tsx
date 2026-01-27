@@ -32,13 +32,13 @@ export default function App() {
       ) : (
         <>
           <Navbar />
-          <main
+   <main
   style={{
     width: "100%",
-    maxWidth: "100vw",
     overflowX: "hidden",
   }}
 >
+
   <Hero />
   <About />
   <Education />

@@ -20,6 +20,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
 
 body {
   font-family: Inter, system-ui, sans-serif;
@@ -52,12 +57,11 @@ small {
 
 /* ===================== SECTIONS ===================== */
 .section {
-  min-height: 100svh; /* mobile-safe */
+  min-height: 100svh;
   padding: 100px 6%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;   /* 🔥 important */
 }
+
 
 .section-content {
   width: 100%;
@@ -67,8 +71,13 @@ small {
 
 /* ===================== CENTERED SECTIONS ===================== */
 .section-center {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
+
 
 .text-center {
   text-align: center;

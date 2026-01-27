@@ -1124,7 +1124,7 @@ const styles = {
     position: "fixed" as const,
     top: 0,
     width: "100%",
-    padding: "14px 10%",
+    padding: "14px clamp(16px, 5vw, 10%)",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
