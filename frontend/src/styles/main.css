@@ -50,65 +50,31 @@ small {
   color: var(--muted);
 }
 
-/* ===================== SECTIONS (FIXED) ===================== */
+/* ===================== SECTIONS ===================== */
 .section {
-  min-height: 100vh;
+  min-height: 100svh; /* mobile-safe */
   padding: 100px 6%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Inner content wrapper */
 .section-content {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* Centered variant (Hero, About) */
+/* ===================== CENTERED SECTIONS ===================== */
 .section-center {
   text-align: center;
-}
-
-.section-center .actions,
-.section-center .stats,
-.section-center .socials {
-  justify-content: center;
-}
-/* ===================== CENTERED SECTION ===================== */
-
-.section-center {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;      /* vertical center */
-  justify-content: center;  /* horizontal center */
-}
-
-.section-content {
-  width: 100%;
-  max-width: 900px;
-  text-align: center;
-}
-.section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-}
-
-.section-center {
-  justify-content: center;
-}
-
-.section-content {
-  width: 100%;
-  max-width: 1100px;
 }
 
 .text-center {
   text-align: center;
 }
 
+/* ===================== HERO HELPERS ===================== */
 .hero-description {
   max-width: 760px;
   margin: 0 auto;
@@ -120,18 +86,21 @@ small {
 .hero-stats {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 20px;
+  justify-content: center;
 }
 
 /* Actions */
-.actions-center {
-  margin-top: 40px;
+.actions {
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  gap: 14px;
+  margin-top: 28px;
   flex-wrap: wrap;
+}
+
+.actions-center {
+  justify-content: center;
 }
 
 /* Socials */
@@ -142,31 +111,11 @@ small {
   gap: 18px;
 }
 
-/* Cards */
-.stat-card {
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-.social-icon {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
 /* ===================== GRID ===================== */
 .grid {
   display: grid;
   gap: 28px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 /* ===================== LINKS ===================== */
@@ -195,13 +144,6 @@ a:hover {
 }
 
 /* ===================== BUTTONS ===================== */
-.actions {
-  display: flex;
-  gap: 14px;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
 .btn {
   background: linear-gradient(135deg, #38bdf8, #0ea5e9);
   color: #020617;
@@ -292,5 +234,9 @@ footer {
   .actions {
     flex-direction: column;
     align-items: center;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
