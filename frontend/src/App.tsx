@@ -32,23 +32,23 @@ export default function App() {
       ) : (
         <>
           <Navbar />
-   <main
-  style={{
-    width: "100%",
-    overflowX: "hidden",
-  }}
->
 
-  <Hero />
-  <About />
-  <Education />
-  <Skills />
-  <Projects />
-  <Experience />
-  <Certifications />
-  <Achievements />
-  <Contact />
-</main>
+          {/* MAIN WRAPPER (SAFE FOR ALL SCREENS) */}
+          <main
+            style={{
+              overflowX: "hidden",
+            }}
+          >
+            <Hero />
+            <About />
+            <Education />
+            <Skills />
+            <Projects />
+            <Experience />
+            <Certifications />
+            <Achievements />
+            <Contact />
+          </main>
 
           <Footer />
         </>
