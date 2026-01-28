@@ -1738,18 +1738,19 @@ export default function Navbar() {
       </AnimatePresence>
 
       {/* ================= RESPONSIVE (SAFE) ================= */}
-      <style>
-        {`
-          @media (max-width: 900px) {
-            .nav-links {
-              display: none;
-            }
-            .menu-btn {
-              display: block;
-            }
-          }
-        `}
-      </style>
+     <style>
+  {`
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+      }
+      .menu-btn {
+        display: block;
+      }
+    }
+  `}
+</style>
+
     </>
   );
 }
