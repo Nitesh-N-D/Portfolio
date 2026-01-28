@@ -249,3 +249,12 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
+@media (max-width: 900px) {
+  .nav-links {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: block !important;
+  }
+}

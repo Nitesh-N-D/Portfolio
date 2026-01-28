@@ -1,21 +1,375 @@
-// // // // // // import { useEffect, useState } from "react";
-// // // // // // import { motion } from "framer-motion";
+// // // // // // // // import { useEffect, useState } from "react";
+// // // // // // // // import { motion } from "framer-motion";
+
+// // // // // // // // const sections = [
+// // // // // // // //   { id: "home", label: "Home" },
+// // // // // // // //   { id: "about", label: "About" },
+// // // // // // // //   { id: "education", label: "Education" },
+// // // // // // // //   { id: "skills", label: "Skills" },
+// // // // // // // //   { id: "projects", label: "Projects" },
+// // // // // // // //   { id: "experience", label: "Experience" },
+// // // // // // // //   { id: "certifications", label: "Certifications" },
+// // // // // // // //   { id: "achievements", label: "Achievements" },
+// // // // // // // //   { id: "contact", label: "Contact" }
+// // // // // // // // ];
+
+// // // // // // // // export default function Navbar() {
+// // // // // // // //   const [active, setActive] = useState("home");
+
+// // // // // // // //   useEffect(() => {
+// // // // // // // //     const observer = new IntersectionObserver(
+// // // // // // // //       entries => {
+// // // // // // // //         entries.forEach(entry => {
+// // // // // // // //           if (entry.isIntersecting) {
+// // // // // // // //             setActive(entry.target.id);
+// // // // // // // //           }
+// // // // // // // //         });
+// // // // // // // //       },
+// // // // // // // //       {
+// // // // // // // //         rootMargin: "-40% 0px -55% 0px"
+// // // // // // // //       }
+// // // // // // // //     );
+
+// // // // // // // //     sections.forEach(section => {
+// // // // // // // //       const el = document.getElementById(section.id);
+// // // // // // // //       if (el) observer.observe(el);
+// // // // // // // //     });
+
+// // // // // // // //     return () => observer.disconnect();
+// // // // // // // //   }, []);
+
+// // // // // // // //   return (
+// // // // // // // //     <motion.nav
+// // // // // // // //       initial={{ y: -60, opacity: 0 }}
+// // // // // // // //       animate={{ y: 0, opacity: 1 }}
+// // // // // // // //       transition={{ duration: 0.5, ease: "easeOut" }}
+// // // // // // // //       style={styles.nav}
+// // // // // // // //     >
+// // // // // // // //       {/* LEFT: BRAND */}
+// // // // // // // //       <div style={styles.brand}>Nitesh N D</div>
+
+// // // // // // // //       {/* RIGHT: NAV LINKS */}
+// // // // // // // //       <div style={styles.links}>
+// // // // // // // //         {sections.map(section => (
+// // // // // // // //           <a
+// // // // // // // //             key={section.id}
+// // // // // // // //             href={`#${section.id}`}
+// // // // // // // //             style={{
+// // // // // // // //               ...styles.link,
+// // // // // // // //               ...(active === section.id ? styles.activeLink : {})
+// // // // // // // //             }}
+// // // // // // // //           >
+// // // // // // // //             {section.label}
+// // // // // // // //           </a>
+// // // // // // // //         ))}
+// // // // // // // //       </div>
+// // // // // // // //     </motion.nav>
+// // // // // // // //   );
+// // // // // // // // }
+
+// // // // // // // // /* ==================== STYLES ==================== */
+
+// // // // // // // // const styles = {
+// // // // // // // //   nav: {
+// // // // // // // //     position: "fixed" as const,
+// // // // // // // //     top: 0,
+// // // // // // // //     left: 0,
+// // // // // // // //     width: "100%",
+// // // // // // // //     padding: "14px 10%",
+// // // // // // // //     display: "flex",
+// // // // // // // //     alignItems: "center",
+// // // // // // // //     justifyContent: "space-between",
+// // // // // // // //     background: "rgba(2, 6, 23, 0.85)",
+// // // // // // // //     backdropFilter: "blur(14px)",
+// // // // // // // //     borderBottom: "1px solid #1e293b",
+// // // // // // // //     zIndex: 1000
+// // // // // // // //   },
+
+// // // // // // // //   brand: {
+// // // // // // // //     fontSize: "18px",
+// // // // // // // //     fontWeight: 600,
+// // // // // // // //     color: "#e5e7eb",
+// // // // // // // //     letterSpacing: "0.4px"
+// // // // // // // //   },
+
+// // // // // // // //   links: {
+// // // // // // // //     display: "flex",
+// // // // // // // //     gap: "26px",
+// // // // // // // //     alignItems: "center"
+// // // // // // // //   },
+
+// // // // // // // //   link: {
+// // // // // // // //     fontSize: "14px",
+// // // // // // // //     fontWeight: 500,
+// // // // // // // //     color: "#94a3b8",
+// // // // // // // //     textDecoration: "none",
+// // // // // // // //     position: "relative" as const,
+// // // // // // // //     paddingBottom: "4px",
+// // // // // // // //     transition: "color 0.2s ease"
+// // // // // // // //   },
+
+// // // // // // // //   activeLink: {
+// // // // // // // //     color: "#38bdf8",
+// // // // // // // //     borderBottom: "2px solid #38bdf8"
+// // // // // // // //   }
+// // // // // // // // };
+// // // // // // // import { useEffect, useRef, useState } from "react";
+// // // // // // // import { motion, AnimatePresence } from "framer-motion";
+// // // // // // // import { FiMenu, FiX } from "react-icons/fi";
+
+// // // // // // // type Section = {
+// // // // // // //   id: string;
+// // // // // // //   label: string;
+// // // // // // // };
+
+// // // // // // // const sections: Section[] = [
+// // // // // // //   { id: "home", label: "Home" },
+// // // // // // //   { id: "about", label: "About" },
+// // // // // // //   { id: "education", label: "Education" },
+// // // // // // //   { id: "skills", label: "Skills" },
+// // // // // // //   { id: "projects", label: "Projects" },
+// // // // // // //   { id: "experience", label: "Experience" },
+// // // // // // //   { id: "certifications", label: "Certifications" },
+// // // // // // //   { id: "achievements", label: "Achievements" },
+// // // // // // //   { id: "contact", label: "Contact" }
+// // // // // // // ];
+
+// // // // // // // export default function Navbar() {
+// // // // // // //   const [active, setActive] = useState("home");
+// // // // // // //   const [menuOpen, setMenuOpen] = useState(false);
+
+// // // // // // //   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+// // // // // // //   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+// // // // // // //   /* ================= Scroll Spy ================= */
+// // // // // // //   useEffect(() => {
+// // // // // // //     const observer = new IntersectionObserver(
+// // // // // // //       entries => {
+// // // // // // //         entries.forEach(entry => {
+// // // // // // //           if (entry.isIntersecting) {
+// // // // // // //             setActive(entry.target.id);
+// // // // // // //           }
+// // // // // // //         });
+// // // // // // //       },
+// // // // // // //       { rootMargin: "-45% 0px -50% 0px" }
+// // // // // // //     );
+
+// // // // // // //     sections.forEach(section => {
+// // // // // // //       const el = document.getElementById(section.id);
+// // // // // // //       if (el) observer.observe(el);
+// // // // // // //     });
+
+// // // // // // //     return () => observer.disconnect();
+// // // // // // //   }, []);
+
+// // // // // // //   /* ================= Underline ================= */
+// // // // // // //   useEffect(() => {
+// // // // // // //     const el = linkRefs.current[active];
+// // // // // // //     if (el && !menuOpen) {
+// // // // // // //       setIndicator({
+// // // // // // //         left: el.offsetLeft,
+// // // // // // //         width: el.offsetWidth
+// // // // // // //       });
+// // // // // // //     }
+// // // // // // //   }, [active, menuOpen]);
+
+// // // // // // //   return (
+// // // // // // //     <>
+// // // // // // //       {/* ================= NAVBAR ================= */}
+// // // // // // //       <nav style={styles.nav}>
+// // // // // // //         {/* BRAND */}
+// // // // // // //         <div style={styles.brand}>Nitesh N D</div>
+
+// // // // // // //         {/* DESKTOP LINKS */}
+// // // // // // //         <div style={styles.linksDesktop}>
+// // // // // // //           {sections.map(section => (
+// // // // // // //             <a
+// // // // // // //               key={section.id}
+// // // // // // //               href={`#${section.id}`}
+// // // // // // //               ref={(el: HTMLAnchorElement | null) => {
+// // // // // // //                 linkRefs.current[section.id] = el;
+// // // // // // //               }}
+// // // // // // //               onClick={() => setActive(section.id)}
+// // // // // // //               style={{
+// // // // // // //                 ...styles.link,
+// // // // // // //                 color: active === section.id ? "#38bdf8" : "#94a3b8"
+// // // // // // //               }}
+// // // // // // //             >
+// // // // // // //               {section.label}
+// // // // // // //             </a>
+// // // // // // //           ))}
+
+// // // // // // //           {/* BLUE INDICATOR */}
+// // // // // // //           <motion.span
+// // // // // // //             layout
+// // // // // // //             transition={{ type: "spring", stiffness: 300, damping: 30 }}
+// // // // // // //             style={{
+// // // // // // //               ...styles.indicator,
+// // // // // // //               left: indicator.left,
+// // // // // // //               width: indicator.width
+// // // // // // //             }}
+// // // // // // //           />
+// // // // // // //         </div>
+
+// // // // // // //         {/* MOBILE TOGGLE */}
+// // // // // // //         <button
+// // // // // // //           style={styles.menuBtn}
+// // // // // // //           onClick={() => setMenuOpen(prev => !prev)}
+// // // // // // //           aria-label="Toggle menu"
+// // // // // // //         >
+// // // // // // //           {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+// // // // // // //         </button>
+// // // // // // //       </nav>
+
+// // // // // // //       {/* ================= MOBILE MENU ================= */}
+// // // // // // //       <AnimatePresence>
+// // // // // // //         {menuOpen && (
+// // // // // // //           <motion.div
+// // // // // // //             initial={{ opacity: 0, y: -10 }}
+// // // // // // //             animate={{ opacity: 1, y: 0 }}
+// // // // // // //             exit={{ opacity: 0, y: -10 }}
+// // // // // // //             transition={{ duration: 0.25 }}
+// // // // // // //             style={styles.mobileMenu}
+// // // // // // //           >
+// // // // // // //             {sections.map(section => (
+// // // // // // //               <a
+// // // // // // //                 key={section.id}
+// // // // // // //                 href={`#${section.id}`}
+// // // // // // //                 onClick={() => {
+// // // // // // //                   setActive(section.id);
+// // // // // // //                   setMenuOpen(false);
+// // // // // // //                 }}
+// // // // // // //                 style={{
+// // // // // // //                   ...styles.mobileLink,
+// // // // // // //                   color: active === section.id ? "#38bdf8" : "#e5e7eb"
+// // // // // // //                 }}
+// // // // // // //               >
+// // // // // // //                 {section.label}
+// // // // // // //               </a>
+// // // // // // //             ))}
+// // // // // // //           </motion.div>
+// // // // // // //         )}
+// // // // // // //       </AnimatePresence>
+// // // // // // //     </>
+// // // // // // //   );
+// // // // // // // }
+
+// // // // // // // /* ==================== STYLES ==================== */
+
+// // // // // // // const styles = {
+// // // // // // //   nav: {
+// // // // // // //     position: "fixed" as const,
+// // // // // // //     top: 0,
+// // // // // // //     left: 0,
+// // // // // // //     width: "100%",
+// // // // // // //     padding: "14px 10%",
+// // // // // // //     display: "flex",
+// // // // // // //     justifyContent: "space-between",
+// // // // // // //     alignItems: "center",
+// // // // // // //     background: "rgba(2, 6, 23, 0.9)",
+// // // // // // //     backdropFilter: "blur(14px)",
+// // // // // // //     borderBottom: "1px solid #1e293b",
+// // // // // // //     zIndex: 1000
+// // // // // // //   },
+
+// // // // // // //   brand: {
+// // // // // // //     fontSize: "17px",
+// // // // // // //     fontWeight: 600,
+// // // // // // //     color: "#e5e7eb"
+// // // // // // //   },
+
+// // // // // // //   /* DESKTOP */
+// // // // // // //   linksDesktop: {
+// // // // // // //     position: "relative" as const,
+// // // // // // //     display: "flex",
+// // // // // // //     gap: "26px",
+// // // // // // //     paddingBottom: "6px"
+// // // // // // //   },
+
+// // // // // // //   link: {
+// // // // // // //     fontSize: "14px",
+// // // // // // //     fontWeight: 500,
+// // // // // // //     textDecoration: "none",
+// // // // // // //     transition: "color 0.2s ease"
+// // // // // // //   },
+
+// // // // // // //   indicator: {
+// // // // // // //     position: "absolute" as const,
+// // // // // // //     bottom: 0,
+// // // // // // //     height: "2px",
+// // // // // // //     background: "#38bdf8",
+// // // // // // //     borderRadius: "2px"
+// // // // // // //   },
+
+// // // // // // //   /* MOBILE */
+// // // // // // //   menuBtn: {
+// // // // // // //     display: "none",
+// // // // // // //     background: "none",
+// // // // // // //     border: "none",
+// // // // // // //     color: "#e5e7eb",
+// // // // // // //     cursor: "pointer"
+// // // // // // //   },
+
+// // // // // // //   mobileMenu: {
+// // // // // // //     position: "fixed" as const,
+// // // // // // //     top: "64px",
+// // // // // // //     left: 0,
+// // // // // // //     width: "100%",
+// // // // // // //     background: "rgba(2, 6, 23, 0.98)",
+// // // // // // //     borderBottom: "1px solid #1e293b",
+// // // // // // //     display: "flex",
+// // // // // // //     flexDirection: "column" as const,
+// // // // // // //     padding: "16px 10%",
+// // // // // // //     gap: "14px",
+// // // // // // //     zIndex: 999
+// // // // // // //   },
+
+// // // // // // //   mobileLink: {
+// // // // // // //     fontSize: "14px",
+// // // // // // //     fontWeight: 500,
+// // // // // // //     textDecoration: "none"
+// // // // // // //   }
+// // // // // // // };
+
+// // // // // // // /* ==================== RESPONSIVE ==================== */
+// // // // // // // if (typeof window !== "undefined") {
+// // // // // // //   const style = document.createElement("style");
+// // // // // // //   style.innerHTML = `
+// // // // // // //     @media (max-width: 900px) {
+// // // // // // //       nav div[style*="linksDesktop"] {
+// // // // // // //         display: none !important;
+// // // // // // //       }
+// // // // // // //       button {
+// // // // // // //         display: block !important;
+// // // // // // //       }
+// // // // // // //     }
+// // // // // // //   `;
+// // // // // // //   document.head.appendChild(style);
+// // // // // // // }
+// // // // // // import { useEffect, useRef, useState } from "react";
+// // // // // // import { motion, AnimatePresence } from "framer-motion";
+// // // // // // import { FiMenu, FiX } from "react-icons/fi";
 
 // // // // // // const sections = [
-// // // // // //   { id: "home", label: "Home" },
-// // // // // //   { id: "about", label: "About" },
-// // // // // //   { id: "education", label: "Education" },
-// // // // // //   { id: "skills", label: "Skills" },
-// // // // // //   { id: "projects", label: "Projects" },
-// // // // // //   { id: "experience", label: "Experience" },
-// // // // // //   { id: "certifications", label: "Certifications" },
-// // // // // //   { id: "achievements", label: "Achievements" },
-// // // // // //   { id: "contact", label: "Contact" }
+// // // // // //   "home",
+// // // // // //   "about",
+// // // // // //   "education",
+// // // // // //   "skills",
+// // // // // //   "projects",
+// // // // // //   "experience",
+// // // // // //   "certifications",
+// // // // // //   "achievements",
+// // // // // //   "contact"
 // // // // // // ];
 
 // // // // // // export default function Navbar() {
 // // // // // //   const [active, setActive] = useState("home");
+// // // // // //   const [menuOpen, setMenuOpen] = useState(false);
 
+// // // // // //   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+// // // // // //   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+
+// // // // // //   /* ---------- Scroll Spy ---------- */
 // // // // // //   useEffect(() => {
 // // // // // //     const observer = new IntersectionObserver(
 // // // // // //       entries => {
@@ -25,113 +379,180 @@
 // // // // // //           }
 // // // // // //         });
 // // // // // //       },
-// // // // // //       {
-// // // // // //         rootMargin: "-40% 0px -55% 0px"
-// // // // // //       }
+// // // // // //       { rootMargin: "-45% 0px -45% 0px" }
 // // // // // //     );
 
-// // // // // //     sections.forEach(section => {
-// // // // // //       const el = document.getElementById(section.id);
+// // // // // //     sections.forEach(id => {
+// // // // // //       const el = document.getElementById(id);
 // // // // // //       if (el) observer.observe(el);
 // // // // // //     });
 
 // // // // // //     return () => observer.disconnect();
 // // // // // //   }, []);
 
-// // // // // //   return (
-// // // // // //     <motion.nav
-// // // // // //       initial={{ y: -60, opacity: 0 }}
-// // // // // //       animate={{ y: 0, opacity: 1 }}
-// // // // // //       transition={{ duration: 0.5, ease: "easeOut" }}
-// // // // // //       style={styles.nav}
-// // // // // //     >
-// // // // // //       {/* LEFT: BRAND */}
-// // // // // //       <div style={styles.brand}>Nitesh N D</div>
+// // // // // //   /* ---------- Blue Line ---------- */
+// // // // // //   useEffect(() => {
+// // // // // //     const el = linkRefs.current[active];
+// // // // // //     if (el) {
+// // // // // //       setIndicator({
+// // // // // //         left: el.offsetLeft,
+// // // // // //         width: el.offsetWidth
+// // // // // //       });
+// // // // // //     }
+// // // // // //   }, [active]);
 
-// // // // // //       {/* RIGHT: NAV LINKS */}
-// // // // // //       <div style={styles.links}>
-// // // // // //         {sections.map(section => (
-// // // // // //           <a
-// // // // // //             key={section.id}
-// // // // // //             href={`#${section.id}`}
-// // // // // //             style={{
-// // // // // //               ...styles.link,
-// // // // // //               ...(active === section.id ? styles.activeLink : {})
-// // // // // //             }}
+// // // // // //   return (
+// // // // // //     <>
+// // // // // //       <nav style={styles.nav}>
+// // // // // //         <div style={styles.brand}>Nitesh N D</div>
+
+// // // // // //         {/* DESKTOP */}
+// // // // // //         <div style={styles.links}>
+// // // // // //           {sections.map(id => (
+// // // // // //             <a
+// // // // // //               key={id}
+// // // // // //               href={`#${id}`}
+// // // // // //               ref={el => (linkRefs.current[id] = el)}
+// // // // // //               style={{
+// // // // // //                 ...styles.link,
+// // // // // //                 color: active === id ? "#38bdf8" : "#94a3b8"
+// // // // // //               }}
+// // // // // //             >
+// // // // // //               {id.charAt(0).toUpperCase() + id.slice(1)}
+// // // // // //             </a>
+// // // // // //           ))}
+
+// // // // // //           {/* BLUE UNDERLINE */}
+// // // // // //           <motion.span
+// // // // // //             style={styles.indicator}
+// // // // // //             animate={{ left: indicator.left, width: indicator.width }}
+// // // // // //             transition={{ type: "spring", stiffness: 320, damping: 30 }}
+// // // // // //           />
+// // // // // //         </div>
+
+// // // // // //         {/* MOBILE BUTTON */}
+// // // // // //         <button
+// // // // // //           style={styles.menuBtn}
+// // // // // //           onClick={() => setMenuOpen(p => !p)}
+// // // // // //         >
+// // // // // //           {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+// // // // // //         </button>
+// // // // // //       </nav>
+
+// // // // // //       {/* MOBILE MENU */}
+// // // // // //       <AnimatePresence>
+// // // // // //         {menuOpen && (
+// // // // // //           <motion.div
+// // // // // //             initial={{ opacity: 0, y: -10 }}
+// // // // // //             animate={{ opacity: 1, y: 0 }}
+// // // // // //             exit={{ opacity: 0, y: -10 }}
+// // // // // //             style={styles.mobileMenu}
 // // // // // //           >
-// // // // // //             {section.label}
-// // // // // //           </a>
-// // // // // //         ))}
-// // // // // //       </div>
-// // // // // //     </motion.nav>
+// // // // // //             {sections.map(id => (
+// // // // // //               <a
+// // // // // //                 key={id}
+// // // // // //                 href={`#${id}`}
+// // // // // //                 onClick={() => {
+// // // // // //                   setActive(id);
+// // // // // //                   setMenuOpen(false);
+// // // // // //                 }}
+// // // // // //                 style={styles.mobileLink}
+// // // // // //               >
+// // // // // //                 {id.charAt(0).toUpperCase() + id.slice(1)}
+// // // // // //               </a>
+// // // // // //             ))}
+// // // // // //           </motion.div>
+// // // // // //         )}
+// // // // // //       </AnimatePresence>
+// // // // // //     </>
 // // // // // //   );
 // // // // // // }
 
-// // // // // // /* ==================== STYLES ==================== */
+// // // // // // /* ---------- STYLES ---------- */
 
 // // // // // // const styles = {
 // // // // // //   nav: {
 // // // // // //     position: "fixed" as const,
 // // // // // //     top: 0,
-// // // // // //     left: 0,
 // // // // // //     width: "100%",
 // // // // // //     padding: "14px 10%",
 // // // // // //     display: "flex",
-// // // // // //     alignItems: "center",
 // // // // // //     justifyContent: "space-between",
-// // // // // //     background: "rgba(2, 6, 23, 0.85)",
+// // // // // //     alignItems: "center",
+// // // // // //     background: "rgba(2,6,23,0.92)",
 // // // // // //     backdropFilter: "blur(14px)",
 // // // // // //     borderBottom: "1px solid #1e293b",
 // // // // // //     zIndex: 1000
 // // // // // //   },
 
 // // // // // //   brand: {
-// // // // // //     fontSize: "18px",
 // // // // // //     fontWeight: 600,
-// // // // // //     color: "#e5e7eb",
-// // // // // //     letterSpacing: "0.4px"
+// // // // // //     fontSize: "16px",
+// // // // // //     color: "#e5e7eb"
 // // // // // //   },
 
 // // // // // //   links: {
+// // // // // //     position: "relative" as const,
 // // // // // //     display: "flex",
 // // // // // //     gap: "26px",
-// // // // // //     alignItems: "center"
+// // // // // //     paddingBottom: "6px"
 // // // // // //   },
 
 // // // // // //   link: {
 // // // // // //     fontSize: "14px",
-// // // // // //     fontWeight: 500,
-// // // // // //     color: "#94a3b8",
 // // // // // //     textDecoration: "none",
-// // // // // //     position: "relative" as const,
-// // // // // //     paddingBottom: "4px",
-// // // // // //     transition: "color 0.2s ease"
+// // // // // //     fontWeight: 500
 // // // // // //   },
 
-// // // // // //   activeLink: {
-// // // // // //     color: "#38bdf8",
-// // // // // //     borderBottom: "2px solid #38bdf8"
+// // // // // //   indicator: {
+// // // // // //     position: "absolute" as const,
+// // // // // //     bottom: 0,
+// // // // // //     height: "2px",
+// // // // // //     background: "#38bdf8",
+// // // // // //     borderRadius: "2px"
+// // // // // //   },
+
+// // // // // //   menuBtn: {
+// // // // // //     display: "none",
+// // // // // //     background: "none",
+// // // // // //     border: "none",
+// // // // // //     color: "#e5e7eb",
+// // // // // //     cursor: "pointer"
+// // // // // //   },
+
+// // // // // //   mobileMenu: {
+// // // // // //     position: "fixed" as const,
+// // // // // //     top: "64px",
+// // // // // //     width: "100%",
+// // // // // //     background: "#020617",
+// // // // // //     padding: "16px 10%",
+// // // // // //     display: "flex",
+// // // // // //     flexDirection: "column" as const,
+// // // // // //     gap: "14px",
+// // // // // //     borderBottom: "1px solid #1e293b",
+// // // // // //     zIndex: 999
+// // // // // //   },
+
+// // // // // //   mobileLink: {
+// // // // // //     fontSize: "14px",
+// // // // // //     color: "#e5e7eb",
+// // // // // //     textDecoration: "none"
 // // // // // //   }
 // // // // // // };
 // // // // // import { useEffect, useRef, useState } from "react";
 // // // // // import { motion, AnimatePresence } from "framer-motion";
 // // // // // import { FiMenu, FiX } from "react-icons/fi";
 
-// // // // // type Section = {
-// // // // //   id: string;
-// // // // //   label: string;
-// // // // // };
-
-// // // // // const sections: Section[] = [
-// // // // //   { id: "home", label: "Home" },
-// // // // //   { id: "about", label: "About" },
-// // // // //   { id: "education", label: "Education" },
-// // // // //   { id: "skills", label: "Skills" },
-// // // // //   { id: "projects", label: "Projects" },
-// // // // //   { id: "experience", label: "Experience" },
-// // // // //   { id: "certifications", label: "Certifications" },
-// // // // //   { id: "achievements", label: "Achievements" },
-// // // // //   { id: "contact", label: "Contact" }
+// // // // // const sections = [
+// // // // //   "home",
+// // // // //   "about",
+// // // // //   "education",
+// // // // //   "skills",
+// // // // //   "projects",
+// // // // //   "experience",
+// // // // //   "certifications",
+// // // // //   "achievements",
+// // // // //   "contact"
 // // // // // ];
 
 // // // // // export default function Navbar() {
@@ -151,21 +572,23 @@
 // // // // //           }
 // // // // //         });
 // // // // //       },
-// // // // //       { rootMargin: "-45% 0px -50% 0px" }
+// // // // //       { rootMargin: "-45% 0px -45% 0px" }
 // // // // //     );
 
-// // // // //     sections.forEach(section => {
-// // // // //       const el = document.getElementById(section.id);
+// // // // //     sections.forEach(id => {
+// // // // //       const el = document.getElementById(id);
 // // // // //       if (el) observer.observe(el);
 // // // // //     });
 
 // // // // //     return () => observer.disconnect();
 // // // // //   }, []);
 
-// // // // //   /* ================= Underline ================= */
+// // // // //   /* ================= Blue Underline ================= */
 // // // // //   useEffect(() => {
+// // // // //     if (menuOpen) return;
+
 // // // // //     const el = linkRefs.current[active];
-// // // // //     if (el && !menuOpen) {
+// // // // //     if (el) {
 // // // // //       setIndicator({
 // // // // //         left: el.offsetLeft,
 // // // // //         width: el.offsetWidth
@@ -177,45 +600,41 @@
 // // // // //     <>
 // // // // //       {/* ================= NAVBAR ================= */}
 // // // // //       <nav style={styles.nav}>
-// // // // //         {/* BRAND */}
 // // // // //         <div style={styles.brand}>Nitesh N D</div>
 
 // // // // //         {/* DESKTOP LINKS */}
-// // // // //         <div style={styles.linksDesktop}>
-// // // // //           {sections.map(section => (
+// // // // //         <div style={styles.links}>
+// // // // //           {sections.map(id => (
 // // // // //             <a
-// // // // //               key={section.id}
-// // // // //               href={`#${section.id}`}
-// // // // //               ref={(el: HTMLAnchorElement | null) => {
-// // // // //                 linkRefs.current[section.id] = el;
+// // // // //               key={id}
+// // // // //               href={`#${id}`}
+// // // // //               ref={el => {
+// // // // //                 linkRefs.current[id] = el; // ✅ FIXED
 // // // // //               }}
-// // // // //               onClick={() => setActive(section.id)}
 // // // // //               style={{
 // // // // //                 ...styles.link,
-// // // // //                 color: active === section.id ? "#38bdf8" : "#94a3b8"
+// // // // //                 color: active === id ? "#38bdf8" : "#94a3b8"
 // // // // //               }}
 // // // // //             >
-// // // // //               {section.label}
+// // // // //               {id.charAt(0).toUpperCase() + id.slice(1)}
 // // // // //             </a>
 // // // // //           ))}
 
-// // // // //           {/* BLUE INDICATOR */}
-// // // // //           <motion.span
-// // // // //             layout
-// // // // //             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-// // // // //             style={{
-// // // // //               ...styles.indicator,
-// // // // //               left: indicator.left,
-// // // // //               width: indicator.width
-// // // // //             }}
-// // // // //           />
+// // // // //           {/* BLUE UNDERLINE */}
+// // // // //           {!menuOpen && (
+// // // // //             <motion.span
+// // // // //               style={styles.indicator}
+// // // // //               animate={{ left: indicator.left, width: indicator.width }}
+// // // // //               transition={{ type: "spring", stiffness: 320, damping: 30 }}
+// // // // //             />
+// // // // //           )}
 // // // // //         </div>
 
 // // // // //         {/* MOBILE TOGGLE */}
 // // // // //         <button
 // // // // //           style={styles.menuBtn}
-// // // // //           onClick={() => setMenuOpen(prev => !prev)}
-// // // // //           aria-label="Toggle menu"
+// // // // //           onClick={() => setMenuOpen(p => !p)}
+// // // // //           aria-label="Toggle navigation"
 // // // // //         >
 // // // // //           {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
 // // // // //         </button>
@@ -231,20 +650,20 @@
 // // // // //             transition={{ duration: 0.25 }}
 // // // // //             style={styles.mobileMenu}
 // // // // //           >
-// // // // //             {sections.map(section => (
+// // // // //             {sections.map(id => (
 // // // // //               <a
-// // // // //                 key={section.id}
-// // // // //                 href={`#${section.id}`}
+// // // // //                 key={id}
+// // // // //                 href={`#${id}`}
 // // // // //                 onClick={() => {
-// // // // //                   setActive(section.id);
+// // // // //                   setActive(id);
 // // // // //                   setMenuOpen(false);
 // // // // //                 }}
 // // // // //                 style={{
 // // // // //                   ...styles.mobileLink,
-// // // // //                   color: active === section.id ? "#38bdf8" : "#e5e7eb"
+// // // // //                   color: active === id ? "#38bdf8" : "#e5e7eb"
 // // // // //                 }}
 // // // // //               >
-// // // // //                 {section.label}
+// // // // //                 {id.charAt(0).toUpperCase() + id.slice(1)}
 // // // // //               </a>
 // // // // //             ))}
 // // // // //           </motion.div>
@@ -260,26 +679,24 @@
 // // // // //   nav: {
 // // // // //     position: "fixed" as const,
 // // // // //     top: 0,
-// // // // //     left: 0,
 // // // // //     width: "100%",
 // // // // //     padding: "14px 10%",
 // // // // //     display: "flex",
 // // // // //     justifyContent: "space-between",
 // // // // //     alignItems: "center",
-// // // // //     background: "rgba(2, 6, 23, 0.9)",
+// // // // //     background: "rgba(2,6,23,0.92)",
 // // // // //     backdropFilter: "blur(14px)",
 // // // // //     borderBottom: "1px solid #1e293b",
 // // // // //     zIndex: 1000
 // // // // //   },
 
 // // // // //   brand: {
-// // // // //     fontSize: "17px",
+// // // // //     fontSize: "16px",
 // // // // //     fontWeight: 600,
 // // // // //     color: "#e5e7eb"
 // // // // //   },
 
-// // // // //   /* DESKTOP */
-// // // // //   linksDesktop: {
+// // // // //   links: {
 // // // // //     position: "relative" as const,
 // // // // //     display: "flex",
 // // // // //     gap: "26px",
@@ -301,7 +718,6 @@
 // // // // //     borderRadius: "2px"
 // // // // //   },
 
-// // // // //   /* MOBILE */
 // // // // //   menuBtn: {
 // // // // //     display: "none",
 // // // // //     background: "none",
@@ -313,14 +729,13 @@
 // // // // //   mobileMenu: {
 // // // // //     position: "fixed" as const,
 // // // // //     top: "64px",
-// // // // //     left: 0,
 // // // // //     width: "100%",
-// // // // //     background: "rgba(2, 6, 23, 0.98)",
-// // // // //     borderBottom: "1px solid #1e293b",
+// // // // //     background: "rgba(2,6,23,0.98)",
+// // // // //     padding: "16px 24px",
 // // // // //     display: "flex",
 // // // // //     flexDirection: "column" as const,
-// // // // //     padding: "16px 10%",
 // // // // //     gap: "14px",
+// // // // //     borderBottom: "1px solid #1e293b",
 // // // // //     zIndex: 999
 // // // // //   },
 
@@ -331,29 +746,13 @@
 // // // // //   }
 // // // // // };
 
-// // // // // /* ==================== RESPONSIVE ==================== */
-// // // // // if (typeof window !== "undefined") {
-// // // // //   const style = document.createElement("style");
-// // // // //   style.innerHTML = `
-// // // // //     @media (max-width: 900px) {
-// // // // //       nav div[style*="linksDesktop"] {
-// // // // //         display: none !important;
-// // // // //       }
-// // // // //       button {
-// // // // //         display: block !important;
-// // // // //       }
-// // // // //     }
-// // // // //   `;
-// // // // //   document.head.appendChild(style);
-// // // // // }
 // // // // import { useEffect, useRef, useState } from "react";
 // // // // import { motion, AnimatePresence } from "framer-motion";
 // // // // import { FiMenu, FiX } from "react-icons/fi";
 
-// // // // const sections = [
+// // // // const sections: string[] = [
 // // // //   "home",
 // // // //   "about",
-// // // //   "education",
 // // // //   "skills",
 // // // //   "projects",
 // // // //   "experience",
@@ -363,13 +762,13 @@
 // // // // ];
 
 // // // // export default function Navbar() {
-// // // //   const [active, setActive] = useState("home");
-// // // //   const [menuOpen, setMenuOpen] = useState(false);
+// // // //   const [active, setActive] = useState<string>("home");
+// // // //   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
 // // // //   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 // // // //   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
-// // // //   /* ---------- Scroll Spy ---------- */
+// // // //   /* ================= Scroll Spy ================= */
 // // // //   useEffect(() => {
 // // // //     const observer = new IntersectionObserver(
 // // // //       entries => {
@@ -390,8 +789,10 @@
 // // // //     return () => observer.disconnect();
 // // // //   }, []);
 
-// // // //   /* ---------- Blue Line ---------- */
+// // // //   /* ================= Blue Underline ================= */
 // // // //   useEffect(() => {
+// // // //     if (menuOpen) return;
+
 // // // //     const el = linkRefs.current[active];
 // // // //     if (el) {
 // // // //       setIndicator({
@@ -399,15 +800,32 @@
 // // // //         width: el.offsetWidth
 // // // //       });
 // // // //     }
-// // // //   }, [active]);
+// // // //   }, [active, menuOpen]);
+
+// // // //   /* ================= RESPONSIVE FIX (STYLE ONLY) ================= */
+// // // //   useEffect(() => {
+// // // //     const style = document.createElement("style");
+// // // //     style.innerHTML = `
+// // // //       @media (max-width: 900px) {
+// // // //         .nav-links {
+// // // //           display: none !important;
+// // // //         }
+// // // //         .menu-btn {
+// // // //           display: block !important;
+// // // //         }
+// // // //       }
+// // // //     `;
+// // // //     document.head.appendChild(style);
+// // // //     return () => document.head.removeChild(style);
+// // // //   }, []);
 
 // // // //   return (
 // // // //     <>
 // // // //       <nav style={styles.nav}>
 // // // //         <div style={styles.brand}>Nitesh N D</div>
 
-// // // //         {/* DESKTOP */}
-// // // //         <div style={styles.links}>
+// // // //         {/* DESKTOP LINKS */}
+// // // //         <div className="nav-links" style={styles.links}>
 // // // //           {sections.map(id => (
 // // // //             <a
 // // // //               key={id}
@@ -422,18 +840,21 @@
 // // // //             </a>
 // // // //           ))}
 
-// // // //           {/* BLUE UNDERLINE */}
-// // // //           <motion.span
-// // // //             style={styles.indicator}
-// // // //             animate={{ left: indicator.left, width: indicator.width }}
-// // // //             transition={{ type: "spring", stiffness: 320, damping: 30 }}
-// // // //           />
+// // // //           {!menuOpen && (
+// // // //             <motion.span
+// // // //               style={styles.indicator}
+// // // //               animate={{ left: indicator.left, width: indicator.width }}
+// // // //               transition={{ type: "spring", stiffness: 320, damping: 30 }}
+// // // //             />
+// // // //           )}
 // // // //         </div>
 
 // // // //         {/* MOBILE BUTTON */}
 // // // //         <button
+// // // //           className="menu-btn"
 // // // //           style={styles.menuBtn}
 // // // //           onClick={() => setMenuOpen(p => !p)}
+// // // //           aria-label="Toggle navigation"
 // // // //         >
 // // // //           {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
 // // // //         </button>
@@ -446,6 +867,7 @@
 // // // //             initial={{ opacity: 0, y: -10 }}
 // // // //             animate={{ opacity: 1, y: 0 }}
 // // // //             exit={{ opacity: 0, y: -10 }}
+// // // //             transition={{ duration: 0.25 }}
 // // // //             style={styles.mobileMenu}
 // // // //           >
 // // // //             {sections.map(id => (
@@ -456,7 +878,10 @@
 // // // //                   setActive(id);
 // // // //                   setMenuOpen(false);
 // // // //                 }}
-// // // //                 style={styles.mobileLink}
+// // // //                 style={{
+// // // //                   ...styles.mobileLink,
+// // // //                   color: active === id ? "#38bdf8" : "#e5e7eb"
+// // // //                 }}
 // // // //               >
 // // // //                 {id.charAt(0).toUpperCase() + id.slice(1)}
 // // // //               </a>
@@ -468,7 +893,7 @@
 // // // //   );
 // // // // }
 
-// // // // /* ---------- STYLES ---------- */
+// // // // /* ==================== STYLES ==================== */
 
 // // // // const styles = {
 // // // //   nav: {
@@ -486,8 +911,8 @@
 // // // //   },
 
 // // // //   brand: {
-// // // //     fontWeight: 600,
 // // // //     fontSize: "16px",
+// // // //     fontWeight: 600,
 // // // //     color: "#e5e7eb"
 // // // //   },
 
@@ -500,8 +925,9 @@
 
 // // // //   link: {
 // // // //     fontSize: "14px",
+// // // //     fontWeight: 500,
 // // // //     textDecoration: "none",
-// // // //     fontWeight: 500
+// // // //     transition: "color 0.2s ease"
 // // // //   },
 
 // // // //   indicator: {
@@ -524,8 +950,8 @@
 // // // //     position: "fixed" as const,
 // // // //     top: "64px",
 // // // //     width: "100%",
-// // // //     background: "#020617",
-// // // //     padding: "16px 10%",
+// // // //     background: "rgba(2,6,23,0.98)",
+// // // //     padding: "16px 24px",
 // // // //     display: "flex",
 // // // //     flexDirection: "column" as const,
 // // // //     gap: "14px",
@@ -535,7 +961,7 @@
 
 // // // //   mobileLink: {
 // // // //     fontSize: "14px",
-// // // //     color: "#e5e7eb",
+// // // //     fontWeight: 500,
 // // // //     textDecoration: "none"
 // // // //   }
 // // // // };
@@ -581,6 +1007,7 @@
 // // //     });
 
 // // //     return () => observer.disconnect();
+// // //     // eslint-disable-next-line react-hooks/exhaustive-deps
 // // //   }, []);
 
 // // //   /* ================= Blue Underline ================= */
@@ -609,7 +1036,7 @@
 // // //               key={id}
 // // //               href={`#${id}`}
 // // //               ref={el => {
-// // //                 linkRefs.current[id] = el; // ✅ FIXED
+// // //                 linkRefs.current[id] = el;
 // // //               }}
 // // //               style={{
 // // //                 ...styles.link,
@@ -620,7 +1047,6 @@
 // // //             </a>
 // // //           ))}
 
-// // //           {/* BLUE UNDERLINE */}
 // // //           {!menuOpen && (
 // // //             <motion.span
 // // //               style={styles.indicator}
@@ -632,7 +1058,11 @@
 
 // // //         {/* MOBILE TOGGLE */}
 // // //         <button
-// // //           style={styles.menuBtn}
+// // //           style={{
+// // //             ...styles.menuBtn,
+// // //             display: "none"
+// // //           }}
+// // //           className="navbar-menu-btn"
 // // //           onClick={() => setMenuOpen(p => !p)}
 // // //           aria-label="Toggle navigation"
 // // //         >
@@ -669,6 +1099,20 @@
 // // //           </motion.div>
 // // //         )}
 // // //       </AnimatePresence>
+
+// // //       {/* ================= MOBILE VISIBILITY FIX ================= */}
+// // //       <style>
+// // //         {`
+// // //           @media (max-width: 900px) {
+// // //             .navbar-menu-btn {
+// // //               display: block !important;
+// // //             }
+// // //             nav > div:nth-child(2) {
+// // //               display: none !important;
+// // //             }
+// // //           }
+// // //         `}
+// // //       </style>
 // // //     </>
 // // //   );
 // // // }
@@ -680,7 +1124,7 @@
 // // //     position: "fixed" as const,
 // // //     top: 0,
 // // //     width: "100%",
-// // //     padding: "14px 10%",
+// // //     padding: "14px clamp(16px, 5vw, 10%)",
 // // //     display: "flex",
 // // //     justifyContent: "space-between",
 // // //     alignItems: "center",
@@ -719,7 +1163,6 @@
 // // //   },
 
 // // //   menuBtn: {
-// // //     display: "none",
 // // //     background: "none",
 // // //     border: "none",
 // // //     color: "#e5e7eb",
@@ -745,14 +1188,14 @@
 // // //     textDecoration: "none"
 // // //   }
 // // // };
-
 // // import { useEffect, useRef, useState } from "react";
 // // import { motion, AnimatePresence } from "framer-motion";
 // // import { FiMenu, FiX } from "react-icons/fi";
 
-// // const sections: string[] = [
+// // const sections = [
 // //   "home",
 // //   "about",
+// //   "education",
 // //   "skills",
 // //   "projects",
 // //   "experience",
@@ -762,8 +1205,8 @@
 // // ];
 
 // // export default function Navbar() {
-// //   const [active, setActive] = useState<string>("home");
-// //   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+// //   const [active, setActive] = useState("home");
+// //   const [menuOpen, setMenuOpen] = useState(false);
 
 // //   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 // //   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
@@ -789,43 +1232,23 @@
 // //     return () => observer.disconnect();
 // //   }, []);
 
-// //   /* ================= Blue Underline ================= */
+// //   /* ================= Underline ================= */
 // //   useEffect(() => {
 // //     if (menuOpen) return;
-
 // //     const el = linkRefs.current[active];
 // //     if (el) {
-// //       setIndicator({
-// //         left: el.offsetLeft,
-// //         width: el.offsetWidth
-// //       });
+// //       setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
 // //     }
 // //   }, [active, menuOpen]);
 
-// //   /* ================= RESPONSIVE FIX (STYLE ONLY) ================= */
-// //   useEffect(() => {
-// //     const style = document.createElement("style");
-// //     style.innerHTML = `
-// //       @media (max-width: 900px) {
-// //         .nav-links {
-// //           display: none !important;
-// //         }
-// //         .menu-btn {
-// //           display: block !important;
-// //         }
-// //       }
-// //     `;
-// //     document.head.appendChild(style);
-// //     return () => document.head.removeChild(style);
-// //   }, []);
-
 // //   return (
 // //     <>
+// //       {/* ================= NAVBAR ================= */}
 // //       <nav style={styles.nav}>
 // //         <div style={styles.brand}>Nitesh N D</div>
 
 // //         {/* DESKTOP LINKS */}
-// //         <div className="nav-links" style={styles.links}>
+// //         <div style={styles.linksDesktop}>
 // //           {sections.map(id => (
 // //             <a
 // //               key={id}
@@ -851,22 +1274,21 @@
 
 // //         {/* MOBILE BUTTON */}
 // //         <button
-// //           className="menu-btn"
 // //           style={styles.menuBtn}
 // //           onClick={() => setMenuOpen(p => !p)}
-// //           aria-label="Toggle navigation"
+// //           aria-label="Toggle menu"
 // //         >
 // //           {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
 // //         </button>
 // //       </nav>
 
-// //       {/* MOBILE MENU */}
+// //       {/* ================= MOBILE MENU ================= */}
 // //       <AnimatePresence>
 // //         {menuOpen && (
 // //           <motion.div
-// //             initial={{ opacity: 0, y: -10 }}
+// //             initial={{ opacity: 0, y: -8 }}
 // //             animate={{ opacity: 1, y: 0 }}
-// //             exit={{ opacity: 0, y: -10 }}
+// //             exit={{ opacity: 0, y: -8 }}
 // //             transition={{ duration: 0.25 }}
 // //             style={styles.mobileMenu}
 // //           >
@@ -900,10 +1322,10 @@
 // //     position: "fixed" as const,
 // //     top: 0,
 // //     width: "100%",
-// //     padding: "14px 10%",
+// //     padding: "14px clamp(16px, 5vw, 10%)",
 // //     display: "flex",
-// //     justifyContent: "space-between",
 // //     alignItems: "center",
+// //     justifyContent: "space-between",
 // //     background: "rgba(2,6,23,0.92)",
 // //     backdropFilter: "blur(14px)",
 // //     borderBottom: "1px solid #1e293b",
@@ -913,10 +1335,12 @@
 // //   brand: {
 // //     fontSize: "16px",
 // //     fontWeight: 600,
-// //     color: "#e5e7eb"
+// //     color: "#e5e7eb",
+// //     whiteSpace: "nowrap" as const
 // //   },
 
-// //   links: {
+// //   /* DESKTOP */
+// //   linksDesktop: {
 // //     position: "relative" as const,
 // //     display: "flex",
 // //     gap: "26px",
@@ -938,6 +1362,7 @@
 // //     borderRadius: "2px"
 // //   },
 
+// //   /* MOBILE */
 // //   menuBtn: {
 // //     display: "none",
 // //     background: "none",
@@ -965,6 +1390,18 @@
 // //     textDecoration: "none"
 // //   }
 // // };
+
+// // /* ==================== RESPONSIVE ==================== */
+// // if (typeof window !== "undefined") {
+// //   const style = document.createElement("style");
+// //   style.innerHTML = `
+// //     @media (max-width: 900px) {
+// //       nav > div:nth-child(2) { display: none; }
+// //       nav button { display: block; }
+// //     }
+// //   `;
+// //   document.head.appendChild(style);
+// // }
 // import { useEffect, useRef, useState } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { FiMenu, FiX } from "react-icons/fi";
@@ -988,7 +1425,7 @@
 //   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 //   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
-//   /* ================= Scroll Spy ================= */
+//   /* ================= SCROLL SPY ================= */
 //   useEffect(() => {
 //     const observer = new IntersectionObserver(
 //       entries => {
@@ -1007,13 +1444,11 @@
 //     });
 
 //     return () => observer.disconnect();
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
 //   }, []);
 
-//   /* ================= Blue Underline ================= */
+//   /* ================= UNDERLINE ================= */
 //   useEffect(() => {
 //     if (menuOpen) return;
-
 //     const el = linkRefs.current[active];
 //     if (el) {
 //       setIndicator({
@@ -1030,14 +1465,12 @@
 //         <div style={styles.brand}>Nitesh N D</div>
 
 //         {/* DESKTOP LINKS */}
-//         <div style={styles.links}>
+//         <div className="nav-links" style={styles.links}>
 //           {sections.map(id => (
 //             <a
 //               key={id}
 //               href={`#${id}`}
-//               ref={el => {
-//                 linkRefs.current[id] = el;
-//               }}
+//               ref={el => (linkRefs.current[id] = el)}
 //               style={{
 //                 ...styles.link,
 //                 color: active === id ? "#38bdf8" : "#94a3b8"
@@ -1058,11 +1491,8 @@
 
 //         {/* MOBILE TOGGLE */}
 //         <button
-//           style={{
-//             ...styles.menuBtn,
-//             display: "none"
-//           }}
-//           className="navbar-menu-btn"
+//           className="menu-btn"
+//           style={styles.menuBtn}
 //           onClick={() => setMenuOpen(p => !p)}
 //           aria-label="Toggle navigation"
 //         >
@@ -1074,9 +1504,9 @@
 //       <AnimatePresence>
 //         {menuOpen && (
 //           <motion.div
-//             initial={{ opacity: 0, y: -10 }}
+//             initial={{ opacity: 0, y: -8 }}
 //             animate={{ opacity: 1, y: 0 }}
-//             exit={{ opacity: 0, y: -10 }}
+//             exit={{ opacity: 0, y: -8 }}
 //             transition={{ duration: 0.25 }}
 //             style={styles.mobileMenu}
 //           >
@@ -1099,25 +1529,11 @@
 //           </motion.div>
 //         )}
 //       </AnimatePresence>
-
-//       {/* ================= MOBILE VISIBILITY FIX ================= */}
-//       <style>
-//         {`
-//           @media (max-width: 900px) {
-//             .navbar-menu-btn {
-//               display: block !important;
-//             }
-//             nav > div:nth-child(2) {
-//               display: none !important;
-//             }
-//           }
-//         `}
-//       </style>
 //     </>
 //   );
 // }
 
-// /* ==================== STYLES ==================== */
+// /* ================= STYLES ================= */
 
 // const styles = {
 //   nav: {
@@ -1126,24 +1542,27 @@
 //     width: "100%",
 //     padding: "14px clamp(16px, 5vw, 10%)",
 //     display: "flex",
-//     justifyContent: "space-between",
 //     alignItems: "center",
+//     justifyContent: "space-between",
 //     background: "rgba(2,6,23,0.92)",
 //     backdropFilter: "blur(14px)",
 //     borderBottom: "1px solid #1e293b",
-//     zIndex: 1000
+//     zIndex: 1000,
+//     overflowX: "hidden"
 //   },
 
 //   brand: {
 //     fontSize: "16px",
 //     fontWeight: 600,
-//     color: "#e5e7eb"
+//     color: "#e5e7eb",
+//     whiteSpace: "nowrap" as const
 //   },
 
+//   /* DESKTOP */
 //   links: {
 //     position: "relative" as const,
 //     display: "flex",
-//     gap: "26px",
+//     gap: "22px",
 //     paddingBottom: "6px"
 //   },
 
@@ -1162,7 +1581,9 @@
 //     borderRadius: "2px"
 //   },
 
+//   /* MOBILE */
 //   menuBtn: {
+//     display: "none",
 //     background: "none",
 //     border: "none",
 //     color: "#e5e7eb",
@@ -1237,7 +1658,10 @@ export default function Navbar() {
     if (menuOpen) return;
     const el = linkRefs.current[active];
     if (el) {
-      setIndicator({ left: el.offsetLeft, width: el.offsetWidth });
+      setIndicator({
+        left: el.offsetLeft,
+        width: el.offsetWidth
+      });
     }
   }, [active, menuOpen]);
 
@@ -1248,7 +1672,7 @@ export default function Navbar() {
         <div style={styles.brand}>Nitesh N D</div>
 
         {/* DESKTOP LINKS */}
-        <div style={styles.linksDesktop}>
+        <div className="nav-links" style={styles.links}>
           {sections.map(id => (
             <a
               key={id}
@@ -1274,6 +1698,7 @@ export default function Navbar() {
 
         {/* MOBILE BUTTON */}
         <button
+          className="menu-btn"
           style={styles.menuBtn}
           onClick={() => setMenuOpen(p => !p)}
           aria-label="Toggle menu"
@@ -1311,15 +1736,31 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ================= RESPONSIVE (SAFE) ================= */}
+      <style>
+        {`
+          @media (max-width: 900px) {
+            .nav-links {
+              display: none;
+            }
+            .menu-btn {
+              display: block;
+            }
+          }
+        `}
+      </style>
     </>
   );
 }
 
-/* ==================== STYLES ==================== */
+/* ================= STYLES ================= */
 
-const styles = {
+const styles: {
+  [key: string]: React.CSSProperties;
+} = {
   nav: {
-    position: "fixed" as const,
+    position: "fixed",
     top: 0,
     width: "100%",
     padding: "14px clamp(16px, 5vw, 10%)",
@@ -1329,21 +1770,21 @@ const styles = {
     background: "rgba(2,6,23,0.92)",
     backdropFilter: "blur(14px)",
     borderBottom: "1px solid #1e293b",
-    zIndex: 1000
+    zIndex: 1000,
+    overflowX: "hidden"
   },
 
   brand: {
     fontSize: "16px",
     fontWeight: 600,
     color: "#e5e7eb",
-    whiteSpace: "nowrap" as const
+    whiteSpace: "nowrap"
   },
 
-  /* DESKTOP */
-  linksDesktop: {
-    position: "relative" as const,
+  links: {
+    position: "relative",
     display: "flex",
-    gap: "26px",
+    gap: "22px",
     paddingBottom: "6px"
   },
 
@@ -1355,14 +1796,13 @@ const styles = {
   },
 
   indicator: {
-    position: "absolute" as const,
+    position: "absolute",
     bottom: 0,
     height: "2px",
     background: "#38bdf8",
     borderRadius: "2px"
   },
 
-  /* MOBILE */
   menuBtn: {
     display: "none",
     background: "none",
@@ -1372,13 +1812,13 @@ const styles = {
   },
 
   mobileMenu: {
-    position: "fixed" as const,
+    position: "fixed",
     top: "64px",
     width: "100%",
     background: "rgba(2,6,23,0.98)",
     padding: "16px 24px",
     display: "flex",
-    flexDirection: "column" as const,
+    flexDirection: "column",
     gap: "14px",
     borderBottom: "1px solid #1e293b",
     zIndex: 999
@@ -1390,15 +1830,3 @@ const styles = {
     textDecoration: "none"
   }
 };
-
-/* ==================== RESPONSIVE ==================== */
-if (typeof window !== "undefined") {
-  const style = document.createElement("style");
-  style.innerHTML = `
-    @media (max-width: 900px) {
-      nav > div:nth-child(2) { display: none; }
-      nav button { display: block; }
-    }
-  `;
-  document.head.appendChild(style);
-}
