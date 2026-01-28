@@ -51,7 +51,6 @@ Hi, I’m **Nitesh N D**, a **Full Stack Developer & Computer Science Engineer**
 ---
 
 ## 📁 Project Structure
-
 frontend/
 ├── src/
 │ ├── components/
@@ -67,13 +66,20 @@ frontend/
 │ │ ├── Contact.tsx
 │ │ └── Footer.tsx
 │ ├── data/
+│ │ ├── achievements.ts
+│ │ ├── certifications.ts
+│ │ ├── education.ts
+│ │ ├── experience.ts
+│ │ └── projects.ts
 │ ├── styles/
 │ │ └── main.css
 │ ├── App.tsx
 │ └── main.tsx
-└── public/
-└── Nitesh_Resume.pdf
-
+├── public/
+│ └── Nitesh_Resume.pdf
+├── index.html
+├── package.json
+└── vite.config.ts
 
 ---
 
