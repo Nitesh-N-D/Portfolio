@@ -177,6 +177,9 @@ export default function Education() {
                     {edu.cgpa && (
                       <span style={styles.cgpa}>CGPA: {edu.cgpa}</span>
                     )}
+                    {edu.grade && (
+                      <span style={styles.grade}>Grade: {edu.grade}</span>
+                    )}
                   </div>
 
                   <p style={styles.institution}>{edu.institution}</p>
@@ -271,6 +274,12 @@ const styles: Record<string, CSSProperties> = {
     color: "#22c55e",
     fontWeight: 500
   },
+    grade: {
+    fontSize: "13px",
+    color: "#22c55e",
+    fontWeight: 500
+  },
+
 
   institution: {
     fontSize: "14px",
