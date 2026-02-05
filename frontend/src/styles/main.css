@@ -20,6 +20,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
+
 html,
 body {
   width: 100%;
@@ -59,9 +60,8 @@ small {
 .section {
   min-height: 100svh;
   padding: 100px 6%;
-  display: block;   /* 🔥 important */
+  display: block;
 }
-
 
 .section-content {
   width: 100%;
@@ -78,7 +78,6 @@ small {
   text-align: center;
 }
 
-
 .text-center {
   text-align: center;
 }
@@ -91,7 +90,6 @@ small {
   color: var(--muted);
 }
 
-/* Stats */
 .hero-stats {
   margin-top: 40px;
   display: grid;
@@ -100,7 +98,7 @@ small {
   justify-content: center;
 }
 
-/* Actions */
+/* ===================== ACTIONS ===================== */
 .actions {
   display: flex;
   gap: 14px;
@@ -112,7 +110,7 @@ small {
   justify-content: center;
 }
 
-/* Socials */
+/* ===================== SOCIALS ===================== */
 .socials-center {
   margin-top: 44px;
   display: flex;
@@ -234,7 +232,37 @@ footer {
   color: var(--muted);
 }
 
+.footer {
+  position: relative;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
 /* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: block !important;
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 80px 5%;
@@ -248,13 +276,16 @@ footer {
   .hero-stats {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
-}
-@media (max-width: 900px) {
-  .nav-links {
-    display: none !important;
+
+  /* FOOTER MOBILE POLISH */
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .menu-btn {
-    display: block !important;
+  .footer-container nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }
