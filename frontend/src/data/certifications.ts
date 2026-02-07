@@ -10,31 +10,17 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
-    title: "AWS Certified Cloud Practitioner",
-    provider: "Amazon Web Services",
-    issued: "2024",
+    title: "Python (Basic) Certification",
+    provider: "HackerRank",
+    issued: "2026",
     type: "pdf",
-    proof: "/certifications/aws-cloud-practitioner.pdf"
+    proof: "/certifications/python_basic certificate.pdf"
   },
   {
-    title: "Java Programming",
-    provider: "NPTEL",
-    issued: "2023",
-    type: "pdf",
-    proof: "/certifications/nptel-java.pdf"
-  },
-  {
-    title: "Google Cloud Fundamentals",
-    provider: "Google",
-    issued: "2024",
-    type: "image",
-    proof: "/certifications/google-cloud.png"
-  },
-  {
-    title: "Git & GitHub",
-    provider: "Coursera",
-    issued: "2023",
+    title: "Introduction to Linear Algebra with MATLAB",
+    provider: "MATLAB Academy",
+    issued: "2026",
     type: "link",
-    proof: "https://coursera.org/verify/example"
+    proof: "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=77f750e8-d73d-4fc6-8aea-4a7159c6b14f&"
   }
 ];
