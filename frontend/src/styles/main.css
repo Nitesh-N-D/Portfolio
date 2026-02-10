@@ -318,5 +318,8 @@ footer {
 /* hover glow (TEXT only – footer equivalent) */
 .nav-links a:hover {
   color: #38bdf8;
-  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+.nav-links a:focus-visible {
+  outline: none;
+  color: #38bdf8;
 }
