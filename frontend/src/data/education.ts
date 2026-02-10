@@ -14,7 +14,7 @@ export const education = [
   {
     degree: "Higher Secondary Education",
     institution: "Saradha Matriculation Higher Secondary School",
-    duration: "2023 – 2024",
+    duration: "2010 – 2024",
     location: "Tamil Nadu, India",
     grade: "96.8 %",
     details: [
