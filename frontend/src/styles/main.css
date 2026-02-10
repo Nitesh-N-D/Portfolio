@@ -197,31 +197,6 @@ textarea {
   font-family: inherit;
 }
 
-/* ===================== NAV ===================== */
-nav a {
-  position: relative;
-  font-size: 14px;
-  color: var(--text);
-}
-
-nav a:hover {
-  color: var(--primary);
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.25s ease;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
 
 /* ===================== FOOTER ===================== */
 footer {
@@ -312,4 +287,36 @@ footer {
 
 .footer nav a:hover svg {
   filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+}
+
+/* ================= NAVBAR INTERACTION (MATCH FOOTER) ================= */
+
+.nav-links a {
+  position: relative;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* underline */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.25s ease;
+}
+
+/* hover underline */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* hover glow (TEXT only – footer equivalent) */
+.nav-links a:hover {
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
 }
