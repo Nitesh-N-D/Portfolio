@@ -53,7 +53,7 @@ export const projects: Project[] = [
     description:
       "Campus-based system to report, track, and recover lost items with image uploads.",
     role: "Frontend & Database Integration",
-    tech_stack: ["React", "Firebase"],
+    tech_stack: ["React", "Node.js","MongoDB", "Express"],
     image: "/projects/lostfound.png",
     github: "https://github.com/Nitesh-N-D/Lost-Found-System",
     live: "https://lost-found-system.vercel.app/"
