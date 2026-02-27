@@ -10,11 +10,12 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
   {
-  title: "Ask Questions and analyse content with Microsoft 365 Copilot",
+  title: "Lithos 2K26 – Technical Event Participation",
   description:
-    "Learned how to use Microsoft 365 Copilot to ask contextual questions, analyze documents, and extract actionable insights efficiently.",
+    "Participated in Lithos 2K26, a technical event organized by Chennai Institute of Technology, gaining exposure to problem-solving, teamwork, and real-world engineering challenges.",
   type: "pdf",
-  proof: "/achievements/Ask Question MS.pdf"
+  proof: "/achievements/Certificate Of Participation Lithos2k26.pdf",
+  featured: true
 },
  {
   title: "Ask Questions and analyse content with Microsoft 365 Copilot",
