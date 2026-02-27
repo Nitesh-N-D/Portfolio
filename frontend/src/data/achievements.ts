@@ -5,9 +5,17 @@ export interface Achievement {
   description: string;
   type: AchievementType;
   proof: string;
+  featured?: boolean;
 }
 
 export const achievements: Achievement[] = [
+  {
+  title: "Ask Questions and analyse content with Microsoft 365 Copilot",
+  description:
+    "Learned how to use Microsoft 365 Copilot to ask contextual questions, analyze documents, and extract actionable insights efficiently.",
+  type: "pdf",
+  proof: "/achievements/Ask Question MS.pdf"
+},
  {
   title: "Ask Questions and analyse content with Microsoft 365 Copilot",
   description:
