@@ -278,23 +278,26 @@ import { profile } from "../data/profile";
 
 export default function About() {
   return (
-    <section
-      id="about"
-      style={{
-        width: "100%",
-        background: "#020617",
-        padding: "100px 6%",
-      }}
-    >
+   <section
+  id="about"
+  style={{
+    width: "100%",
+    background: "#020617",
+    padding: "100px 6%",
+    display: "flex",
+    justifyContent: "center"
+  }}
+>
       <Reveal>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
           viewport={{ once: true }}
-          style={{
-            maxWidth: "920px",
-          }}
+         style={{
+  maxWidth: "920px",
+  margin: "0 auto"
+}}
         >
           {/* HEADING */}
           <h2

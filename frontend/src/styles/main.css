@@ -25,6 +25,7 @@ html,
 body {
   width: 100%;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 body {
@@ -58,7 +59,7 @@ small {
 
 /* ===================== SECTIONS ===================== */
 .section {
-  min-height: 100svh;
+  min-height: calc(100vh - 80px);
   padding: 100px 6%;
   display: block;
 }

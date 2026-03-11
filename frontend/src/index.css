@@ -69,6 +69,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -82,6 +83,31 @@ button:focus-visible {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================== GLOBAL FIX ===================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===================== SMOOTH SCROLL ===================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===================== SCROLL FIX ===================== */
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* ===================== ROOT CONTAINER ===================== */
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* ===================== LINKS ===================== */

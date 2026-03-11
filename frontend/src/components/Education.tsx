@@ -217,8 +217,9 @@ const styles: Record<string, CSSProperties> = {
   },
 
   container: {
-    maxWidth: "900px"
-  },
+  maxWidth: "900px",
+  margin: "0 auto"
+},
 
   heading: {
     fontSize: "clamp(22px, 3vw, 26px)",

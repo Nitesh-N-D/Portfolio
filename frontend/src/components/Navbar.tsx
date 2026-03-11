@@ -162,7 +162,8 @@ const styles: Record<string, React.CSSProperties> = {
   nav: {
     position: "fixed",
     top: 0,
-    width: "100%",
+    left: 0,
+    right: 0,
     padding: "14px clamp(16px, 5vw, 10%)",
     display: "flex",
     alignItems: "center",
@@ -212,7 +213,7 @@ const styles: Record<string, React.CSSProperties> = {
 
   mobileMenu: {
     position: "fixed",
-    top: "64px",
+    top: "70px",
     width: "100%",
     background: "rgba(2,6,23,0.98)",
     padding: "16px 24px",

@@ -1291,7 +1291,7 @@ export default function Projects() {
                   ...styles.card,
                   ...(project.featured ? styles.featuredCard : {})
                 }}
-                whileHover={{ y: -4 }}
+               whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 140 }}
               >
                 {project.featured && (
@@ -1372,10 +1372,9 @@ export default function Projects() {
 }
 
 /* ================= STYLES ================= */
-
 const styles: Record<string, CSSProperties> = {
   section: {
-    padding: "100px 10%",
+    padding: "120px 8%",
     background: "#020617"
   },
 
@@ -1385,40 +1384,41 @@ const styles: Record<string, CSSProperties> = {
   },
 
   heading: {
-    fontSize: "28px",
-    fontWeight: 600,
+    fontSize: "32px",
+    fontWeight: 700,
     color: "#38bdf8",
-    marginBottom: "14px"
+    marginBottom: "16px"
   },
 
   subtitle: {
     fontSize: "15px",
     color: "#94a3b8",
-    marginBottom: "48px",
-    maxWidth: "760px",
+    marginBottom: "56px",
+    maxWidth: "700px",
     lineHeight: 1.7
   },
 
-  /* 🔥 FIXED HERE */
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: "36px",
-    alignItems: "stretch"
+    gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+    gap: "32px"
   },
 
   card: {
     position: "relative",
-    background: "rgba(15, 23, 42, 0.75)",
+    background: "rgba(15,23,42,0.75)",
     border: "1px solid #1e293b",
-    borderRadius: "18px",
+    borderRadius: "16px",
     overflow: "hidden",
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    transition: "all 0.3s ease",
+    backdropFilter: "blur(12px)"
   },
 
   featuredCard: {
-    borderColor: "#38bdf8"
+    borderColor: "#38bdf8",
+    boxShadow: "0 0 25px rgba(56,189,248,0.15)"
   },
 
   featuredBadge: {
@@ -1436,14 +1436,15 @@ const styles: Record<string, CSSProperties> = {
 
   imageWrapper: {
     width: "100%",
-    height: "190px",
+    height: "200px",
     overflow: "hidden"
   },
 
   image: {
     width: "100%",
     height: "100%",
-    objectFit: "cover"
+    objectFit: "cover",
+    transition: "transform 0.4s ease"
   },
 
   content: {
@@ -1470,13 +1471,18 @@ const styles: Record<string, CSSProperties> = {
     fontSize: "14px",
     color: "#94a3b8",
     lineHeight: 1.6,
-    marginBottom: "12px"
+    marginBottom: "14px",
+
+    display: "-webkit-box",
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: "vertical",
+    overflow: "hidden"
   },
 
   impact: {
-    fontSize: "14px",
+    fontSize: "13px",
     color: "#cbd5f5",
-    marginBottom: "18px"
+    marginBottom: "16px"
   },
 
   stack: {
@@ -1488,7 +1494,7 @@ const styles: Record<string, CSSProperties> = {
 
   badge: {
     fontSize: "12px",
-    padding: "6px 12px",
+    padding: "5px 12px",
     borderRadius: "999px",
     background: "rgba(56,189,248,0.12)",
     color: "#38bdf8",
@@ -1497,27 +1503,29 @@ const styles: Record<string, CSSProperties> = {
 
   actions: {
     display: "flex",
-    gap: "14px",
+    gap: "12px",
     marginTop: "auto"
   },
 
   githubBtn: {
     padding: "8px 16px",
-    borderRadius: "10px",
+    borderRadius: "8px",
     border: "1px solid #38bdf8",
     color: "#38bdf8",
     fontSize: "13px",
     fontWeight: 500,
-    textDecoration: "none"
+    textDecoration: "none",
+    transition: "all 0.25s ease"
   },
 
   liveBtn: {
     padding: "8px 16px",
-    borderRadius: "10px",
+    borderRadius: "8px",
     background: "#38bdf8",
     color: "#020617",
     fontSize: "13px",
     fontWeight: 600,
-    textDecoration: "none"
+    textDecoration: "none",
+    transition: "all 0.25s ease"
   }
 };
