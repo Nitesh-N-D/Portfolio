@@ -542,13 +542,17 @@ export default function Experience() {
 
 const styles: Record<string, CSSProperties> = {
   section: {
-    padding: "100px 10%",
-    background: "#020617"
-  },
+  width: "100%",
+  padding: "100px 6%",
+  background: "#020617",
+  display: "flex",
+  justifyContent: "center"
+},
 
-  container: {
-    maxWidth: "1000px"
-  },
+ container: {
+  maxWidth: "1000px",
+  margin: "0 auto"
+},
 
   heading: {
     fontSize: "28px",
@@ -568,7 +572,7 @@ const styles: Record<string, CSSProperties> = {
   timeline: {
     position: "relative",
     borderLeft: "2px solid #1e293b",
-    paddingLeft: "42px"
+    paddingLeft: "32px"
   },
 
   item: {
@@ -578,7 +582,7 @@ const styles: Record<string, CSSProperties> = {
 
   dot: {
     position: "absolute",
-    left: "-51px",
+    left: "-36px",
     top: "22px",
     width: "14px",
     height: "14px",

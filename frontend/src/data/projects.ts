@@ -29,7 +29,7 @@ export const projects: Project[] = [
   id: 2,
   title: "Campus Air – Smart Campus Communication Platform",
   description:
-    "A full-stack campus management platform that enables administrators to publish events, announcements, and alerts while students receive real-time notifications and email updates. The system includes Google OAuth authentication, CSV student import, analytics dashboard, and a modern responsive UI.",
+    "A full-stack campus management platform that enables administrators to publish events, announcements.",
   role: "Full Stack Development (Frontend, Backend, Deployment)",
   tech_stack: [
     "React",
