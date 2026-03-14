@@ -13,6 +13,7 @@ import Achievements from "./components/Achievements";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import PageLoader from "./components/PageLoader";
+import BackgroundGrid from "./components/BackgroundGrid";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ export default function App() {
         <PageLoader key="loader" />
       ) : (
         <>
+          <BackgroundGrid />
           <Navbar />
 
           <main className="app-shell page-shell" style={{ overflowX: "hidden" }}>
