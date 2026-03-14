@@ -33,12 +33,7 @@ export default function App() {
         <>
           <Navbar />
 
-          {/* MAIN WRAPPER (SAFE FOR ALL SCREENS) */}
-          <main
-            style={{
-              overflowX: "hidden",
-            }}
-          >
+          <main className="app-shell page-shell" style={{ overflowX: "hidden" }}>
             <Hero />
             <About />
             <Education />

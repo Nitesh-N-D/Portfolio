@@ -1,644 +1,92 @@
-// // // import { motion } from "framer-motion";
-// // // import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-// // // import type { ReactNode } from "react";
-
-// // // export default function Hero() {
-// // //   return (
-// // //     <section
-// // //       id="home"
-// // //       style={{
-// // //         minHeight: "100vh",
-// // //         width: "100%",
-// // //         display: "flex",
-// // //         alignItems: "center",
-// // //         justifyContent: "center",
-// // //         textAlign: "center",
-// // //         background: "transparent",
-// // //       }}
-// // //     >
-// // //       <div
-// // //         style={{
-// // //           width: "100%",
-// // //           maxWidth: "1100px",
-// // //           margin: "0 auto",
-// // //           padding: "0 24px",
-// // //         }}
-// // //       >
-// // //         <motion.div
-// // //           initial={{ opacity: 0, y: 30 }}
-// // //           animate={{ opacity: 1, y: 0 }}
-// // //           transition={{ duration: 0.8, ease: "easeOut" }}
-// // //         >
-// // //           {/* NAME */}
-// // //           <h1 style={{ fontSize: "clamp(40px, 6vw, 56px)" }}>
-// // //             N.D. <span style={{ color: "var(--primary)" }}>Nitesh</span>
-// // //           </h1>
-
-// // //           {/* ROLE */}
-// // //           <h2 style={{ marginBottom: "22px" }}>
-// // //             Full Stack Developer · Computer Science Engineer
-// // //           </h2>
-
-// // //           {/* DESCRIPTION */}
-// // //           <p
-// // //             style={{
-// // //               maxWidth: "760px",
-// // //               margin: "0 auto",
-// // //             }}
-// // //           >
-// // //             I build scalable, production-ready web applications using modern
-// // //             technologies like <strong>React</strong>,{" "}
-// // //             <strong>Node.js</strong>, and <strong>cloud platforms</strong>.
-// // //             Passionate about clean code, system design, and solving real-world
-// // //             problems. Seeking internship and entry-level software engineering
-// // //             roles.
-// // //           </p>
-
-// // //           {/* STATS */}
-// // //           <div
-// // //             style={{
-// // //               marginTop: "40px",
-// // //               display: "flex",
-// // //               justifyContent: "center",
-// // //               gap: "24px",
-// // //               flexWrap: "wrap",
-// // //             }}
-// // //           >
-// // //             <Stat value="10+" label="Projects Built" />
-// // //             <Stat value="2+" label="Years Learning" />
-// // //             <Stat value="5+" label="Core Technologies" />
-// // //           </div>
-
-// // //           {/* ACTIONS */}
-// // //           <div
-// // //             style={{
-// // //               marginTop: "40px",
-// // //               display: "flex",
-// // //               justifyContent: "center",
-// // //               gap: "16px",
-// // //               flexWrap: "wrap",
-// // //             }}
-// // //           >
-// // //             <a href="#projects" className="btn">View Projects</a>
-// // //             <a href="#contact" className="btn-outline">Get In Touch</a>
-// // //             <a href="/Nitesh_Resume.pdf" className="btn-outline" download>
-// // //               Download Resume
-// // //             </a>
-// // //           </div>
-
-// // //           {/* SOCIALS */}
-// // //           <div
-// // //             style={{
-// // //               marginTop: "44px",
-// // //               display: "flex",
-// // //               justifyContent: "center",
-// // //               gap: "18px",
-// // //             }}
-// // //           >
-// // //             <Social href="https://github.com/Nitesh-N-D" label="GitHub">
-// // //               <FiGithub size={20} />
-// // //             </Social>
-
-// // //             <Social
-// // //               href="https://linkedin.com/in/nitesh-n-d-249ab6325"
-// // //               label="LinkedIn"
-// // //             >
-// // //               <FiLinkedin size={20} />
-// // //             </Social>
-
-// // //             <Social href="mailto:niteshdwaraka@gmail.com" label="Email">
-// // //               <FiMail size={20} />
-// // //             </Social>
-// // //           </div>
-// // //         </motion.div>
-// // //       </div>
-// // //     </section>
-// // //   );
-// // // }
-
-// // // /* ---------------- SMALL COMPONENTS ---------------- */
-
-// // // function Stat({ value, label }: { value: string; label: string }) {
-// // //   return (
-// // //     <div
-// // //       style={{
-// // //         background: "var(--card)",
-// // //         border: "1px solid var(--border)",
-// // //         borderRadius: "16px",
-// // //         padding: "18px 26px",
-// // //         minWidth: "160px",
-// // //       }}
-// // //     >
-// // //       <span
-// // //         style={{
-// // //           fontSize: "22px",
-// // //           fontWeight: 600,
-// // //           color: "var(--primary)",
-// // //         }}
-// // //       >
-// // //         {value}
-// // //       </span>
-// // //       <p>{label}</p>
-// // //     </div>
-// // //   );
-// // // }
-
-// // // function Social({
-// // //   href,
-// // //   label,
-// // //   children,
-// // // }: {
-// // //   href: string;
-// // //   label: string;
-// // //   children: ReactNode;
-// // // }) {
-// // //   return (
-// // //     <a
-// // //       href={href}
-// // //       target="_blank"
-// // //       rel="noopener noreferrer"
-// // //       aria-label={label}
-// // //       style={{
-// // //         width: "44px",
-// // //         height: "44px",
-// // //         borderRadius: "50%",
-// // //         border: "1px solid var(--border)",
-// // //         display: "flex",
-// // //         alignItems: "center",
-// // //         justifyContent: "center",
-// // //         color: "var(--muted)",
-// // //       }}
-// // //     >
-// // //       {children}
-// // //     </a>
-// // //   );
-// // // }
-// // import { motion } from "framer-motion";
-// // import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-// // import type { ReactNode } from "react";
-
-// // export default function Hero() {
-// //   return (
-// //     <section
-// //       id="home"
-// //       style={{
-// //         minHeight: "100svh", // mobile-safe viewport
-// //         width: "100%",
-// //         display: "flex",
-// //         alignItems: "center",
-// //         justifyContent: "center",
-// //         textAlign: "center",
-// //         background: "transparent",
-// //       }}
-// //     >
-// //       <div
-// //         style={{
-// //           width: "100%",
-// //           maxWidth: "1100px",
-// //           margin: "0 auto",
-// //           padding: "0 24px",
-// //         }}
-// //       >
-// //         <motion.div
-// //           initial={{ opacity: 0, y: 30 }}
-// //           animate={{ opacity: 1, y: 0 }}
-// //           transition={{ duration: 0.8, ease: "easeOut" }}
-// //         >
-// //           {/* NAME */}
-// //           <h1 style={{ fontSize: "clamp(40px, 6vw, 56px)" }}>
-// //             N.D. <span style={{ color: "var(--primary)" }}>Nitesh</span>
-// //           </h1>
-
-// //           {/* ROLE */}
-// //           <h2 style={{ marginBottom: "22px" }}>
-// //             Full Stack Developer · Computer Science Engineer
-// //           </h2>
-
-// //           {/* DESCRIPTION */}
-// //           <p
-// //             style={{
-// //               maxWidth: "760px",
-// //               margin: "0 auto",
-// //               padding: "0 8px",
-// //               lineHeight: 1.75,
-// //             }}
-// //           >
-// //             I build scalable, production-ready web applications using modern
-// //             technologies like <strong>React</strong>,{" "}
-// //             <strong>Node.js</strong>, and <strong>cloud platforms</strong>.
-// //             Passionate about clean code, system design, and solving real-world
-// //             problems. Seeking internship and entry-level software engineering
-// //             roles.
-// //           </p>
-
-// //           {/* STATS */}
-// //           <div
-// //             style={{
-// //               marginTop: "40px",
-// //               display: "flex",
-// //               justifyContent: "center",
-// //               gap: "24px",
-// //               flexWrap: "wrap",
-// //             }}
-// //           >
-// //             <Stat value="10+" label="Projects Built" />
-// //             <Stat value="2+" label="Years Learning" />
-// //             <Stat value="5+" label="Core Technologies" />
-// //           </div>
-
-// //           {/* ACTIONS */}
-// //           <div
-// //             style={{
-// //               marginTop: "40px",
-// //               display: "flex",
-// //               justifyContent: "center",
-// //               gap: "16px",
-// //               flexWrap: "wrap",
-// //             }}
-// //           >
-// //             <a href="#projects" className="btn">
-// //               View Projects
-// //             </a>
-// //             <a href="#contact" className="btn-outline">
-// //               Get In Touch
-// //             </a>
-// //             <a href="/Nitesh_Resume.pdf" className="btn-outline" download>
-// //               Download Resume
-// //             </a>
-// //           </div>
-
-// //           {/* SOCIALS */}
-// //           <div
-// //             style={{
-// //               marginTop: "44px",
-// //               display: "flex",
-// //               justifyContent: "center",
-// //               gap: "18px",
-// //             }}
-// //           >
-// //             <Social href="https://github.com/Nitesh-N-D" label="GitHub">
-// //               <FiGithub size={20} />
-// //             </Social>
-
-// //             <Social
-// //               href="https://linkedin.com/in/nitesh-n-d-249ab6325"
-// //               label="LinkedIn"
-// //             >
-// //               <FiLinkedin size={20} />
-// //             </Social>
-
-// //             <Social href="mailto:niteshdwaraka@gmail.com" label="Email">
-// //               <FiMail size={20} />
-// //             </Social>
-// //           </div>
-// //         </motion.div>
-// //       </div>
-// //     </section>
-// //   );
-// // }
-
-// // /* ================= SMALL COMPONENTS ================= */
-
-// // function Stat({ value, label }: { value: string; label: string }) {
-// //   return (
-// //     <div
-// //       style={{
-// //         background: "var(--card)",
-// //         border: "1px solid var(--border)",
-// //         borderRadius: "16px",
-// //         padding: "18px 26px",
-// //         minWidth: "140px",
-// //         textAlign: "center",
-// //       }}
-// //     >
-// //       <span
-// //         style={{
-// //           fontSize: "22px",
-// //           fontWeight: 600,
-// //           color: "var(--primary)",
-// //         }}
-// //       >
-// //         {value}
-// //       </span>
-// //       <p>{label}</p>
-// //     </div>
-// //   );
-// // }
-
-// // function Social({
-// //   href,
-// //   label,
-// //   children,
-// // }: {
-// //   href: string;
-// //   label: string;
-// //   children: ReactNode;
-// // }) {
-// //   return (
-// //     <a
-// //       href={href}
-// //       target="_blank"
-// //       rel="noopener noreferrer"
-// //       aria-label={label}
-// //       style={{
-// //         width: "44px",
-// //         height: "44px",
-// //         borderRadius: "50%",
-// //         border: "1px solid var(--border)",
-// //         display: "flex",
-// //         alignItems: "center",
-// //         justifyContent: "center",
-// //         color: "var(--muted)",
-// //         transition: "0.25s ease",
-// //       }}
-// //     >
-// //       {children}
-// //     </a>
-// //   );
-// // }
-// import { motion } from "framer-motion";
-// import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-// import type { ReactNode } from "react";
-
-// export default function Hero() {
-//   return (
-//     <section
-//       id="home"
-//       style={{
-//         minHeight: "100svh",
-//         width: "100%",
-//         display: "flex",
-//         alignItems: "center",
-//         justifyContent: "center",
-//         textAlign: "center",
-//         background: "transparent",
-//       }}
-//     >
-//       <div
-//         style={{
-//           width: "100%",
-//           maxWidth: "1100px",
-//           margin: "0 auto",
-//           padding: "0 24px",
-//         }}
-//       >
-//         <motion.div
-//           initial={{ opacity: 0, y: 30 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8, ease: "easeOut" }}
-//         >
-//           <h1 style={{ fontSize: "clamp(40px, 6vw, 56px)" }}>
-//             N.D. <span style={{ color: "var(--primary)" }}>Nitesh</span>
-//           </h1>
-
-//           <h2 style={{ marginBottom: "22px" }}>
-//             Full Stack Developer · Computer Science Engineer
-//           </h2>
-
-//           <p
-//             style={{
-//               maxWidth: "760px",
-//               margin: "0 auto",
-//               padding: "0 8px",
-//               lineHeight: 1.75,
-//             }}
-//           >
-//             I build scalable, production-ready web applications using modern
-//             technologies like <strong>React</strong>,{" "}
-//             <strong>Node.js</strong>, and <strong>cloud platforms</strong>.
-//             Passionate about clean code, system design, and solving real-world
-//             problems. Seeking internship and entry-level software engineering
-//             roles.
-//           </p>
-
-//           <div
-//             style={{
-//               marginTop: "40px",
-//               display: "flex",
-//               justifyContent: "center",
-//               gap: "24px",
-//               flexWrap: "wrap",
-//             }}
-//           >
-//             <Stat value="10+" label="Projects Built" />
-//             <Stat value="2+" label="Years Learning" />
-//             <Stat value="5+" label="Core Technologies" />
-//           </div>
-
-//           <div
-//             style={{
-//               marginTop: "40px",
-//               display: "flex",
-//               justifyContent: "center",
-//               gap: "16px",
-//               flexWrap: "wrap",
-//             }}
-//           >
-//             <a href="#projects" className="btn">View Projects</a>
-//             <a href="#contact" className="btn-outline">Get In Touch</a>
-//             <a href="/Nitesh_Resume.pdf" className="btn-outline" download>
-//               Download Resume
-//             </a>
-//           </div>
-
-//           <div
-//             style={{
-//               marginTop: "44px",
-//               display: "flex",
-//               justifyContent: "center",
-//               gap: "18px",
-//             }}
-//           >
-//             <Social href="https://github.com/Nitesh-N-D" label="GitHub">
-//               <FiGithub size={20} />
-//             </Social>
-
-//             <Social
-//               href="https://linkedin.com/in/nitesh-n-d-249ab6325"
-//               label="LinkedIn"
-//             >
-//               <FiLinkedin size={20} />
-//             </Social>
-
-//             <Social href="mailto:niteshdwaraka@gmail.com" label="Email">
-//               <FiMail size={20} />
-//             </Social>
-//           </div>
-//         </motion.div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// function Stat({ value, label }: { value: string; label: string }) {
-//   return (
-//     <div
-//       style={{
-//         background: "var(--card)",
-//         border: "1px solid var(--border)",
-//         borderRadius: "16px",
-//         padding: "18px 26px",
-//         minWidth: "140px",
-//         textAlign: "center",
-//       }}
-//     >
-//       <span
-//         style={{
-//           fontSize: "22px",
-//           fontWeight: 600,
-//           color: "var(--primary)",
-//         }}
-//       >
-//         {value}
-//       </span>
-//       <p>{label}</p>
-//     </div>
-//   );
-// }
-
-// function Social({
-//   href,
-//   label,
-//   children,
-// }: {
-//   href: string;
-//   label: string;
-//   children: ReactNode;
-// }) {
-//   return (
-//     <a
-//       href={href}
-//       target="_blank"
-//       rel="noopener noreferrer"
-//       aria-label={label}
-//       style={{
-//         width: "44px",
-//         height: "44px",
-//         borderRadius: "50%",
-//         border: "1px solid var(--border)",
-//         display: "flex",
-//         alignItems: "center",
-//         justifyContent: "center",
-//         color: "var(--muted)",
-//         transition: "0.25s ease",
-//       }}
-//     >
-//       {children}
-//     </a>
-//   );
-// }
 import { motion } from "framer-motion";
-import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiArrowRight, FiDownload, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import type { ReactNode } from "react";
+import { profile } from "../data/profile";
+
+const stats = [
+  { value: "10+", label: "Projects built", proof: "Product-focused portfolio work" },
+  { value: "2+", label: "Years learning", proof: "Consistent hands-on shipping" },
+  { value: "12+", label: "Core technologies", proof: "Frontend, backend, and tooling" }
+];
 
 export default function Hero() {
   return (
-    <section
-      id="home"
-      style={{
-        minHeight: "100svh",
-        paddingTop: "90px", // ✅ FIX: prevents navbar overlap
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        background: "transparent",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "1100px",
-          margin: "0 auto",
-          padding: "0 24px",
-        }}
-      >
+    <section id="home" className="section hero-section" aria-labelledby="hero-title">
+      <div className="hero-shell">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          className="hero-glow"
+          aria-hidden="true"
+          animate={{ scale: [1, 1.04, 1], opacity: [0.9, 1, 0.9] }}
+          transition={{ duration: 10, ease: "easeInOut", repeat: Infinity }}
+        />
+
+        <motion.div
+          className="hero-panel"
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.65, ease: "easeOut" }}
         >
-          {/* NAME */}
-          <h1 style={{ fontSize: "clamp(40px, 6vw, 56px)" }}>
-            N.D. <span style={{ color: "var(--primary)" }}>Nitesh</span>
-          </h1>
+          <span className="hero-eyebrow">Open to internships and entry-level software roles</span>
 
-          {/* ROLE */}
-          <h2 style={{ marginBottom: "22px" }}>
-            Full Stack Developer · Computer Science Engineer
-          </h2>
+          <div>
+            <h1 id="hero-title" className="hero-title">
+              {profile.name} <span className="hero-title-accent">builds</span> clean,
+              production-minded web experiences.
+            </h1>
+            <p className="hero-role">{profile.title}</p>
+          </div>
 
-          {/* DESCRIPTION */}
-          <p
-            style={{
-              maxWidth: "760px",
-              margin: "0 auto",
-              padding: "0 8px",
-              lineHeight: 1.75,
-            }}
-          >
-            I build scalable, production-ready web applications using modern
-            technologies like <strong>React</strong>,{" "}
-            <strong>Node.js</strong>, and <strong>cloud platforms</strong>.
-            Passionate about clean code, system design, and solving real-world
-            problems. Seeking internship and entry-level software engineering
-            roles.
+          <p className="hero-description">
+            I design and build <strong>scalable full-stack products</strong> with a strong bias
+            for <strong>clean UI</strong>, reliable backend systems, and recruiter-friendly
+            execution that communicates clarity from the first screen.
           </p>
 
-          {/* STATS */}
-          <div
-            style={{
-              marginTop: "40px",
-              display: "flex",
-              justifyContent: "center",
-              gap: "24px",
-              flexWrap: "wrap",
-            }}
-          >
-            <Stat value="10+" label="Projects Built" />
-            <Stat value="2+" label="Years Learning" />
-            <Stat value="5+" label="Core Technologies" />
+          <div className="hero-stats" aria-label="Portfolio proof points">
+            {stats.map((stat, index) => (
+              <motion.article
+                key={stat.label}
+                className="card hero-stat"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.12 + index * 0.08, ease: "easeOut" }}
+                whileHover={{ y: -6 }}
+              >
+                <span className="hero-stat-value">{stat.value}</span>
+                <span className="hero-stat-label">{stat.label}</span>
+                <span className="hero-stat-proof">{stat.proof}</span>
+              </motion.article>
+            ))}
           </div>
 
-          {/* ACTIONS */}
-          <div
-            style={{
-              marginTop: "40px",
-              display: "flex",
-              justifyContent: "center",
-              gap: "16px",
-              flexWrap: "wrap",
-            }}
-          >
-            <a href="#projects" className="btn">View Projects</a>
-            <a href="#contact" className="btn-outline">Get In Touch</a>
-            <a href="/Nitesh_Resume.pdf" className="btn-outline" download>
-              Download Resume
-            </a>
+          <div className="hero-actions" aria-label="Primary actions">
+            <motion.a href="#projects" className="btn" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              View Projects
+              <FiArrowRight />
+            </motion.a>
+            <motion.a href="#contact" className="btn-outline" whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              Contact
+            </motion.a>
+            <motion.a
+              href="/Nitesh_Resume.pdf"
+              className="btn-ghost"
+              download
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Resume
+              <FiDownload />
+            </motion.a>
           </div>
 
-          {/* SOCIALS */}
-          <div
-            style={{
-              marginTop: "44px",
-              display: "flex",
-              justifyContent: "center",
-              gap: "18px",
-            }}
-          >
-            <Social href="https://github.com/Nitesh-N-D" label="GitHub">
+          <div className="hero-socials" aria-label="Social links">
+            <Social href="https://github.com/Nitesh-N-D" label="GitHub profile">
               <FiGithub size={20} />
             </Social>
-
-            <Social
-              href="https://linkedin.com/in/nitesh-n-d-249ab6325"
-              label="LinkedIn"
-            >
+            <Social href="https://linkedin.com/in/nitesh-n-d-249ab6325" label="LinkedIn profile">
               <FiLinkedin size={20} />
             </Social>
-
-            <Social href="mailto:niteshdwaraka@gmail.com" label="Email">
+            <Social href={`mailto:${profile.email}`} label="Send email">
               <FiMail size={20} />
             </Social>
           </div>
@@ -648,62 +96,26 @@ export default function Hero() {
   );
 }
 
-/* ---------- SMALL COMPONENTS ---------- */
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div
-      style={{
-        background: "var(--card)",
-        border: "1px solid var(--border)",
-        borderRadius: "16px",
-        padding: "18px 26px",
-        minWidth: "140px",
-        textAlign: "center",
-      }}
-    >
-      <span
-        style={{
-          fontSize: "22px",
-          fontWeight: 600,
-          color: "var(--primary)",
-        }}
-      >
-        {value}
-      </span>
-      <p>{label}</p>
-    </div>
-  );
-}
-
 function Social({
   href,
   label,
-  children,
+  children
 }: {
   href: string;
   label: string;
   children: ReactNode;
 }) {
   return (
-    <a
+    <motion.a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      className="hero-social"
+      target={href.startsWith("mailto:") ? undefined : "_blank"}
+      rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
       aria-label={label}
-      style={{
-        width: "44px",
-        height: "44px",
-        borderRadius: "50%",
-        border: "1px solid var(--border)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "var(--muted)",
-        transition: "0.25s ease",
-      }}
+      whileHover={{ y: -3 }}
+      whileTap={{ scale: 0.97 }}
     >
       {children}
-    </a>
+    </motion.a>
   );
 }

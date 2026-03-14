@@ -1,156 +1,67 @@
 import { motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
 import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 import { achievements, Achievement } from "../data/achievements";
-import type { CSSProperties } from "react";
 
 export default function Achievements() {
   return (
-    <Reveal>
-      <section id="achievements" style={styles.section}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          viewport={{ once: true }}
-          style={styles.container}
-        >
-          {/* HEADER */}
-          <h2 style={styles.heading}>Achievements</h2>
-          <p style={styles.subtitle}>
-            Certifications, recognitions, and leadership milestones that
-            demonstrate technical excellence and initiative.
-          </p>
+    <section id="achievements" className="section section-tight">
+      <div className="section-shell">
+        <Reveal>
+          <SectionHeader
+            label="Achievements"
+            title="Proof of initiative beyond coursework"
+            description="A collection of recognitions and learning milestones that help round out the story of how I grow, compete, and stay current."
+          />
 
-          {/* GRID */}
-          <div style={styles.grid}>
-            {achievements.map((a, i) => (
+          <div className="achievement-grid">
+            {achievements.map((achievement, index) => (
               <motion.article
-                key={i}
-                style={{
-                  ...styles.card,
-                  ...(a.featured ? styles.featuredCard : {})
-                }}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 140 }}
+                key={`${achievement.title}-${index}`}
+                className="card achievement-card"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.42, delay: index * 0.04, ease: "easeOut" }}
+                whileHover={{ y: -6 }}
               >
-                {a.featured && (
-                  <span style={styles.featuredBadge}>Featured</span>
-                )}
+                <div className="achievement-meta">
+                  <span className={`muted-pill${achievement.featured ? " featured-pill" : ""}`}>
+                    {achievement.featured ? "Featured highlight" : "Achievement"}
+                  </span>
+                </div>
 
                 <div>
-                  <h3 style={styles.title}>{a.title}</h3>
-                  <p style={styles.description}>{a.description}</p>
+                  <h3 className="timeline-title" style={{ fontSize: 18 }}>
+                    {achievement.title}
+                  </h3>
+                  <p className="timeline-text" style={{ marginTop: 12 }}>
+                    {achievement.description}
+                  </p>
                 </div>
 
                 <a
-                  href={a.proof}
+                  href={achievement.proof}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={styles.proofBtn}
+                  className="link-button"
+                  aria-label={`${getProofLabel(achievement)} for ${achievement.title}`}
                 >
-                  {getProofLabel(a)}
+                  <FiArrowUpRight />
+                  {getProofLabel(achievement)}
                 </a>
               </motion.article>
             ))}
           </div>
-        </motion.div>
-      </section>
-    </Reveal>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
-/* ================= HELPERS ================= */
-
-function getProofLabel(a: Achievement) {
-  if (a.type === "pdf") return "View Certificate";
-  if (a.type === "image") return "View Proof";
+function getProofLabel(achievement: Achievement) {
+  if (achievement.type === "pdf") return "View Certificate";
+  if (achievement.type === "image") return "View Proof";
   return "View Details";
 }
-
-/* ================= STYLES ================= */
-
-const styles: Record<string, CSSProperties> = {
-  section: {
-    width: "100%",
-    padding: "clamp(72px, 10vw, 110px) clamp(16px, 6vw, 10%)",
-    background: "#020617"
-  },
-
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto"
-  },
-
-  heading: {
-    fontSize: "clamp(22px, 3vw, 28px)",
-    fontWeight: 600,
-    color: "#38bdf8",
-    marginBottom: "12px"
-  },
-
-  subtitle: {
-    fontSize: "15px",
-    color: "#94a3b8",
-    marginBottom: "48px",
-    maxWidth: "760px",
-    lineHeight: 1.7
-  },
-
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "32px"
-  },
-
-  card: {
-    position: "relative",
-    background: "rgba(15, 23, 42, 0.75)",
-    border: "1px solid #1e293b",
-    borderRadius: "16px",
-    padding: "26px",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between"
-  },
-
-  featuredCard: {
-    borderColor: "#38bdf8"
-  },
-
-  featuredBadge: {
-    position: "absolute",
-    top: "14px",
-    left: "14px",
-    background: "#38bdf8",
-    color: "#020617",
-    fontSize: "11px",
-    fontWeight: 700,
-    padding: "4px 10px",
-    borderRadius: "999px"
-  },
-
-  title: {
-    fontSize: "16px",
-    fontWeight: 600,
-    color: "#e5e7eb",
-    marginBottom: "10px"
-  },
-
-  description: {
-    fontSize: "14px",
-    color: "#94a3b8",
-    lineHeight: 1.6,
-    marginBottom: "18px"
-  },
-
-  proofBtn: {
-    alignSelf: "flex-start",
-    padding: "8px 16px",
-    borderRadius: "10px",
-    border: "1px solid #38bdf8",
-    color: "#38bdf8",
-    fontSize: "13px",
-    fontWeight: 500,
-    textDecoration: "none"
-  }
-};

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const sections = [
@@ -17,11 +17,10 @@ const sections = [
 export default function Navbar() {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
 
-  /* ================= Scroll Spy ================= */
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -35,198 +34,97 @@ export default function Navbar() {
     );
 
     sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
     });
 
     return () => observer.disconnect();
   }, []);
 
-  /* ================= Underline ================= */
   useEffect(() => {
     if (menuOpen) return;
-    const el = linkRefs.current[active];
-    if (el) {
+    const link = linkRefs.current[active];
+    if (link) {
       setIndicator({
-        left: el.offsetLeft,
-        width: el.offsetWidth
+        left: link.offsetLeft,
+        width: link.offsetWidth
       });
     }
   }, [active, menuOpen]);
 
   return (
     <>
-      {/* ================= NAVBAR ================= */}
-      <nav className="navbar-glow" style={styles.nav}>
-        <div style={styles.brand}>Nitesh N D</div>
+      <nav className="premium-nav" aria-label="Primary navigation">
+        <div className="premium-nav-shell">
+          <a href="#home" className="nav-brand" aria-label="Go to home section">
+            <span className="nav-brand-name">Nitesh N D</span>
+            <span className="nav-brand-role">Full Stack Developer</span>
+          </a>
 
-        {/* DESKTOP LINKS */}
-        <div className="nav-links" style={styles.links}>
-          {sections.map(id => (
-            <a
-              key={id}
-              href={`#${id}`}
-              ref={el => (linkRefs.current[id] = el)}
-              style={{
-                ...styles.link,
-                color: active === id ? "#38bdf8" : "#94a3b8"
-              }}
-            >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
-            </a>
-          ))}
+          <div className="nav-links">
+            {sections.map(section => (
+              <a
+                key={section}
+                href={`#${section}`}
+                ref={element => {
+                  linkRefs.current[section] = element;
+                }}
+                className={`nav-link${active === section ? " is-active" : ""}`}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </a>
+            ))}
 
-          {!menuOpen && (
-            <motion.span
-              style={styles.indicator}
-              animate={{ left: indicator.left, width: indicator.width }}
-              transition={{ type: "spring", stiffness: 320, damping: 30 }}
-            />
-          )}
+            {!menuOpen && (
+              <motion.span
+                className="nav-indicator"
+                animate={{ left: indicator.left, width: indicator.width }}
+                transition={{ type: "spring", stiffness: 340, damping: 28 }}
+              />
+            )}
+          </div>
+
+          <button
+            className="menu-btn"
+            type="button"
+            onClick={() => setMenuOpen(open => !open)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
         </div>
-
-        {/* MOBILE BUTTON */}
-        <button
-          className="menu-btn"
-          style={styles.menuBtn}
-          onClick={() => setMenuOpen(p => !p)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
-        </button>
       </nav>
 
-      {/* ================= MOBILE MENU ================= */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            id="mobile-navigation"
+            className="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            style={styles.mobileMenu}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            {sections.map(id => (
+            {sections.map(section => (
               <a
-                key={id}
-                href={`#${id}`}
+                key={section}
+                href={`#${section}`}
+                className={`mobile-link${active === section ? " is-active" : ""}`}
                 onClick={() => {
-                  setActive(id);
+                  setActive(section);
                   setMenuOpen(false);
                 }}
-                style={{
-                  ...styles.mobileLink,
-                  color: active === id ? "#38bdf8" : "#e5e7eb"
-                }}
               >
-                {id.charAt(0).toUpperCase() + id.slice(1)}
+                {section.charAt(0).toUpperCase() + section.slice(1)}
               </a>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* ================= RESPONSIVE ================= */}
-      <style>
-        {`
-          /* 🔹 BLUE GLOW LINE */
-          /* ===== SUBTLE NAV SEPARATOR (PRO) ===== */
-.navbar-glow::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: rgba(56, 189, 248, 0.25);
-  pointer-events: none;
-}
-
-          @media (max-width: 1024px) {
-            .nav-links {
-              display: none;
-            }
-            .menu-btn {
-              display: block;
-            }
-          }
-        `}
-      </style>
     </>
   );
 }
-
-/* ================= STYLES ================= */
-
-const styles: Record<string, React.CSSProperties> = {
-  nav: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    padding: "14px clamp(16px, 5vw, 10%)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    background: "rgba(2,6,23,0.92)",
-    backdropFilter: "blur(14px)",
-    zIndex: 1000,
-    overflowX: "hidden"
-  },
-
-  brand: {
-    fontSize: "16px",
-    fontWeight: 600,
-    color: "#e5e7eb",
-    whiteSpace: "nowrap"
-  },
-
-  links: {
-    position: "relative",
-    display: "flex",
-    gap: "22px",
-    paddingBottom: "6px"
-  },
-
-  link: {
-    fontSize: "14px",
-    fontWeight: 500,
-    textDecoration: "none",
-    transition: "color 0.2s ease"
-  },
-
-  indicator: {
-    position: "absolute",
-    bottom: 0,
-    height: "2px",
-    background: "#38bdf8",
-    borderRadius: "2px"
-  },
-
-  menuBtn: {
-    display: "none",
-    background: "none",
-    border: "none",
-    color: "#e5e7eb",
-    cursor: "pointer"
-  },
-
-  mobileMenu: {
-    position: "fixed",
-    top: "70px",
-    width: "100%",
-    background: "rgba(2,6,23,0.98)",
-    padding: "16px 24px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "14px",
-    borderBottom: "1px solid #1e293b",
-    zIndex: 999
-  },
-
-  mobileLink: {
-    fontSize: "14px",
-    fontWeight: 500,
-    textDecoration: "none"
-  }
-};
