@@ -805,10 +805,60 @@ button {
   align-content: start;
 }
 
+.project-spotlight-side {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
 .project-spotlight-title {
   margin: 0;
   font-size: clamp(28px, 4vw, 38px);
   line-height: 1.08;
+}
+
+.project-spotlight-preview {
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 20px;
+  background: #0b1220;
+}
+
+.project-spotlight-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project-detail-heading {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.project-detail-text,
+.project-detail-list,
+.project-detail-outcome {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.project-detail-block {
+  display: grid;
+  gap: 10px;
+}
+
+.project-detail-list {
+  padding-left: 18px;
+}
+
+.project-detail-outcome {
+  color: var(--muted-strong);
 }
 
 .project-spotlight-code {
@@ -1389,6 +1439,7 @@ textarea.form-field {
 
   .project-modal {
     padding: 22px;
+    max-height: min(92vh, 960px);
   }
 
   .timeline {
@@ -1422,6 +1473,29 @@ textarea.form-field {
 
   .project-modal-backdrop {
     padding: 16px 10px;
+  }
+
+  .project-modal {
+    gap: 18px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .project-content {
+    padding: 18px;
+  }
+
+  .project-spotlight-title {
+    font-size: 24px;
+  }
+
+  .project-detail-text,
+  .project-detail-list,
+  .project-detail-outcome,
+  .project-description,
+  .project-impact,
+  .project-role {
+    font-size: 13px;
   }
 
   .btn,
