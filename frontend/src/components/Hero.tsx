@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { profile } from "../data/profile";
 
 const stats = [
-  { value: "10+", label: "Projects built", proof: "Shipped across product and platform work" },
+  { value: "10+", label: "Projects built", proof: "Practical full-stack work" },
   { value: "2+", label: "Years building", proof: "Consistent hands-on execution" },
   { value: "12+", label: "Core technologies", proof: "Frontend, backend, and deployment" }
 ];
@@ -31,16 +31,17 @@ export default function Hero() {
 
             <div>
               <h1 id="hero-title" className="hero-title">
-                {profile.name} designs <span className="hero-title-accent">developer-first</span>,
-                production-minded web products.
+                {profile.name} builds <span className="hero-title-accent">clean</span>,
+                professional software products.
               </h1>
               <p className="hero-role">{profile.title}</p>
             </div>
 
             <p className="hero-description">
-              I build full-stack experiences that feel sharp in demos, stay clean in code review,
-              and make it easy for recruiters and engineering teams to quickly understand
-              <strong> impact</strong>, <strong>system thinking</strong>, and <strong>execution quality</strong>.
+              I build full-stack applications with a focus on clear interfaces, dependable
+              engineering, and presentation quality that helps recruiters and teams quickly
+              understand <strong>capability</strong>, <strong>craft</strong>, and
+              <strong> execution</strong>.
             </p>
 
             <div className="hero-actions" aria-label="Primary actions">
