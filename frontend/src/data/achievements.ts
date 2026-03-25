@@ -10,88 +10,88 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
   {
-  title: "Lithos 2K26 – Technical Event Participation",
-  description:
-    "Participated in Lithos 2K26, a technical event organized by Chennai Institute of Technology, gaining exposure to problem-solving, teamwork, and real-world engineering challenges.",
-  type: "pdf",
-  proof: "/achievements/Certificate Of Participation Lithos2k26.pdf",
-  featured: true
-},
- {
-  title: "Ask Questions and analyse content with Microsoft 365 Copilot",
-  description:
-    "Learned how to use Microsoft 365 Copilot to ask contextual questions, analyze documents, and extract actionable insights efficiently.",
-  type: "pdf",
-  proof: "/achievements/Ask Question MS.pdf"
-},
-{
-  title: "Boost your productivity with Microsoft 365 Copilot",
-  description:
-    "Gained hands-on experience using Microsoft 365 Copilot to automate tasks, streamline workflows, and improve overall productivity.",
-  type: "pdf",
-  proof: "/achievements/Boost MS.pdf"
-},
-{
-  title: "Create and draft with Microsoft 365 Copilot",
-  description:
-    "Explored how to generate, draft, and refine professional content using Microsoft 365 Copilot across multiple applications.",
-  type: "pdf",
-  proof: "/achievements/Create and Draft MS.pdf"
-},
-{
-  title: "Edit and transform with Microsoft 365 Copilot",
-  description:
-    "Learned techniques to edit, rewrite, and transform existing content effectively using Microsoft 365 Copilot.",
-  type: "pdf",
-  proof: "/achievements/Edit and Transform MS.pdf"
-},
-{
-  title: "Explore AI for All",
-  description:
-    "Developed a foundational understanding of artificial intelligence concepts and how AI can be applied responsibly across domains.",
-  type: "pdf",
-  proof: "/achievements/Explore AI for all.pdf"
-},
-{
-  title: "Explore AI Basics",
-  description:
-    "Learned the core principles of artificial intelligence, including machine learning concepts and real-world AI applications.",
-  type: "pdf",
-  proof: "/achievements/Explore AI.pdf"
-},
-{
-  title: "Explore Generative AI",
-  description:
-    "Gained insights into generative AI models, their capabilities, use cases, and impact on modern software solutions.",
-  type: "pdf",
-  proof: "/achievements/Explore Generative AI.pdf"
-},
-{
-  title: "Explore internet search and beyond",
-  description:
-    "Understood how AI enhances internet search, information discovery, and intelligent data retrieval beyond traditional search engines.",
-  type: "pdf",
-  proof: "/achievements/Explore Internet.pdf"
-},
-{
-  title: "Explore Responsible AI",
-  description:
-    "Learned the principles of responsible AI, including fairness, transparency, privacy, and ethical AI system design.",
-  type: "pdf",
-  proof: "/achievements/Explore responsible AI.pdf"
-},
-{
-  title: "Get started with Microsoft 365 Copilot",
-  description:
-    "Acquired a practical introduction to Microsoft 365 Copilot, covering setup, features, and real-world usage scenarios.",
-  type: "pdf",
-  proof: "/achievements/Get Started MS.pdf"
-},
-{
-  title: "Summarize and simplify information with Microsoft 365 Copilot",
-  description:
-    "Learned how to summarize complex documents and simplify information efficiently using Microsoft 365 Copilot.",
-  type: "pdf",
-  proof: "/achievements/Summarize MS Copilot.pdf"
-}
+    title: "Lithos 2K26 - Technical Event Participation",
+    description:
+      "Participated in a competitive technical event focused on engineering problem solving, collaboration, and real-time decision making under delivery constraints.",
+    type: "pdf",
+    proof: "/achievements/Certificate Of Participation Lithos2k26.pdf",
+    featured: true
+  },
+  {
+    title: "Microsoft 365 Copilot - Content Analysis",
+    description:
+      "Practiced extracting structured insights from documents and using AI assistance to accelerate review, questioning, and synthesis workflows.",
+    type: "pdf",
+    proof: "/achievements/Ask Question MS.pdf"
+  },
+  {
+    title: "Microsoft 365 Copilot - Productivity Workflows",
+    description:
+      "Explored applied productivity patterns using Copilot to reduce repetitive work and speed up routine knowledge tasks.",
+    type: "pdf",
+    proof: "/achievements/Boost MS.pdf"
+  },
+  {
+    title: "Microsoft 365 Copilot - Drafting and Authoring",
+    description:
+      "Learned to generate and refine professional content more efficiently while keeping structure, tone, and clarity aligned with the task.",
+    type: "pdf",
+    proof: "/achievements/Create and Draft MS.pdf"
+  },
+  {
+    title: "Microsoft 365 Copilot - Editing and Transformation",
+    description:
+      "Applied AI-assisted rewriting patterns to improve readability, simplify language, and restructure existing content for better communication.",
+    type: "pdf",
+    proof: "/achievements/Edit and Transform MS.pdf"
+  },
+  {
+    title: "Explore AI for All",
+    description:
+      "Built baseline fluency in artificial intelligence concepts, applications, and responsible adoption across practical software scenarios.",
+    type: "pdf",
+    proof: "/achievements/Explore AI for all.pdf"
+  },
+  {
+    title: "Explore AI Basics",
+    description:
+      "Strengthened understanding of core AI and machine learning principles relevant to modern product and software development.",
+    type: "pdf",
+    proof: "/achievements/Explore AI.pdf"
+  },
+  {
+    title: "Explore Generative AI",
+    description:
+      "Studied generative AI capabilities, product use cases, and the implications of model-assisted workflows in engineering environments.",
+    type: "pdf",
+    proof: "/achievements/Explore Generative AI.pdf"
+  },
+  {
+    title: "Explore Internet Search and Beyond",
+    description:
+      "Examined how AI-enhanced retrieval and search experiences improve information access beyond conventional keyword workflows.",
+    type: "pdf",
+    proof: "/achievements/Explore Internet.pdf"
+  },
+  {
+    title: "Explore Responsible AI",
+    description:
+      "Focused on fairness, transparency, privacy, and accountability as core requirements for trustworthy AI-enabled systems.",
+    type: "pdf",
+    proof: "/achievements/Explore responsible AI.pdf"
+  },
+  {
+    title: "Get Started with Microsoft 365 Copilot",
+    description:
+      "Built practical familiarity with Copilot setup, usage patterns, and task-oriented workflows across productivity tools.",
+    type: "pdf",
+    proof: "/achievements/Get Started MS.pdf"
+  },
+  {
+    title: "Microsoft 365 Copilot - Summarization",
+    description:
+      "Used AI-assisted summarization techniques to condense longer documents into decision-ready takeaways without losing important context.",
+    type: "pdf",
+    proof: "/achievements/Summarize MS Copilot.pdf"
+  }
 ];
