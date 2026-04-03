@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight, FiGithub, FiX } from "react-icons/fi";
+
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 import { projects, type Project } from "../data/projects";
@@ -55,69 +56,188 @@ const projectDetails: Record<
   }
 };
 
+const featuredProjects = projects.filter(project => project.featured);
+const standardProjects = projects.filter(project => !project.featured);
+
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const selectedProjectDetail = selectedProject ? projectDetails[selectedProject.id] : null;
 
   return (
     <>
-      <section id="projects" className="section">
-        <div className="section-shell">
+      <section id="projects" className="premium-section">
+        <div className="premium-container">
           <Reveal>
             <SectionHeader
               label="Projects"
-              title="Project spotlight and code signal"
-              description="Click any project to open an interactive spotlight with product context, impact, stack, and implementation detail."
+              title="Featured projects with stronger visuals, hierarchy, and interaction"
+              description="Top work is surfaced as featured cards while every project still keeps the same data and core links intact."
             />
 
-            <div className="project-grid">
-              {projects.map((project, index) => (
-                <motion.article
-                  key={project.id}
-                  className="card project-card"
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.42, delay: index * 0.06, ease: "easeOut" }}
-                  whileHover={{ y: -8 }}
-                >
-                  <button
-                    type="button"
-                    className="project-card-button"
-                    onClick={() => setSelectedProject(project)}
+            <div className="grid gap-6">
+              <div className="grid gap-6 xl:grid-cols-2">
+                {featuredProjects.map((project, index) => (
+                  <motion.article
+                    key={project.id}
+                    className="glass-card group overflow-hidden"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
+                    whileHover={{ y: -8, scale: 1.01 }}
                   >
-                    <div className="project-media">
-                      <img
-                        src={project.image}
-                        alt={`${project.title} project preview`}
-                        className="project-image"
-                      />
-                    </div>
-
-                    <div className="project-content">
-                      <div className="project-topline">
-                        {project.featured ? (
-                          <span className="project-badge">Featured project</span>
-                        ) : (
-                          <span className="muted-pill">Project highlight</span>
-                        )}
+                    <button
+                      type="button"
+                      className="grid h-full w-full text-left"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      <div className="project-image-wrap relative overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={`${project.title} project preview`}
+                          className="h-60 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-72"
+                        />
+                        <div className="absolute left-6 top-6 z-10">
+                          <span className="premium-pill border-blue-400/30 bg-blue-500/15 text-blue-50">
+                            Featured Project
+                          </span>
+                        </div>
                       </div>
 
-                      <div>
-                        <h3 className="project-title">{project.title}</h3>
-                        <p className="project-role">Role: {project.role}</p>
+                      <div className="grid gap-4 p-5 md:p-6">
+                        <div className="flex flex-wrap items-start justify-between gap-4">
+                          <div>
+                            <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+                              {project.title}
+                            </h3>
+                            <p className="mt-2 text-sm font-medium text-blue-200 md:text-base">{project.role}</p>
+                          </div>
+                          <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">
+                            Spotlight
+                          </span>
+                        </div>
+
+                        <p className="text-sm leading-7 text-slate-400 md:text-base">{project.description}</p>
+                        <p className="text-sm leading-7 text-blue-200/90">{project.recruiterSignal}</p>
+                        {project.impact && <p className="text-sm leading-7 text-slate-300 md:text-base">{project.impact}</p>}
+
+                        <div className="flex flex-wrap gap-3">
+                          {project.tech_stack.map(tech => (
+                            <span key={`${project.id}-${tech}`} className="premium-pill">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        <div className="mt-2 flex flex-wrap gap-3">
+                          {project.live && (
+                            <a
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="primary-button"
+                              onClick={event => event.stopPropagation()}
+                            >
+                              <FiArrowUpRight />
+                              Live Demo
+                            </a>
+                          )}
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="secondary-button"
+                            onClick={event => event.stopPropagation()}
+                          >
+                            <FiGithub />
+                            GitHub
+                          </a>
+                        </div>
                       </div>
+                    </button>
+                  </motion.article>
+                ))}
+              </div>
 
-                      <p className="project-description">{project.description}</p>
-                      <p className="project-signal">{project.recruiterSignal}</p>
+              {standardProjects.length > 0 && (
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                  {standardProjects.map((project, index) => (
+                    <motion.article
+                      key={project.id}
+                  className="glass-card group overflow-hidden"
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
+                      whileHover={{ y: -8 }}
+                    >
+                      <button
+                        type="button"
+                        className="grid h-full w-full text-left"
+                        onClick={() => setSelectedProject(project)}
+                      >
+                        <div className="project-image-wrap relative overflow-hidden">
+                          <img
+                            src={project.image}
+                            alt={`${project.title} project preview`}
+                            className="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                          />
+                        </div>
 
-                      {project.impact && <p className="project-impact">Impact: {project.impact}</p>}
+                        <div className="grid h-full gap-4 p-5">
+                          <div>
+                            <span className="premium-pill mb-4 text-xs uppercase tracking-[0.22em] text-slate-200">
+                              Project
+                            </span>
+                            <h3 className="text-xl font-bold tracking-tight text-white">
+                              {project.title}
+                            </h3>
+                            <p className="mt-2 text-xs font-medium text-blue-200 md:text-sm">{project.role}</p>
+                          </div>
 
-                      <span className="project-select">Open spotlight</span>
-                    </div>
-                  </button>
-                </motion.article>
-              ))}
+                          <p className="text-sm leading-7 text-slate-400">{project.description}</p>
+
+                          <div className="flex flex-wrap gap-2">
+                            {project.tech_stack.map(tech => (
+                              <span
+                                key={`${project.id}-${tech}`}
+                                className="rounded-full border border-white/10 bg-slate-950/50 px-3 py-1.5 text-sm text-slate-300"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                            {project.live && (
+                              <a
+                                href={project.live}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="secondary-button"
+                                onClick={event => event.stopPropagation()}
+                              >
+                                <FiArrowUpRight />
+                                Live Demo
+                              </a>
+                            )}
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="secondary-button"
+                              onClick={event => event.stopPropagation()}
+                            >
+                              <FiGithub />
+                              GitHub
+                            </a>
+                          </div>
+                        </div>
+                      </button>
+                    </motion.article>
+                  ))}
+                </div>
+              )}
             </div>
           </Reveal>
         </div>
@@ -126,102 +246,119 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="project-modal-backdrop"
+            className="fixed inset-0 z-[1250] grid place-items-center bg-slate-950/80 p-4 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="project-modal card"
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              className="glass-card relative grid max-h-[90vh] w-full max-w-6xl gap-6 overflow-auto p-5 md:p-6 xl:grid-cols-[1.1fr_0.9fr]"
+              initial={{ opacity: 0, y: 24, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.98 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              exit={{ opacity: 0, y: 18, scale: 0.98 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
               onClick={event => event.stopPropagation()}
             >
               <button
                 type="button"
-                className="project-modal-close"
+                className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white backdrop-blur-xl"
                 aria-label="Close project spotlight"
                 onClick={() => setSelectedProject(null)}
               >
                 <FiX />
               </button>
 
-              <div className="project-spotlight-copy">
-                <span className="project-badge">Interactive project spotlight</span>
-                <h3 className="project-spotlight-title">{selectedProject.title}</h3>
-                <p className="project-role">Role: {selectedProject.role}</p>
-                <p className="project-description">{selectedProject.description}</p>
-                <p className="project-detail-text">{selectedProjectDetail?.summary}</p>
-                <p className="project-detail-heading">Challenge</p>
-                <p className="project-detail-text">{selectedProjectDetail?.challenge}</p>
+                <div className="grid gap-5">
+                <span className="premium-pill w-fit border-blue-400/25 bg-blue-500/10 text-blue-100">
+                  Interactive project spotlight
+                </span>
+                <div>
+                  <h3 className="text-2xl font-black tracking-tight text-white md:text-3xl">
+                    {selectedProject.title}
+                  </h3>
+                  <p className="mt-2 text-base font-medium text-blue-200">{selectedProject.role}</p>
+                </div>
 
-                <div className="project-detail-block">
-                  <p className="project-detail-heading">What I delivered</p>
-                  <ul className="project-detail-list">
+                <p className="text-base leading-8 text-slate-300">{selectedProject.description}</p>
+                <p className="text-sm leading-7 text-slate-400 md:text-base">{selectedProjectDetail?.summary}</p>
+
+                <div className="rounded-[22px] border border-white/10 bg-slate-950/55 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-200">
+                    Challenge
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+                    {selectedProjectDetail?.challenge}
+                  </p>
+                </div>
+
+                <div className="rounded-[22px] border border-white/10 bg-slate-950/55 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-200">
+                    What I delivered
+                  </p>
+                  <ul className="mt-3 grid gap-3 pl-5 text-sm leading-7 text-slate-400 md:text-base">
                     {selectedProjectDetail?.delivery.map(point => (
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
                 </div>
 
-                {selectedProject.impact && <p className="project-impact">Impact: {selectedProject.impact}</p>}
-                <p className="project-detail-outcome">{selectedProjectDetail?.outcome}</p>
+                {selectedProject.impact && (
+                  <p className="text-base leading-8 text-slate-300">{selectedProject.impact}</p>
+                )}
+                <p className="text-sm leading-7 text-slate-300 md:text-base">{selectedProjectDetail?.outcome}</p>
 
-                <div className="project-stack" aria-label={`${selectedProject.title} technology stack`}>
+                <div className="flex flex-wrap gap-3">
                   {selectedProject.tech_stack.map(tech => (
-                    <span key={`${selectedProject.id}-${tech}`} className="chip">
+                    <span key={`${selectedProject.id}-${tech}`} className="premium-pill">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="project-actions">
-                  <a
-                    href={selectedProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-button"
-                    aria-label={`Open GitHub repository for ${selectedProject.title}`}
-                  >
-                    <FiGithub />
-                    GitHub
-                  </a>
-
+                <div className="flex flex-wrap gap-3">
                   {selectedProject.live && (
                     <a
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="link-button link-button-primary"
-                      aria-label={`Open live demo for ${selectedProject.title}`}
+                      className="primary-button"
                     >
                       <FiArrowUpRight />
                       Live Demo
                     </a>
                   )}
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="secondary-button"
+                  >
+                    <FiGithub />
+                    GitHub
+                  </a>
                 </div>
               </div>
 
-              <div className="project-spotlight-side">
-                <div className="project-spotlight-preview">
+              <div className="grid gap-6">
+                <div className="overflow-hidden rounded-[22px] border border-white/10">
                   <img
                     src={selectedProject.image}
-                    alt={`${selectedProject.title} detailed project preview`}
-                    className="project-spotlight-image"
+                    alt={`${selectedProject.title} detailed preview`}
+                    className="h-full max-h-[360px] w-full object-cover"
                   />
                 </div>
 
-                <div className="project-spotlight-code">
-                  <div className="project-code-header">
-                    <span className="project-code-dot" />
-                    <span className="project-code-dot" />
-                    <span className="project-code-dot" />
-                    <p>{selectedProject.codeLabel}</p>
+                <div className="overflow-hidden rounded-[22px] border border-white/10 bg-slate-950/70">
+                  <div className="flex items-center gap-2 border-b border-white/10 px-5 py-4">
+                    <span className="h-3 w-3 rounded-full bg-rose-400" />
+                    <span className="h-3 w-3 rounded-full bg-amber-400" />
+                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
+                    <p className="ml-3 text-sm tracking-[0.18em] text-slate-400">
+                      {selectedProject.codeLabel}
+                    </p>
                   </div>
-                  <pre className="project-code-block">
+                  <pre className="overflow-x-auto p-6 text-sm leading-8 text-blue-100">
                     <code>{selectedProject.spotlightCode}</code>
                   </pre>
                 </div>

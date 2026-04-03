@@ -1,53 +1,68 @@
 import { motion } from "framer-motion";
+
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
 import { education } from "../data/education";
 
 export default function Education() {
   return (
-    <section id="education" className="section section-tight">
-      <div className="section-shell" style={{ maxWidth: 980 }}>
+    <section id="education" className="premium-section">
+      <div className="premium-container">
         <Reveal>
           <SectionHeader
             label="Education"
-            title="Academic foundation with strong software engineering momentum"
-            description="A quick view of the academic background supporting my problem-solving, systems thinking, and practical project work."
+            title="A larger, centered academic timeline with stronger readability"
+            description="Education is presented as a larger vertical journey so credentials, timeline, and academic strengths are easier to scan without the section feeling cramped."
           />
 
-          <div className="timeline" aria-label="Education timeline">
-            {education.map((item, index) => (
-              <motion.article
-                key={`${item.degree}-${index}`}
-                className="timeline-item"
-                whileHover={{ x: 6 }}
-                transition={{ type: "spring", stiffness: 150, damping: 18 }}
-              >
-                <span className="timeline-dot" aria-hidden="true" />
+          <div className="relative mx-auto max-w-5xl pl-8 md:pl-12">
+            <div className="timeline-line" aria-hidden="true" />
 
-                <div className="card timeline-card">
-                  <div className="timeline-meta">
-                    <h3 className="timeline-title">{item.degree}</h3>
-                    <span className="timeline-date">{item.duration}</span>
+            <div className="grid gap-6">
+              {education.map((item, index) => (
+                <motion.article
+                  key={`${item.degree}-${index}`}
+                  className="timeline-item relative"
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
+                  whileHover={{ x: 6 }}
+                >
+                  <span className="timeline-dot" aria-hidden="true" />
+
+                  <div className="glass-card p-6 text-center md:p-7 lg:p-8 lg:text-left">
+                    <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
+                      <div>
+                        <span className="premium-pill mb-4 border-blue-400/20 bg-blue-500/10 text-blue-100">
+                          {item.duration}
+                        </span>
+                        <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+                          {item.degree}
+                        </h3>
+                        <p className="mt-2 text-base font-medium text-blue-200">
+                          {item.institution}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap justify-center gap-3 md:justify-end">
+                        {item.location && <span className="premium-pill">{item.location}</span>}
+                        {item.cgpa && <span className="premium-pill">CGPA: {item.cgpa}</span>}
+                        {item.grade && <span className="premium-pill">Grade: {item.grade}</span>}
+                      </div>
+                    </div>
+
+                    {item.details && (
+                      <ul className="grid gap-3 pl-5 text-left text-sm leading-7 text-slate-400 md:text-base">
+                        {item.details.map(point => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
-
-                  <p className="timeline-kicker">{item.institution}</p>
-
-                  <div className="focus-list" style={{ marginBottom: 14 }}>
-                    {item.location && <span className="chip">{item.location}</span>}
-                    {item.cgpa && <span className="chip">CGPA: {item.cgpa}</span>}
-                    {item.grade && <span className="chip">Grade: {item.grade}</span>}
-                  </div>
-
-                  {item.details && (
-                    <ul className="timeline-list">
-                      {item.details.map(point => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </motion.article>
-            ))}
+                </motion.article>
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>

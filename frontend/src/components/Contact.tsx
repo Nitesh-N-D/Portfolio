@@ -2,8 +2,30 @@ import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import { useState } from "react";
 import { FiGithub, FiLinkedin, FiMail, FiSend } from "react-icons/fi";
+
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
+
+const contactLinks = [
+  {
+    title: "Email",
+    value: "niteshdwaraka@gmail.com",
+    href: "mailto:niteshdwaraka@gmail.com",
+    icon: <FiMail size={18} />
+  },
+  {
+    title: "LinkedIn",
+    value: "linkedin.com/in/nitesh-n-d-249ab6325",
+    href: "https://linkedin.com/in/nitesh-n-d-249ab6325",
+    icon: <FiLinkedin size={18} />
+  },
+  {
+    title: "GitHub",
+    value: "github.com/Nitesh-N-D",
+    href: "https://github.com/Nitesh-N-D",
+    icon: <FiGithub size={18} />
+  }
+];
 
 export default function Contact() {
   const [status, setStatus] = useState("");
@@ -33,88 +55,78 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section">
-      <div className="section-shell">
+    <section id="contact" className="premium-section">
+      <div className="premium-container">
         <Reveal>
           <SectionHeader
             label="Contact"
-            title="Clear paths for recruiters and collaborators to reach out"
-            description="If you are hiring, evaluating internship candidates, or looking for a developer to build thoughtful product experiences, I would be glad to connect."
+            title="Contact section with a cleaner layout for all screen sizes"
+            description="Your details and form stay easy to reach while the layout feels lighter, sharper, and more balanced on mobile and desktop."
           />
 
-          <div className="contact-grid">
+          <div className="grid items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             <motion.aside
-              className="card contact-panel"
-              initial={{ opacity: 0, y: 16 }}
+              className="glass-card p-6 text-center md:p-7 lg:text-left"
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.42, ease: "easeOut" }}
+              transition={{ duration: 0.45, ease: "easeOut" }}
             >
-              <div>
-                <h3 className="contact-copy-title">Best way to reach me</h3>
-                <p className="contact-copy-body" style={{ marginTop: 12 }}>
-                  Email is the fastest option, but GitHub and LinkedIn are also good ways to
-                  review my work and background before reaching out.
-                </p>
-              </div>
+              <span className="premium-pill mb-5">Reach me</span>
+              <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+                Let's talk about internships, projects, and engineering roles
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+                Email is the fastest route, while LinkedIn and GitHub give a clear view of my
+                work and background.
+              </p>
 
-              <div className="contact-methods">
-                <a href="mailto:niteshdwaraka@gmail.com" className="card contact-method" aria-label="Send an email">
-                  <span className="contact-method-icon">
-                    <FiMail size={20} />
-                  </span>
-                  <div>
-                    <h4>Email</h4>
-                    <p>niteshdwaraka@gmail.com</p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://github.com/Nitesh-N-D"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card contact-method"
-                  aria-label="Visit GitHub profile"
-                >
-                  <span className="contact-method-icon">
-                    <FiGithub size={20} />
-                  </span>
-                  <div>
-                    <h4>GitHub</h4>
-                    <p>github.com/Nitesh-N-D</p>
-                  </div>
-                </a>
-
-                <a
-                  href="https://linkedin.com/in/nitesh-n-d-249ab6325"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card contact-method"
-                  aria-label="Visit LinkedIn profile"
-                >
-                  <span className="contact-method-icon">
-                    <FiLinkedin size={20} />
-                  </span>
-                  <div>
-                    <h4>LinkedIn</h4>
-                    <p>linkedin.com/in/nitesh-n-d-249ab6325</p>
-                  </div>
-                </a>
+              <div className="mt-6 grid gap-3">
+                {contactLinks.map(item => (
+                  <a
+                    key={item.title}
+                    href={item.href}
+                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className="glass-card-soft flex items-center gap-3 rounded-[20px] p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/20 hover:bg-white/[0.06]"
+                  >
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-sky-100">
+                      {item.icon}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="m-0 text-xs uppercase tracking-[0.22em] text-slate-500">
+                        {item.title}
+                      </p>
+                      <p className="mt-1.5 break-all text-sm font-medium text-slate-200 md:text-base">
+                        {item.value}
+                      </p>
+                    </div>
+                  </a>
+                ))}
               </div>
             </motion.aside>
 
             <motion.div
-              className="card contact-panel"
-              initial={{ opacity: 0, y: 16 }}
+              className="glass-card p-6 text-center md:p-7 lg:text-left"
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.42, delay: 0.08, ease: "easeOut" }}
+              transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
             >
-              <h3 className="contact-form-title">Send a message</h3>
+              <div className="mb-6">
+                <span className="premium-pill mb-4">Message</span>
+                <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+                  Send a message
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+                  Share the role, team, or project context and I'll respond with interest and
+                  availability.
+                </p>
+              </div>
 
-              <form className="contact-form" onSubmit={sendEmail}>
+              <form className="grid gap-4" onSubmit={sendEmail}>
                 <input
-                  className="form-field"
+                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] md:text-base"
                   type="text"
                   name="name"
                   placeholder="Your name"
@@ -122,7 +134,7 @@ export default function Contact() {
                   required
                 />
                 <input
-                  className="form-field"
+                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] md:text-base"
                   type="email"
                   name="email"
                   placeholder="Your email"
@@ -131,19 +143,24 @@ export default function Contact() {
                 />
                 <input type="hidden" name="time" />
                 <textarea
-                  className="form-field"
+                  className="min-h-[170px] rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] md:min-h-[190px] md:text-base"
                   name="message"
                   placeholder="Tell me a bit about the opportunity"
                   aria-label="Your message"
                   required
                 />
 
-                <button type="submit" className="btn">
+                <motion.button
+                  type="submit"
+                  className="primary-button w-full"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                >
                   Send Message
                   <FiSend />
-                </button>
+                </motion.button>
 
-                {status && <p className="contact-status">{status}</p>}
+                {status && <p className="text-sm leading-7 text-slate-300 md:text-base">{status}</p>}
               </form>
             </motion.div>
           </div>

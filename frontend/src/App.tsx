@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Education from "./components/Education";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import Certifications from "./components/Certifications";
-import Achievements from "./components/Achievements";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 import PageLoader from "./components/PageLoader";
-import BackgroundGrid from "./components/BackgroundGrid";
+import CursorGlow from "./components/CursorGlow";
+import ScrollProgress from "./components/ScrollProgress";
+
+const Hero = lazy(() => import("./components/Hero"));
+const About = lazy(() => import("./components/About"));
+const Education = lazy(() => import("./components/Education"));
+const Skills = lazy(() => import("./components/Skills"));
+const Projects = lazy(() => import("./components/Projects"));
+const Experience = lazy(() => import("./components/Experience"));
+const Certifications = lazy(() => import("./components/Certifications"));
+const Achievements = lazy(() => import("./components/Achievements"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
+
+function SectionFallback() {
+  return <div className="premium-section"><div className="premium-container h-24" /></div>;
+}
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -31,24 +37,30 @@ export default function App() {
       {loading ? (
         <PageLoader key="loader" />
       ) : (
-        <>
-          <BackgroundGrid />
+        <div className="app-shell">
+          <div className="animated-grid" aria-hidden="true" />
+          <div className="ambient-orb ambient-orb-left" aria-hidden="true" />
+          <div className="ambient-orb ambient-orb-right" aria-hidden="true" />
+          <div className="ambient-orb ambient-orb-bottom" aria-hidden="true" />
+          <CursorGlow />
+          <ScrollProgress />
           <Navbar />
 
-          <main className="app-shell page-shell" style={{ overflowX: "hidden" }}>
-            <Hero />
-            <About />
-            <Education />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Certifications />
-            <Achievements />
-            <Contact />
+          <main>
+            <Suspense fallback={<SectionFallback />}>
+              <Hero />
+              <About />
+              <Education />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Certifications />
+              <Achievements />
+              <Contact />
+              <Footer />
+            </Suspense>
           </main>
-
-          <Footer />
-        </>
+        </div>
       )}
     </AnimatePresence>
   );
