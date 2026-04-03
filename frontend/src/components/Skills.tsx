@@ -90,19 +90,19 @@ export default function Skills() {
             {skillGroups.map((group, index) => (
               <motion.article
                 key={group.title}
-                className="glass-card p-6 md:p-7"
+                className="glass-card p-5 sm:p-6 md:p-7"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.06, ease: "easeOut" }}
                 whileHover={{ y: -6 }}
               >
-                <div className="mb-5 flex items-center justify-between gap-4">
+                <div className="mb-5 flex items-center justify-between gap-3 sm:gap-4">
                   <div>
                     <p className="text-sm uppercase tracking-[0.24em] text-slate-500">
                       Category
                     </p>
-                    <h3 className="mt-2 text-xl font-bold tracking-tight text-white md:text-2xl">
+                    <h3 className="mt-2 text-lg font-bold tracking-tight text-white sm:text-xl md:text-2xl">
                       {group.title}
                     </h3>
                   </div>
@@ -113,21 +113,21 @@ export default function Skills() {
                   {group.skills.map(skill => (
                     <div
                       key={`${group.title}-${skill.name}`}
-                      className="rounded-[18px] border border-white/10 bg-slate-950/50 p-3.5 transition duration-300 hover:border-sky-300/20 hover:bg-white/[0.06]"
+                      className="rounded-[18px] border border-white/10 bg-slate-950/50 p-3 transition duration-300 hover:border-sky-300/20 hover:bg-white/[0.06] sm:p-3.5"
                     >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-3 text-slate-100">
-                          <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-base text-blue-200">
+                      <div className="flex items-center justify-between gap-2 sm:gap-3">
+                        <div className="flex min-w-0 items-center gap-3 text-slate-100">
+                          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-sm text-blue-200 sm:h-10 sm:w-10 sm:text-base">
                             {skill.icon}
                           </span>
-                          <span className="text-sm font-semibold md:text-base">{skill.name}</span>
+                          <span className="truncate text-sm font-semibold md:text-base">{skill.name}</span>
                         </div>
-                        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                        <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400 sm:text-xs sm:tracking-[0.2em]">
                           {skill.level}
                         </span>
                       </div>
 
-                      <div className="mt-4 h-2 rounded-full bg-white/5">
+                      <div className="mt-3.5 h-2 rounded-full bg-white/5 sm:mt-4">
                         <div
                           className={`h-full rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 ${levelWidths[skill.level]}`}
                         />

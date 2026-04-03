@@ -39,7 +39,7 @@ export default function About() {
 
           <div className="grid items-stretch gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <motion.article
-              className="glass-card p-6 text-center md:p-8 lg:p-9 lg:text-left"
+              className="glass-card p-5 text-center sm:p-6 md:p-8 lg:p-9 lg:text-left"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -49,17 +49,19 @@ export default function About() {
                 About me
               </span>
 
-              <div className="grid gap-5 text-base leading-8 text-slate-300 md:text-lg">
+              <div className="grid gap-4 sm:gap-5">
                 <p className="m-0">
-                  I am a <span className="font-semibold text-white">Computer Science Engineering student</span> who enjoys turning ideas into polished,
-                  production-minded software. My work combines <span className="font-semibold text-white">clear UI thinking</span>,
+                  <span className="copy-readable">
+                    I am a <span className="font-semibold text-white">Computer Science Engineering student</span> who enjoys turning ideas into polished,
+                    production-minded software. My work combines <span className="font-semibold text-white">clear UI thinking</span>,
+                  </span>{" "}
                   maintainable engineering, and practical product decisions.
                 </p>
-                <p className="m-0">
+                <p className="copy-readable m-0">
                   I care about interfaces that feel intentional, backend systems that stay reliable,
                   and projects that communicate value clearly to teammates and users.
                 </p>
-                <p className="m-0">
+                <p className="copy-readable m-0">
                   This portfolio is designed to show <span className="font-semibold text-white">what I build</span>, how I think about
                   product execution, and how I can contribute to modern engineering teams.
                 </p>
@@ -78,7 +80,7 @@ export default function About() {
               {quickCards.map((item, index) => (
                 <motion.article
                   key={item.title}
-                  className="glass-card-soft rounded-[22px] p-5 text-center md:p-6 lg:text-left"
+                  className="glass-card-soft rounded-[22px] p-4 text-center sm:p-5 md:p-6 lg:text-left"
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -90,7 +92,7 @@ export default function About() {
                   <p className="m-0 text-sm uppercase tracking-[0.24em] text-slate-500">
                     {item.title}
                   </p>
-                  <h3 className="mt-2 text-xl font-bold tracking-tight text-white md:text-2xl">{item.value}</h3>
+                  <h3 className="mt-2 text-lg font-bold tracking-tight text-white sm:text-xl md:text-2xl">{item.value}</h3>
                   <p className="mt-2 text-sm leading-7 text-slate-400 md:text-base">{item.description}</p>
                 </motion.article>
               ))}

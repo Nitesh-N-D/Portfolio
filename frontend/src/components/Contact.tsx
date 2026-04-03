@@ -66,17 +66,17 @@ export default function Contact() {
 
           <div className="grid items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             <motion.aside
-              className="glass-card p-6 text-center md:p-7 lg:text-left"
+              className="glass-card p-5 text-center sm:p-6 md:p-7 lg:text-left"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, ease: "easeOut" }}
             >
               <span className="premium-pill mb-5">Reach me</span>
-              <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+              <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
                 Let's talk about internships, projects, and engineering roles
               </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+              <p className="mt-3 text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
                 Email is the fastest route, while LinkedIn and GitHub give a clear view of my
                 work and background.
               </p>
@@ -88,7 +88,7 @@ export default function Contact() {
                     href={item.href}
                     target={item.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                    className="glass-card-soft flex items-center gap-3 rounded-[20px] p-4 text-left transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/20 hover:bg-white/[0.06]"
+                    className="glass-card-soft flex items-center gap-3 rounded-[20px] p-3.5 text-left transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/20 hover:bg-white/[0.06] sm:p-4"
                   >
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-sky-100">
                       {item.icon}
@@ -97,7 +97,7 @@ export default function Contact() {
                       <p className="m-0 text-xs uppercase tracking-[0.22em] text-slate-500">
                         {item.title}
                       </p>
-                      <p className="mt-1.5 break-all text-sm font-medium text-slate-200 md:text-base">
+                      <p className="mt-1.5 break-all text-sm font-medium text-slate-200 sm:text-base">
                         {item.value}
                       </p>
                     </div>
@@ -107,7 +107,7 @@ export default function Contact() {
             </motion.aside>
 
             <motion.div
-              className="glass-card p-6 text-center md:p-7 lg:text-left"
+              className="glass-card p-5 text-center sm:p-6 md:p-7 lg:text-left"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -115,10 +115,10 @@ export default function Contact() {
             >
               <div className="mb-6">
                 <span className="premium-pill mb-4">Message</span>
-                <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+                <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
                   Send a message
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+                <p className="mt-3 text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
                   Share the role, team, or project context and I'll respond with interest and
                   availability.
                 </p>
@@ -126,7 +126,7 @@ export default function Contact() {
 
               <form className="grid gap-4" onSubmit={sendEmail}>
                 <input
-                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] md:text-base"
+                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] sm:text-base"
                   type="text"
                   name="name"
                   placeholder="Your name"
@@ -134,7 +134,7 @@ export default function Contact() {
                   required
                 />
                 <input
-                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] md:text-base"
+                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] sm:text-base"
                   type="email"
                   name="email"
                   placeholder="Your email"
@@ -143,7 +143,7 @@ export default function Contact() {
                 />
                 <input type="hidden" name="time" />
                 <textarea
-                  className="min-h-[170px] rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] md:min-h-[190px] md:text-base"
+                  className="min-h-[160px] rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] sm:min-h-[170px] sm:text-base md:min-h-[190px]"
                   name="message"
                   placeholder="Tell me a bit about the opportunity"
                   aria-label="Your message"
@@ -160,7 +160,7 @@ export default function Contact() {
                   <FiSend />
                 </motion.button>
 
-                {status && <p className="text-sm leading-7 text-slate-300 md:text-base">{status}</p>}
+                {status && <p className="text-sm leading-7 text-slate-300 sm:text-base">{status}</p>}
               </form>
             </motion.div>
           </div>
