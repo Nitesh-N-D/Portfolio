@@ -43,21 +43,24 @@ export default function Hero() {
   }, [displayText, isDeleting, roleIndex]);
 
   return (
-    <section id="home" className="premium-section flex min-h-screen items-center pt-24 md:pt-28">
+    <section
+      id="home"
+      className="premium-section flex min-h-[min(100svh,980px)] items-center pt-24 sm:pt-28 md:min-h-screen"
+    >
       <div className="premium-container relative">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-10 -z-10 mx-auto h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.14),rgba(99,102,241,0.08),transparent_70%)] blur-3xl md:h-[28rem] md:w-[28rem]"
+          className="absolute inset-x-0 top-10 -z-10 mx-auto h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(125,211,252,0.16),rgba(249,168,212,0.08),transparent_72%)] blur-3xl sm:h-[24rem] sm:w-[24rem] md:h-[28rem] md:w-[28rem]"
         />
 
-        <div className="glass-card relative overflow-hidden px-5 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
+        <div className="glass-card relative overflow-hidden px-4 py-7 sm:px-5 sm:py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(96,165,250,0.1),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.08),transparent_26%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(246,201,119,0.08),transparent_28%)]"
           />
           <div aria-hidden="true" className="hero-dot-pattern absolute inset-0 opacity-30" />
 
-          <div className="relative grid items-center gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+          <div className="relative grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -65,23 +68,23 @@ export default function Hero() {
               className="text-center lg:text-left"
             >
               <div className="mb-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                <span className="premium-pill border-blue-400/25 bg-blue-500/10 text-blue-100">
+                <span className="premium-pill border-sky-300/25 bg-sky-400/10 text-sky-50">
                   Open to internships and software roles
                 </span>
               </div>
 
-              <h1 className="mx-auto max-w-4xl text-4xl font-black leading-[0.98] tracking-[-0.05em] text-white md:text-5xl lg:mx-0 lg:text-6xl">
+              <h1 className="mx-auto max-w-4xl text-[2.5rem] font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl lg:mx-0 lg:text-6xl">
                 <span className="text-gradient">Nitesh N D</span> builds clean, professional
                 software products
               </h1>
 
-              <div className="mt-5 flex min-h-[2rem] items-center justify-center gap-2 text-base font-semibold text-slate-300 lg:justify-start md:text-xl">
+              <div className="mt-5 flex min-h-[2.5rem] flex-wrap items-center justify-center gap-2 text-sm font-semibold text-slate-300 sm:text-base md:text-xl lg:justify-start">
                 <span className="text-slate-400">Role:</span>
                 <span className="text-gradient-accent">{displayText}</span>
                 <span className="h-6 w-px animate-pulse bg-blue-300/80" />
               </div>
 
-              <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-400 lg:mx-0 lg:text-lg">
+              <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base sm:leading-8 lg:mx-0 lg:text-lg">
                 Full-stack developer focused on polished UX, scalable engineering, and clear
                 presentation of real project work across frontend and backend systems.
               </p>
@@ -89,7 +92,7 @@ export default function Hero() {
               <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row lg:justify-start">
                 <motion.a
                   href="#projects"
-                  className="primary-button"
+                  className="primary-button min-w-[11rem]"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -98,7 +101,7 @@ export default function Hero() {
                 </motion.a>
                 <motion.a
                   href="/Nitesh_Resume.pdf"
-                  className="secondary-button"
+                  className="secondary-button min-w-[11rem]"
                   download
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
@@ -121,16 +124,16 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            <div className="relative mx-auto flex w-full max-w-lg flex-col gap-4">
+            <div className="relative mx-auto flex w-full max-w-lg flex-col gap-3 sm:gap-4">
               {floatingBadges.map((badge, index) => (
                 <motion.div
                   key={badge}
-                  className={`glass-card-soft premium-pill w-fit px-4 py-2 text-sm text-white ${
+                  className={`glass-card-soft premium-pill w-fit max-w-full px-4 py-2 text-sm text-white ${
                     index === 0
                       ? "self-start"
                       : index === 1
-                        ? "self-center"
-                        : "self-end"
+                        ? "self-center max-sm:self-start"
+                        : "self-end max-sm:self-start"
                   }`}
                   animate={{ y: [0, -7, 0] }}
                   transition={{
@@ -162,19 +165,19 @@ export default function Hero() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="rounded-[22px] border border-white/10 bg-slate-950/60 p-4">
                       <p className="text-sm uppercase tracking-[0.22em] text-slate-500">Focus</p>
-                      <p className="mt-2 text-lg font-semibold text-white">
+                      <p className="mt-2 text-base font-semibold text-white sm:text-lg">
                         Clean product UI and full-stack execution
                       </p>
                     </div>
                     <div className="rounded-[22px] border border-white/10 bg-slate-950/60 p-4">
                       <p className="text-sm uppercase tracking-[0.22em] text-slate-500">Strength</p>
-                      <p className="mt-2 text-lg font-semibold text-white">
+                      <p className="mt-2 text-base font-semibold text-white sm:text-lg">
                         Frontend polish with backend reliability
                       </p>
                     </div>
                   </div>
 
-                  <div className="rounded-[22px] border border-white/10 bg-gradient-to-r from-blue-500/5 via-transparent to-indigo-500/5 p-4">
+                  <div className="rounded-[22px] border border-white/10 bg-gradient-to-r from-sky-400/10 via-transparent to-amber-300/10 p-4">
                     <p className="text-sm uppercase tracking-[0.22em] text-slate-500">Value</p>
                     <p className="mt-2 text-sm leading-7 text-slate-300 md:text-base">
                       Built to help hiring teams quickly assess communication, UI judgment, code

@@ -15,7 +15,7 @@ export default function Education() {
             description="Education is presented as a larger vertical journey so credentials, timeline, and academic strengths are easier to scan without the section feeling cramped."
           />
 
-          <div className="relative mx-auto max-w-5xl pl-8 md:pl-12">
+          <div className="relative mx-auto max-w-5xl pl-6 sm:pl-8 md:pl-12">
             <div className="timeline-line" aria-hidden="true" />
 
             <div className="grid gap-6">
@@ -31,7 +31,7 @@ export default function Education() {
                 >
                   <span className="timeline-dot" aria-hidden="true" />
 
-                  <div className="glass-card p-6 text-center md:p-7 lg:p-8 lg:text-left">
+                  <div className="glass-card accent-card p-5 text-center sm:p-6 md:p-7 lg:p-8 lg:text-left">
                     <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
                       <div>
                         <span className="premium-pill mb-4 border-blue-400/20 bg-blue-500/10 text-blue-100">
@@ -45,7 +45,7 @@ export default function Education() {
                         </p>
                       </div>
 
-                      <div className="flex flex-wrap justify-center gap-3 md:justify-end">
+                      <div className="flex flex-wrap justify-center gap-2.5 md:justify-end md:gap-3">
                         {item.location && <span className="premium-pill">{item.location}</span>}
                         {item.cgpa && <span className="premium-pill">CGPA: {item.cgpa}</span>}
                         {item.grade && <span className="premium-pill">Grade: {item.grade}</span>}

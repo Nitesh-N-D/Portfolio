@@ -15,7 +15,7 @@ export default function Experience() {
             description="Real delivery work, learning velocity, and technical ownership are highlighted in a vertical timeline with clearer hierarchy and more breathing room."
           />
 
-          <div className="relative mx-auto max-w-5xl pl-8 md:pl-12">
+          <div className="relative mx-auto max-w-5xl pl-6 sm:pl-8 md:pl-12">
             <div className="timeline-line" aria-hidden="true" />
 
             <div className="grid gap-6">
@@ -31,7 +31,7 @@ export default function Experience() {
                 >
                   <span className="timeline-dot" aria-hidden="true" />
 
-                  <div className="glass-card p-6 text-center md:p-7 lg:p-8 lg:text-left">
+                  <div className="glass-card accent-card p-5 text-center sm:p-6 md:p-7 lg:p-8 lg:text-left">
                     <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
                       <div>
                         <span className="premium-pill mb-4 border-indigo-400/20 bg-indigo-500/10 text-indigo-100">

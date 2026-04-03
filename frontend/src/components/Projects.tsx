@@ -95,7 +95,7 @@ export default function Projects() {
                         <img
                           src={project.image}
                           alt={`${project.title} project preview`}
-                          className="h-60 w-full object-cover transition duration-500 group-hover:scale-[1.03] md:h-72"
+                          className="h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-60 md:h-72"
                         />
                         <div className="absolute left-6 top-6 z-10">
                           <span className="premium-pill border-blue-400/30 bg-blue-500/15 text-blue-50">
@@ -104,7 +104,7 @@ export default function Projects() {
                         </div>
                       </div>
 
-                      <div className="grid gap-4 p-5 md:p-6">
+                      <div className="grid gap-4 p-4 sm:p-5 md:p-6">
                         <div className="flex flex-wrap items-start justify-between gap-4">
                           <div>
                             <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
@@ -135,7 +135,7 @@ export default function Projects() {
                               href={project.live}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="primary-button"
+                              className="primary-button min-w-[10.5rem]"
                               onClick={event => event.stopPropagation()}
                             >
                               <FiArrowUpRight />
@@ -146,7 +146,7 @@ export default function Projects() {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="secondary-button"
+                            className="secondary-button min-w-[10.5rem]"
                             onClick={event => event.stopPropagation()}
                           >
                             <FiGithub />
@@ -180,11 +180,11 @@ export default function Projects() {
                           <img
                             src={project.image}
                             alt={`${project.title} project preview`}
-                            className="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                            className="h-48 w-full object-cover transition duration-500 group-hover:scale-[1.03] sm:h-52"
                           />
                         </div>
 
-                        <div className="grid h-full gap-4 p-5">
+                        <div className="grid h-full gap-4 p-4 sm:p-5">
                           <div>
                             <span className="premium-pill mb-4 text-xs uppercase tracking-[0.22em] text-slate-200">
                               Project
@@ -214,7 +214,7 @@ export default function Projects() {
                                 href={project.live}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="secondary-button"
+                                className="secondary-button min-w-[10rem]"
                                 onClick={event => event.stopPropagation()}
                               >
                                 <FiArrowUpRight />
@@ -225,7 +225,7 @@ export default function Projects() {
                               href={project.github}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="secondary-button"
+                              className="secondary-button min-w-[10rem]"
                               onClick={event => event.stopPropagation()}
                             >
                               <FiGithub />
@@ -246,14 +246,14 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[1250] grid place-items-center bg-slate-950/80 p-4 backdrop-blur-xl"
+            className="fixed inset-0 z-[1250] overflow-y-auto bg-slate-950/80 p-3 backdrop-blur-xl sm:grid sm:place-items-center sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="glass-card relative grid max-h-[90vh] w-full max-w-6xl gap-6 overflow-auto p-5 md:p-6 xl:grid-cols-[1.1fr_0.9fr]"
+              className="glass-card relative my-20 grid w-full max-w-6xl gap-6 overflow-hidden p-4 sm:my-0 sm:max-h-[90vh] sm:overflow-auto sm:p-5 md:p-6 xl:grid-cols-[1.1fr_0.9fr]"
               initial={{ opacity: 0, y: 24, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
@@ -262,14 +262,14 @@ export default function Projects() {
             >
               <button
                 type="button"
-                className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white backdrop-blur-xl"
+                className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white backdrop-blur-xl sm:right-5 sm:top-5 sm:h-11 sm:w-11"
                 aria-label="Close project spotlight"
                 onClick={() => setSelectedProject(null)}
               >
                 <FiX />
               </button>
 
-                <div className="grid gap-5">
+              <div className="grid gap-5">
                 <span className="premium-pill w-fit border-blue-400/25 bg-blue-500/10 text-blue-100">
                   Interactive project spotlight
                 </span>
@@ -322,7 +322,7 @@ export default function Projects() {
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="primary-button"
+                      className="primary-button min-w-[10.5rem]"
                     >
                       <FiArrowUpRight />
                       Live Demo
@@ -332,7 +332,7 @@ export default function Projects() {
                     href={selectedProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="secondary-button"
+                    className="secondary-button min-w-[10.5rem]"
                   >
                     <FiGithub />
                     GitHub
@@ -345,7 +345,7 @@ export default function Projects() {
                   <img
                     src={selectedProject.image}
                     alt={`${selectedProject.title} detailed preview`}
-                    className="h-full max-h-[360px] w-full object-cover"
+                    className="h-full max-h-[220px] w-full object-cover sm:max-h-[280px] md:max-h-[360px]"
                   />
                 </div>
 
@@ -358,7 +358,7 @@ export default function Projects() {
                       {selectedProject.codeLabel}
                     </p>
                   </div>
-                  <pre className="overflow-x-auto p-6 text-sm leading-8 text-blue-100">
+                  <pre className="overflow-x-auto p-4 text-xs leading-6 text-blue-100 sm:p-6 sm:text-sm sm:leading-8">
                     <code>{selectedProject.spotlightCode}</code>
                   </pre>
                 </div>

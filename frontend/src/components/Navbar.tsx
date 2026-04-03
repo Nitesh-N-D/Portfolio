@@ -28,45 +28,53 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px" }
-    );
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + window.innerHeight * 0.32;
+      let currentSection = sections[0];
 
-    sections.forEach(id => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
+      sections.forEach(id => {
+        const element = document.getElementById(id);
+        if (!element) return;
 
-    return () => observer.disconnect();
+        const sectionTop = element.offsetTop;
+        if (scrollPosition >= sectionTop) {
+          currentSection = id;
+        }
+      });
+
+      setActive(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   return (
     <>
       <motion.nav
-        className="fixed inset-x-0 top-0 z-[1100] px-4 py-4 md:px-6"
+        className="fixed inset-x-0 top-0 z-[1100] px-3 py-3 sm:px-4 sm:py-4 md:px-6"
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div
-          className={`premium-container flex items-center justify-between gap-4 rounded-full border px-5 py-3 transition duration-300 md:px-6 ${
+          className={`premium-container flex items-center justify-between gap-3 rounded-[1.6rem] border px-4 py-3 transition duration-300 sm:gap-4 sm:rounded-full sm:px-5 md:px-6 ${
             scrolled
               ? "border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl"
               : "border-white/5 bg-white/[0.03] backdrop-blur-xl"
           }`}
         >
           <a href="#home" className="group flex min-w-0 flex-col">
-            <span className="text-sm font-bold tracking-[0.2em] text-slate-200 uppercase">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-slate-100 sm:text-sm sm:tracking-[0.2em]">
               Nitesh N D
             </span>
-            <span className="text-xs text-slate-400 transition duration-300 group-hover:text-slate-200">
+            <span className="hidden text-xs text-slate-400 transition duration-300 group-hover:text-slate-200 sm:block">
               Full Stack Engineer
             </span>
           </a>
@@ -97,7 +105,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-100 backdrop-blur-xl lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-100 backdrop-blur-xl sm:h-11 sm:w-11 lg:hidden"
             onClick={() => setMenuOpen(open => !open)}
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
@@ -112,7 +120,7 @@ export default function Navbar() {
         {menuOpen && (
           <motion.div
             id="mobile-navigation"
-            className="fixed inset-x-4 top-20 z-[1090] rounded-[28px] border border-white/10 bg-slate-950/90 p-4 shadow-2xl backdrop-blur-2xl lg:hidden"
+            className="fixed inset-x-3 top-[4.7rem] z-[1090] max-h-[calc(100vh-5.5rem)] overflow-y-auto rounded-[28px] border border-white/10 bg-slate-950/90 p-4 shadow-2xl backdrop-blur-2xl sm:inset-x-4 sm:top-20 lg:hidden"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

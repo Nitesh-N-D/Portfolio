@@ -20,7 +20,7 @@ export default function Achievements() {
             {achievements.map((achievement, index) => (
               <motion.article
                 key={`${achievement.title}-${index}`}
-                className="glass-card group p-5 md:p-6"
+                className="glass-card accent-card-soft group p-4 sm:p-5 md:p-6"
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -28,7 +28,7 @@ export default function Achievements() {
                 whileHover={{ y: -6 }}
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/10 text-lg text-indigo-200">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-lg text-sky-100">
                     <FiStar />
                   </span>
                   <span

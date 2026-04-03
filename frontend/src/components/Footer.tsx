@@ -33,7 +33,7 @@ export default function Footer() {
   return (
     <footer className="px-4 pb-5 pt-1 md:px-6">
       <div className="premium-container">
-        <div className="glass-card flex flex-col items-center justify-between gap-3 px-4 py-3 text-center md:px-5 md:py-4 lg:flex-row lg:text-left">
+        <div className="glass-card accent-card-soft flex flex-col items-center justify-between gap-3 px-4 py-3 text-center md:px-5 md:py-4 lg:flex-row lg:text-left">
           <div>
             <h3 className="text-base font-bold tracking-tight text-white">Nitesh N D</h3>
             <p className="mt-1 text-xs text-slate-400 md:text-sm">
@@ -44,7 +44,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <nav className="flex flex-wrap justify-center gap-2" aria-label="Footer links">
+          <nav className="flex flex-wrap justify-center gap-2 sm:gap-2.5" aria-label="Footer links">
             {links.map(link => (
               <a
                 key={link.label}
