@@ -29,10 +29,12 @@ const contactLinks = [
 
 export default function Contact() {
   const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
+    setSending(true);
 
     const timeInput = form.querySelector('input[name="time"]') as HTMLInputElement;
     if (timeInput) {
@@ -49,13 +51,14 @@ export default function Contact() {
       .then(
         () => setStatus("Thank you for your message. I will get back to you soon."),
         () => setStatus("Failed to send message. Please try again later.")
-      );
+      )
+      .finally(() => setSending(false));
 
     form.reset();
   };
 
   return (
-    <section id="contact" className="premium-section">
+    <section id="contact" aria-labelledby="contact-heading" className="premium-section">
       <div className="premium-container">
         <Reveal>
           <SectionHeader
@@ -64,103 +67,122 @@ export default function Contact() {
             description="Your details and form stay easy to reach while the layout feels lighter, sharper, and more balanced on mobile and desktop."
           />
 
-          <div className="grid items-stretch gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="relative grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr]">
             <motion.aside
-              className="glass-card p-5 text-center sm:p-6 md:p-7 lg:text-left"
+              className="relative p-1"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, ease: "easeOut" }}
             >
-              <span className="premium-pill mb-5">Reach me</span>
-              <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
-                Let's talk about internships, projects, and engineering roles
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
-                Email is the fastest route, while LinkedIn and GitHub give a clear view of my
-                work and background.
-              </p>
+              <span className="pointer-events-none absolute -bottom-10 -left-4 z-0 select-none font-display text-[8rem] italic leading-none text-amber-500 opacity-[0.04]">
+                hello.
+              </span>
+              <div className="relative z-10">
+                <span className="premium-pill mb-5">Reach me</span>
+                <h3 className="max-w-xl text-3xl font-bold tracking-tight text-text-primary">
+                  Let's talk about internships, projects, and engineering roles
+                </h3>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-text-secondary sm:text-base sm:leading-8">
+                  Email is the fastest route, while LinkedIn and GitHub give a clear view of my
+                  work and background.
+                </p>
 
-              <div className="mt-6 grid gap-3">
-                {contactLinks.map(item => (
-                  <a
-                    key={item.title}
-                    href={item.href}
-                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                    className="glass-card-soft flex items-center gap-3 rounded-[20px] p-3.5 text-left transition duration-300 hover:-translate-y-0.5 hover:border-sky-300/20 hover:bg-white/[0.06] sm:p-4"
-                  >
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-sky-100">
-                      {item.icon}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="m-0 text-xs uppercase tracking-[0.22em] text-slate-500">
-                        {item.title}
-                      </p>
-                      <p className="mt-1.5 break-all text-sm font-medium text-slate-200 sm:text-base">
-                        {item.value}
-                      </p>
-                    </div>
-                  </a>
-                ))}
+                <div className="mt-8 grid gap-4">
+                  {contactLinks.map(item => (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                      rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                      className="flex items-center gap-4 border-b border-[var(--border-subtle)] py-4 text-left transition duration-300 hover:border-[var(--border-emphasis)] hover:text-amber-500"
+                      data-cursor="hover"
+                    >
+                      <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--amber-ghost)] text-amber-500">
+                        {item.icon}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-mono text-xs uppercase tracking-[0.22em] text-text-muted">
+                          {item.title}
+                        </span>
+                        <span className="mt-1.5 block break-all font-mono text-sm text-text-primary sm:text-base">
+                          {item.value}
+                        </span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </motion.aside>
 
             <motion.div
-              className="glass-card p-5 text-center sm:p-6 md:p-7 lg:text-left"
+              className="glass-card p-6 md:p-8"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
             >
-              <div className="mb-6">
-                <span className="premium-pill mb-4">Message</span>
-                <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
-                  Send a message
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-400 sm:text-base sm:leading-8">
-                  Share the role, team, or project context and I'll respond with interest and
-                  availability.
-                </p>
-              </div>
-
-              <form className="grid gap-4" onSubmit={sendEmail}>
-                <input
-                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] sm:text-base"
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  aria-label="Your name"
-                  required
-                />
-                <input
-                  className="rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] sm:text-base"
-                  type="email"
-                  name="email"
-                  placeholder="Your email"
-                  aria-label="Your email"
-                  required
-                />
+              <form className="grid gap-6" onSubmit={sendEmail}>
+                <div className="field-wrap">
+                  <input
+                    id="contact-name"
+                    className="field-input"
+                    type="text"
+                    name="name"
+                    placeholder=" "
+                    aria-required="true"
+                    required
+                  />
+                  <label className="field-label" htmlFor="contact-name">
+                    Your name
+                  </label>
+                </div>
+                <div className="field-wrap">
+                  <input
+                    id="contact-email"
+                    className="field-input"
+                    type="email"
+                    name="email"
+                    placeholder=" "
+                    aria-required="true"
+                    required
+                  />
+                  <label className="field-label" htmlFor="contact-email">
+                    Your email
+                  </label>
+                </div>
                 <input type="hidden" name="time" />
-                <textarea
-                  className="min-h-[160px] rounded-[18px] border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition duration-300 placeholder:text-slate-500 focus:border-sky-300/20 focus:bg-white/[0.06] sm:min-h-[170px] sm:text-base md:min-h-[190px]"
-                  name="message"
-                  placeholder="Tell me a bit about the opportunity"
-                  aria-label="Your message"
-                  required
-                />
+                <div className="field-wrap">
+                  <textarea
+                    id="contact-message"
+                    className="field-input min-h-[140px] resize-y"
+                    name="message"
+                    placeholder=" "
+                    aria-required="true"
+                    required
+                  />
+                  <label className="field-label" htmlFor="contact-message">
+                    Tell me a bit about the opportunity
+                  </label>
+                </div>
 
                 <motion.button
                   type="submit"
                   className="primary-button w-full"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
+                  disabled={sending}
+                  data-cursor="hover"
                 >
-                  Send Message
+                  {sending ? "Sending..." : "Send Message"}
                   <FiSend />
                 </motion.button>
 
-                {status && <p className="text-sm leading-7 text-slate-300 sm:text-base">{status}</p>}
+                {status && (
+                  <p className="border-l-2 border-amber-500 bg-bg-base/60 px-4 py-3 font-mono text-sm leading-7 text-text-secondary">
+                    {status}
+                  </p>
+                )}
               </form>
             </motion.div>
           </div>

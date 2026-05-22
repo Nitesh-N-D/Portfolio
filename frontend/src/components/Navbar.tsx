@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 const sections = [
   "home",
@@ -14,90 +14,93 @@ const sections = [
   "contact"
 ];
 
+const socials = [
+  { label: "GitHub", href: "https://github.com/Nitesh-N-D", icon: <FiGithub /> },
+  { label: "LinkedIn", href: "https://linkedin.com/in/nitesh-n-d-249ab6325", icon: <FiLinkedin /> },
+  { label: "Email", href: "mailto:niteshdwaraka@gmail.com", icon: <FiMail /> }
+];
+
 export default function Navbar() {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 180, damping: 28, mass: 0.2 });
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const updateActiveSection = () => {
-      const scrollPosition = window.scrollY + window.innerHeight * 0.32;
-      let currentSection = sections[0];
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
 
-      sections.forEach(id => {
-        const element = document.getElementById(id);
-        if (!element) return;
+    sections.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
 
-        const sectionTop = element.offsetTop;
-        if (scrollPosition >= sectionTop) {
-          currentSection = id;
-        }
-      });
-
-      setActive(currentSection);
-    };
-
-    updateActiveSection();
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
-
-    return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
-    };
+    return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <>
       <motion.nav
-        className="fixed inset-x-0 top-0 z-[1100] px-3 py-3 sm:px-4 sm:py-4 md:px-6"
+        aria-label="Main navigation"
+        className={`fixed inset-x-0 top-0 z-[1000] h-[var(--navbar-h)] transition-all duration-500 ${
+          scrolled
+            ? "border-b border-[var(--border-subtle)] bg-[rgba(5,5,7,0.88)] shadow-[0_1px_0_rgba(212,146,42,0.06)] backdrop-blur-2xl"
+            : "border-b border-transparent bg-transparent"
+        }`}
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        <div
-          className={`premium-container flex items-center justify-between gap-3 rounded-[1.6rem] border px-4 py-3 transition duration-300 sm:gap-4 sm:rounded-full sm:px-5 md:px-6 ${
-            scrolled
-              ? "border-white/10 bg-slate-950/75 shadow-2xl backdrop-blur-2xl"
-              : "border-white/5 bg-white/[0.03] backdrop-blur-xl"
-          }`}
-        >
-          <a href="#home" className="group flex min-w-0 flex-col">
-            <span className="text-xs font-bold uppercase tracking-[0.18em] text-slate-100 sm:text-sm sm:tracking-[0.2em]">
-              Nitesh N D
-            </span>
-            <span className="hidden text-xs text-slate-400 transition duration-300 group-hover:text-slate-200 sm:block">
-              Full Stack Engineer
-            </span>
+        <div className="premium-container flex h-full items-center justify-between px-5">
+          <a
+            href="#home"
+            className="font-display text-[1.2rem] italic text-text-primary transition-transform duration-200 hover:scale-[1.03]"
+            data-cursor="hover"
+            onClick={() => setMenuOpen(false)}
+          >
+            N.D. <span className="text-amber-500">Nitesh</span>
           </a>
 
-          <div className="hidden items-center gap-2 lg:flex">
+          <div className="hidden items-center gap-8 lg:flex">
             {sections.map(section => {
               const isActive = active === section;
               return (
                 <a
                   key={section}
                   href={`#${section}`}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium capitalize transition duration-300 ${
-                    isActive ? "text-white" : "text-slate-400 hover:text-slate-100"
+                  aria-current={isActive ? "page" : undefined}
+                  className={`relative font-mono text-[0.78rem] capitalize tracking-[0.1em] transition-colors duration-300 ${
+                    isActive ? "text-amber-500" : "text-text-muted hover:text-text-primary"
                   }`}
+                  data-cursor="hover"
                 >
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeSection"
-                      className="absolute inset-0 rounded-full border border-blue-400/20 bg-blue-500/10"
-                      transition={{ type: "spring", stiffness: 320, damping: 28 }}
-                    />
-                  )}
-                  <span className="relative z-10">{section}</span>
+                  {section}
+                  <span
+                    className={`absolute -bottom-2 left-0 h-0.5 w-full origin-left bg-amber-500 transition-transform duration-300 ${
+                      isActive ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
                 </a>
               );
             })}
@@ -105,43 +108,89 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-slate-100 backdrop-blur-xl sm:h-11 sm:w-11 lg:hidden"
+            className="relative flex h-11 w-11 items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-glass)] lg:hidden"
             onClick={() => setMenuOpen(open => !open)}
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
+            data-cursor="hover"
           >
-            {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            <span className="sr-only">Toggle navigation</span>
+            <span
+              className={`absolute h-px w-5 bg-text-primary transition-all duration-300 ${
+                menuOpen ? "rotate-45" : "-translate-y-1.5"
+              }`}
+            />
+            <span
+              className={`absolute h-px w-5 bg-text-primary transition-all duration-300 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute h-px w-5 bg-text-primary transition-all duration-300 ${
+                menuOpen ? "-rotate-45" : "translate-y-1.5"
+              }`}
+            />
           </button>
         </div>
+
+        <motion.div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 h-[1.5px] origin-left bg-grad-amber"
+          style={{ scaleX: progress, width: "100%" }}
+        />
       </motion.nav>
 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             id="mobile-navigation"
-            className="fixed inset-x-3 top-[4.7rem] z-[1090] max-h-[calc(100vh-5.5rem)] overflow-y-auto rounded-[28px] border border-white/10 bg-slate-950/90 p-4 shadow-2xl backdrop-blur-2xl sm:inset-x-4 sm:top-20 lg:hidden"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[var(--bg-overlay)] px-6 backdrop-blur-3xl lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
+            onClick={() => setMenuOpen(false)}
           >
-            <div className="grid gap-2">
+            <motion.div
+              className="grid gap-5 text-center"
+              initial="hidden"
+              animate="visible"
+              variants={{ visible: { transition: { staggerChildren: 0.06 } } }}
+              onClick={event => event.stopPropagation()}
+            >
               {sections.map(section => (
-                <a
+                <motion.a
                   key={section}
                   href={`#${section}`}
-                  className={`rounded-2xl px-4 py-3 text-sm font-medium capitalize transition duration-300 ${
-                    active === section
-                      ? "bg-blue-500/10 text-white"
-                      : "text-slate-300 hover:bg-white/5 hover:text-white"
+                  className={`font-display text-[2.4rem] italic capitalize leading-none ${
+                    active === section ? "text-amber-500" : "text-text-primary"
                   }`}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
                   onClick={() => {
                     setActive(section);
                     setMenuOpen(false);
                   }}
                 >
                   {section}
+                </motion.a>
+              ))}
+            </motion.div>
+
+            <div className="absolute bottom-10 flex items-center gap-4">
+              {socials.map(item => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  className="social-button"
+                  aria-label={item.label}
+                >
+                  {item.icon}
                 </a>
               ))}
             </div>

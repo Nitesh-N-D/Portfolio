@@ -6,7 +6,7 @@ import { experience } from "../data/experience";
 
 export default function Experience() {
   return (
-    <section id="experience" className="premium-section">
+    <section id="experience" aria-labelledby="experience-heading" className="premium-section">
       <div className="premium-container">
         <Reveal>
           <SectionHeader
@@ -31,20 +31,20 @@ export default function Experience() {
                 >
                   <span className="timeline-dot" aria-hidden="true" />
 
-                  <div className="glass-card accent-card p-5 text-center sm:p-6 md:p-7 lg:p-8 lg:text-left">
-                    <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
+                  <div className="glass-card accent-card border-l-[3px] border-l-[var(--border-subtle)] p-5 transition duration-300 hover:translate-x-1 hover:border-l-[var(--border-strong)] hover:bg-[var(--amber-ghost)] sm:p-6 md:p-7 lg:p-8">
+                    <div className="mb-4 flex flex-col items-start justify-between gap-4 md:flex-row">
                       <div>
-                        <span className="premium-pill mb-4 border-indigo-400/20 bg-indigo-500/10 text-indigo-100">
+                        <span className="premium-pill mb-4">
                           {item.start} - {item.end}
                         </span>
-                        <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+                        <h3 className="text-xl font-bold tracking-tight text-text-primary md:text-2xl">
                           {item.role}
                         </h3>
-                        <p className="mt-2 text-base font-medium text-blue-200">{item.company}</p>
+                        <p className="mt-2 font-mono text-sm font-medium text-amber-500">{item.company}</p>
                       </div>
                     </div>
 
-                    <p className="text-sm leading-7 text-slate-400 md:text-base">
+                    <p className="text-sm leading-7 text-text-secondary md:text-base">
                       {item.description}
                     </p>
 
@@ -53,8 +53,9 @@ export default function Experience() {
                         {item.highlights.map(point => (
                           <div
                             key={point}
-                            className="rounded-[18px] border border-white/10 bg-slate-950/45 px-4 py-3 text-left text-sm leading-7 text-slate-300 md:text-base"
+                            className="border border-[var(--border-subtle)] bg-bg-base/45 px-4 py-3 text-left text-sm leading-7 text-text-secondary md:text-base"
                           >
+                            <span className="mr-2 text-amber-500">▸</span>
                             {point}
                           </div>
                         ))}

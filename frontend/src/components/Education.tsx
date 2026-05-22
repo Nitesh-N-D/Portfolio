@@ -6,7 +6,7 @@ import { education } from "../data/education";
 
 export default function Education() {
   return (
-    <section id="education" className="premium-section">
+    <section id="education" aria-labelledby="education-heading" className="premium-section">
       <div className="premium-container">
         <Reveal>
           <SectionHeader
@@ -32,15 +32,15 @@ export default function Education() {
                   <span className="timeline-dot" aria-hidden="true" />
 
                   <div className="glass-card accent-card p-5 text-center sm:p-6 md:p-7 lg:p-8 lg:text-left">
-                    <div className="mb-4 flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
+                    <div className="mb-4 flex flex-col items-start justify-between gap-4 md:flex-row">
                       <div>
-                        <span className="premium-pill mb-4 border-blue-400/20 bg-blue-500/10 text-blue-100">
+                        <span className="premium-pill mb-4">
                           {item.duration}
                         </span>
-                        <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+                        <h3 className="text-xl font-bold tracking-tight text-text-primary md:text-2xl">
                           {item.degree}
                         </h3>
-                        <p className="mt-2 text-base font-medium text-blue-200">
+                        <p className="mt-2 text-base font-medium text-amber-500">
                           {item.institution}
                         </p>
                       </div>
@@ -53,7 +53,7 @@ export default function Education() {
                     </div>
 
                     {item.details && (
-                      <ul className="grid gap-3 pl-5 text-left text-sm leading-7 text-slate-400 md:text-base">
+                      <ul className="grid gap-3 pl-5 text-left text-sm leading-7 text-text-secondary md:text-base">
                         {item.details.map(point => (
                           <li key={point}>{point}</li>
                         ))}

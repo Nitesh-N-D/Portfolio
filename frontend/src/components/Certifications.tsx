@@ -7,7 +7,7 @@ import { Certification, certifications } from "../data/certifications";
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="premium-section">
+    <section id="certifications" aria-labelledby="certifications-heading" className="premium-section">
       <div className="premium-container">
         <Reveal>
           <SectionHeader
@@ -28,7 +28,7 @@ export default function Certifications() {
                 whileHover={{ y: -6 }}
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-lg text-sky-100">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--amber-ghost)] text-[22px] text-amber-500">
                     <FiAward />
                   </span>
                   <span className="premium-pill text-xs uppercase tracking-[0.2em]">
@@ -36,11 +36,11 @@ export default function Certifications() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+                <h3 className="text-xl font-bold tracking-tight text-text-primary md:text-2xl">
                   {certification.title}
                 </h3>
-                <p className="mt-2 text-sm font-medium text-blue-200 md:text-base">{certification.provider}</p>
-                <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+                <p className="mt-2 font-mono text-sm font-medium text-amber-500 md:text-base">{certification.provider}</p>
+                <p className="mt-3 text-sm leading-7 text-text-secondary md:text-base">
                   Verified learning credential that strengthens my technical foundation and
                   continuous growth story.
                 </p>

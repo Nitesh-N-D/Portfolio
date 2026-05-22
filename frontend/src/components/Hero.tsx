@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FiArrowRight, FiDownload, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiArrowDownRight, FiDownload, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import type { ReactNode } from "react";
+
+import { charReveal, staggerContainer } from "../lib/variants";
 
 const roles = ["Software Developer", "Full Stack Engineer", "Problem Solver"];
 const floatingBadges = ["10+ Projects", "12+ Certifications", "2+ Internships"];
@@ -10,6 +12,7 @@ export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const name = "Nitesh N D";
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -45,150 +48,138 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="premium-section flex min-h-[min(100svh,980px)] items-center pt-24 sm:pt-28 md:min-h-screen"
+      aria-labelledby="home-heading"
+      className="premium-section flex min-h-[100svh] items-center overflow-hidden pt-[calc(var(--navbar-h)+48px)]"
     >
-      <div className="premium-container relative">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-10 -z-10 mx-auto h-[20rem] w-[20rem] rounded-full bg-[radial-gradient(circle,rgba(125,211,252,0.16),rgba(249,168,212,0.08),transparent_72%)] blur-3xl sm:h-[24rem] sm:w-[24rem] md:h-[28rem] md:w-[28rem]"
-        />
+      <div className="absolute inset-0 -z-10 bg-[var(--grad-hero-radial)]" aria-hidden="true" />
+      <div className="absolute left-1/2 top-1/2 -z-10 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 animate-[spin-slow_80s_linear_infinite] rounded-full border border-[rgba(212,146,42,0.05)]" aria-hidden="true" />
+      <div className="absolute left-1/2 top-1/2 -z-10 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 animate-[spin_50s_linear_infinite_reverse] rounded-full border border-dashed border-[rgba(212,146,42,0.04)]" aria-hidden="true" />
 
-        <div className="glass-card relative overflow-hidden px-4 py-7 sm:px-5 sm:py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(125,211,252,0.14),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(246,201,119,0.08),transparent_28%)]"
-          />
-          <div aria-hidden="true" className="hero-dot-pattern absolute inset-0 opacity-30" />
+      <div className="premium-container grid items-center gap-14 lg:grid-cols-[58%_42%]">
+        <motion.div className="text-center lg:text-left" initial="hidden" animate="visible">
+          <motion.p
+            className="mb-5 font-mono text-[0.9rem] tracking-[0.15em] text-amber-500"
+            variants={{ hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { delay: 0.3 } } }}
+          >
+            Open to internships and software roles
+          </motion.p>
 
-          <div className="relative grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-              className="text-center lg:text-left"
-            >
-              <div className="mb-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                <span className="premium-pill border-sky-300/25 bg-sky-400/10 text-sky-50">
-                  Open to internships and software roles
-                </span>
-              </div>
+          <motion.h1
+            id="home-heading"
+            className="mx-auto flex max-w-5xl flex-wrap justify-center font-display text-[var(--fs-hero)] font-black leading-[0.95] tracking-[-0.02em] text-text-primary lg:mx-0 lg:justify-start"
+            variants={staggerContainer(0.035, 0.5)}
+          >
+            {name.split("").map((char, index) => (
+              <motion.span key={`${char}-${index}`} className={char === " " ? "w-[0.28em]" : ""} variants={charReveal}>
+                {char === " " ? "\u00a0" : char}
+              </motion.span>
+            ))}
+          </motion.h1>
 
-              <h1 className="mx-auto max-w-4xl text-[2.5rem] font-black leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl lg:mx-0 lg:text-6xl">
-                <span className="text-gradient">Nitesh N D</span> builds clean, professional
-                software products
-              </h1>
+          <motion.div
+            className="mt-6 flex min-h-[2.5rem] flex-wrap items-center justify-center gap-2 font-sans text-[clamp(1.2rem,3vw,1.8rem)] font-medium text-text-secondary lg:justify-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+          >
+            <span>Role:</span>
+            <span className="text-amber-gradient">{displayText}</span>
+            <span className="animate-[blink-cursor_1s_step-end_infinite] text-amber-500">|</span>
+          </motion.div>
 
-              <div className="mt-5 flex min-h-[2.5rem] flex-wrap items-center justify-center gap-2 text-sm font-semibold text-slate-300 sm:text-base md:text-xl lg:justify-start">
-                <span className="text-slate-400">Role:</span>
-                <span className="text-gradient-accent">{displayText}</span>
-                <span className="h-6 w-px animate-pulse bg-blue-300/80" />
-              </div>
+          <motion.p
+            className="mx-auto mt-7 max-w-[520px] text-[var(--fs-body)] leading-[1.8] text-text-secondary lg:mx-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.6 }}
+          >
+            Full-stack developer focused on polished UX, scalable engineering, and clear
+            presentation of real project work across frontend and backend systems.
+          </motion.p>
 
-              <p className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base sm:leading-8 lg:mx-0 lg:text-lg">
-                Full-stack developer focused on polished UX, scalable engineering, and clear
-                presentation of real project work across frontend and backend systems.
-              </p>
+          <motion.div
+            className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row lg:justify-start"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6, duration: 0.55 }}
+          >
+            <a href="#projects" className="secondary-button min-w-[11rem]" data-cursor="hover">
+              View Projects
+              <FiArrowDownRight />
+            </a>
+            <a href="/Nitesh_Resume.pdf" className="primary-button min-w-[11rem]" download data-cursor="hover">
+              Download Resume
+              <FiDownload />
+            </a>
+          </motion.div>
 
-              <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row lg:justify-start">
-                <motion.a
-                  href="#projects"
-                  className="primary-button min-w-[11rem]"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  View Projects
-                  <FiArrowRight />
-                </motion.a>
-                <motion.a
-                  href="/Nitesh_Resume.pdf"
-                  className="secondary-button min-w-[11rem]"
-                  download
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Download Resume
-                  <FiDownload />
-                </motion.a>
-              </div>
+          <motion.div
+            className="mt-8 flex flex-wrap items-center justify-center gap-5 lg:justify-start"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8, duration: 0.45 }}
+          >
+            <Social href="https://github.com/Nitesh-N-D" label="GitHub profile">
+              <FiGithub size={20} />
+            </Social>
+            <Social href="https://linkedin.com/in/nitesh-n-d-249ab6325" label="LinkedIn profile">
+              <FiLinkedin size={20} />
+            </Social>
+            <Social href="mailto:niteshdwaraka@gmail.com" label="Email Nitesh">
+              <FiMail size={20} />
+            </Social>
+          </motion.div>
+        </motion.div>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                <Social href="https://github.com/Nitesh-N-D" label="GitHub profile">
-                  <FiGithub size={19} />
-                </Social>
-                <Social href="https://linkedin.com/in/nitesh-n-d-249ab6325" label="LinkedIn profile">
-                  <FiLinkedin size={19} />
-                </Social>
-                <Social href="mailto:niteshdwaraka@gmail.com" label="Email Nitesh">
-                  <FiMail size={19} />
-                </Social>
-              </div>
-            </motion.div>
-
-            <div className="relative mx-auto flex w-full max-w-lg flex-col gap-3 sm:gap-4">
-              {floatingBadges.map((badge, index) => (
-                <motion.div
-                  key={badge}
-                  className={`glass-card-soft premium-pill w-fit max-w-full px-4 py-2 text-sm text-white ${
-                    index === 0
-                      ? "self-start"
-                      : index === 1
-                        ? "self-center max-sm:self-start"
-                        : "self-end max-sm:self-start"
-                  }`}
-                  animate={{ y: [0, -7, 0] }}
-                  transition={{
-                    duration: 4 + index,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: index * 0.3
-                  }}
-                >
-                  {badge}
-                </motion.div>
-              ))}
-
-              <motion.div
-                className="glass-card-soft relative mt-2 overflow-hidden rounded-[26px] p-5 md:p-6"
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+        <motion.aside
+          className="relative mx-auto hidden w-[clamp(300px,38vw,460px)] md:block"
+          initial={{ opacity: 0, scale: 0.92, x: 40 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 0.65, delay: 0.8, ease: [0.34, 1.56, 0.64, 1] }}
+        >
+          <div className="absolute -left-5 -top-8 z-10 grid gap-3">
+            {floatingBadges.map((badge, index) => (
+              <motion.span
+                key={badge}
+                className="premium-pill w-fit bg-[var(--bg-card)]"
+                animate={{ y: [0, -7, 0] }}
+                transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
               >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_34%)]" />
-                <div className="relative grid gap-4">
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <span className="premium-pill text-xs uppercase tracking-[0.22em] text-blue-100">
-                      Quick Snapshot
-                    </span>
-                    <span className="text-sm text-slate-400">2026 Portfolio</span>
-                  </div>
+                {badge}
+              </motion.span>
+            ))}
+          </div>
 
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-[22px] border border-white/10 bg-slate-950/60 p-4">
-                      <p className="text-sm uppercase tracking-[0.22em] text-slate-500">Focus</p>
-                      <p className="mt-2 text-base font-semibold text-white sm:text-lg">
-                        Clean product UI and full-stack execution
-                      </p>
-                    </div>
-                    <div className="rounded-[22px] border border-white/10 bg-slate-950/60 p-4">
-                      <p className="text-sm uppercase tracking-[0.22em] text-slate-500">Strength</p>
-                      <p className="mt-2 text-base font-semibold text-white sm:text-lg">
-                        Frontend polish with backend reliability
-                      </p>
-                    </div>
-                  </div>
+          <div className="overflow-hidden rounded-[var(--r-lg)] border border-[var(--border-default)] bg-[#0d0d14] shadow-[var(--shadow-lg),var(--shadow-amber-sm)] [animation:float-a_9s_ease-in-out_infinite,amber-pulse_4s_ease-in-out_infinite]">
+            <div className="flex items-center justify-between border-b border-[var(--border-subtle)] bg-[#0a0a11] px-4 py-3">
+              <div className="flex gap-2">
+                <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+                <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+                <span className="h-3 w-3 rounded-full bg-[#28ca42]" />
+              </div>
+              <span className="font-mono text-[0.72rem] text-text-muted">developer.ts</span>
+              <span className="font-mono text-[0.72rem] text-text-muted">nitesh.config.ts</span>
+            </div>
 
-                  <div className="rounded-[22px] border border-white/10 bg-gradient-to-r from-sky-400/10 via-transparent to-amber-300/10 p-4">
-                    <p className="text-sm uppercase tracking-[0.22em] text-slate-500">Value</p>
-                    <p className="mt-2 text-sm leading-7 text-slate-300 md:text-base">
-                      Built to help hiring teams quickly assess communication, UI judgment, code
-                      quality, and real-world delivery across portfolio projects.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+            <pre className="overflow-x-auto px-7 py-6 font-mono text-[0.82rem] leading-[1.8]">
+              <code>
+                <span className="text-text-muted">// developer profile</span>{"\n"}
+                <span className="text-amber-500">const</span> <span className="text-text-primary">nitesh</span> <span className="text-[#6e6b66]">= {"{"}</span>{"\n"}
+                {"  "}<span className="text-[#87c3ff]">name</span><span className="text-[#6e6b66]">:</span> <span className="text-[#a8d8a8]">"Nitesh N D"</span><span className="text-[#6e6b66]">,</span>{"\n"}
+                {"  "}<span className="text-[#87c3ff]">role</span><span className="text-[#6e6b66]">:</span> <span className="text-[#a8d8a8]">"Full Stack Developer"</span><span className="text-[#6e6b66]">,</span>{"\n"}
+                {"  "}<span className="text-[#87c3ff]">focus</span><span className="text-[#6e6b66]">:</span> <span className="text-[#6e6b66]">[</span><span className="text-[#a8d8a8]">"React"</span><span className="text-[#6e6b66]">,</span> <span className="text-[#a8d8a8]">"Node.js"</span><span className="text-[#6e6b66]">],</span>{"\n"}
+                {"  "}<span className="text-[#87c3ff]">stack</span><span className="text-[#6e6b66]">:</span> <span className="text-[#6e6b66]">[</span><span className="text-[#a8d8a8]">"TypeScript"</span><span className="text-[#6e6b66]">,</span> <span className="text-[#a8d8a8]">"MySQL"</span><span className="text-[#6e6b66]">],</span>{"\n"}
+                {"  "}<span className="text-[#87c3ff]">status</span><span className="text-[#6e6b66]">:</span> <span className="text-[#a8d8a8]">"Open to opportunities"</span><span className="text-[#6e6b66]">,</span>{"\n"}
+                {"  "}<span className="text-[#87c3ff]">based</span><span className="text-[#6e6b66]">:</span> <span className="text-[#a8d8a8]">"India"</span>{"\n"}
+                <span className="text-[#6e6b66]">{"};"}</span>
+              </code>
+            </pre>
+
+            <div className="border-t border-[var(--border-subtle)] bg-[#08080e] px-4 py-3 font-mono text-[0.72rem] text-text-secondary">
+              $ npm run build-something-great<span className="animate-[blink-cursor_1s_step-end_infinite] text-amber-500">_</span>
             </div>
           </div>
-        </div>
+        </motion.aside>
       </div>
     </section>
   );
@@ -212,6 +203,7 @@ function Social({
       aria-label={label}
       whileHover={{ scale: 1.06 }}
       whileTap={{ scale: 0.97 }}
+      data-cursor="hover"
     >
       {children}
     </motion.a>

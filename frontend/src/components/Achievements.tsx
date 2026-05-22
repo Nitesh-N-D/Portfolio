@@ -7,7 +7,7 @@ import { achievements, Achievement } from "../data/achievements";
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="premium-section">
+    <section id="achievements" aria-labelledby="achievements-heading" className="premium-section">
       <div className="premium-container">
         <Reveal>
           <SectionHeader
@@ -16,11 +16,13 @@ export default function Achievements() {
             description="Achievements now sit in a polished grid with stronger emphasis on standout milestones and easier proof access."
           />
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid auto-rows-fr gap-5 md:grid-cols-2">
             {achievements.map((achievement, index) => (
               <motion.article
                 key={`${achievement.title}-${index}`}
-                className="glass-card accent-card-soft group p-4 sm:p-5 md:p-6"
+                className={`glass-card accent-card-soft group border-l-4 border-l-amber-500 p-4 sm:p-5 md:p-6 ${
+                  achievement.featured ? "md:col-span-2 bg-[var(--amber-ghost)]" : ""
+                }`}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -28,13 +30,13 @@ export default function Achievements() {
                 whileHover={{ y: -6 }}
               >
                 <div className="mb-4 flex items-center justify-between gap-3">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-sky-300/20 bg-sky-400/10 text-lg text-sky-100">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--amber-ghost)] text-[26px] text-amber-500">
                     <FiStar />
                   </span>
                   <span
                     className={`premium-pill text-xs uppercase tracking-[0.2em] ${
                       achievement.featured
-                        ? "border-blue-400/25 bg-blue-500/10 text-blue-100"
+                        ? "border-[var(--border-emphasis)] text-amber-500"
                         : ""
                     }`}
                   >
@@ -42,10 +44,10 @@ export default function Achievements() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold tracking-tight text-white md:text-2xl">
+                <h3 className="text-xl font-bold tracking-tight text-text-primary md:text-2xl">
                   {achievement.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">
+                <p className="mt-3 text-sm leading-7 text-text-secondary md:text-base">
                   {achievement.description}
                 </p>
 
