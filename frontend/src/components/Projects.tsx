@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowUpRight, FiGithub, FiX } from "react-icons/fi";
 
@@ -62,6 +63,49 @@ const standardProjects = projects.filter(project => !project.featured);
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const selectedProjectDetail = selectedProject ? projectDetails[selectedProject.id] : null;
+  const scrollPositionRef = useRef(0);
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    scrollPositionRef.current = window.scrollY;
+    const previousPosition = document.body.style.position;
+    const previousTop = document.body.style.top;
+    const previousWidth = document.body.style.width;
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPositionRef.current}px`;
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.position = previousPosition;
+      document.body.style.top = previousTop;
+      document.body.style.width = previousWidth;
+      document.body.style.overflow = previousOverflow;
+      window.scrollTo({ top: scrollPositionRef.current, left: 0, behavior: "instant" });
+    };
+  }, [selectedProject]);
+
+  const openProject = (project: Project) => {
+    setSelectedProject(project);
+    window.requestAnimationFrame(() => {
+      modalContentRef.current?.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    });
+  };
+
+  const stopProjectLink = (event: MouseEvent<HTMLAnchorElement> | PointerEvent<HTMLAnchorElement>) => {
+    event.stopPropagation();
+  };
+
+  const openProjectFromKeyboard = (event: KeyboardEvent<HTMLElement>, project: Project) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProject(project);
+    }
+  };
 
   return (
     <>
@@ -70,8 +114,7 @@ export default function Projects() {
           <Reveal>
             <SectionHeader
               label="Projects"
-              title="Featured projects with stronger visuals, hierarchy, and interaction"
-              description="Top work is surfaced as featured cards while every project still keeps the same data and core links intact."
+              title="Projects"
             />
 
             <div className="grid gap-6">
@@ -85,12 +128,13 @@ export default function Projects() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
                     whileHover={{ y: -8, scale: 1.01 }}
+                    role="button"
+                    tabIndex={0}
+                    data-cursor="hover"
+                    onClick={() => openProject(project)}
+                    onKeyDown={event => openProjectFromKeyboard(event, project)}
                   >
-                    <button
-                      type="button"
-                      className="grid h-full w-full text-left"
-                      onClick={() => setSelectedProject(project)}
-                    >
+                    <div className="grid h-full w-full text-left">
                       <div className="project-image-wrap relative overflow-hidden">
                         <img
                           src={project.image}
@@ -99,7 +143,7 @@ export default function Projects() {
                         />
                         <div className="absolute left-6 top-6 z-10">
                           <span className="premium-pill">
-                            ★ Featured
+                            Featured
                           </span>
                         </div>
                       </div>
@@ -136,7 +180,8 @@ export default function Projects() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="primary-button min-w-[10.5rem]"
-                              onClick={event => event.stopPropagation()}
+                              onPointerDown={stopProjectLink}
+                              onClick={stopProjectLink}
                             >
                               <FiArrowUpRight />
                               Live Demo
@@ -147,14 +192,15 @@ export default function Projects() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="secondary-button min-w-[10.5rem]"
-                            onClick={event => event.stopPropagation()}
+                            onPointerDown={stopProjectLink}
+                            onClick={stopProjectLink}
                           >
                             <FiGithub />
                             GitHub
                           </a>
                         </div>
                       </div>
-                    </button>
+                    </div>
                   </motion.article>
                 ))}
               </div>
@@ -164,19 +210,19 @@ export default function Projects() {
                   {standardProjects.map((project, index) => (
                     <motion.article
                       key={project.id}
-                  className="glass-card group overflow-hidden"
+                      className="glass-card group overflow-hidden"
                       initial={{ opacity: 0, y: 24 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
                       whileHover={{ y: -8 }}
-                    >
-                    <button
-                      type="button"
-                      className="grid h-full w-full text-left"
-                      onClick={() => setSelectedProject(project)}
+                      role="button"
+                      tabIndex={0}
                       data-cursor="hover"
+                      onClick={() => openProject(project)}
+                      onKeyDown={event => openProjectFromKeyboard(event, project)}
                     >
+                      <div className="grid h-full w-full text-left">
                         <div className="project-image-wrap relative overflow-hidden">
                           <img
                             src={project.image}
@@ -216,7 +262,8 @@ export default function Projects() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="secondary-button min-w-[10rem]"
-                                onClick={event => event.stopPropagation()}
+                                onPointerDown={stopProjectLink}
+                                onClick={stopProjectLink}
                               >
                                 <FiArrowUpRight />
                                 Live Demo
@@ -227,14 +274,15 @@ export default function Projects() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="secondary-button min-w-[10rem]"
-                              onClick={event => event.stopPropagation()}
+                              onPointerDown={stopProjectLink}
+                              onClick={stopProjectLink}
                             >
                               <FiGithub />
                               GitHub
                             </a>
                           </div>
                         </div>
-                      </button>
+                      </div>
                     </motion.article>
                   ))}
                 </div>
@@ -247,14 +295,15 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[1250] overflow-y-auto bg-[var(--bg-overlay)] p-3 backdrop-blur-xl sm:grid sm:place-items-center sm:p-4"
+            className="fixed inset-0 z-[1250] overflow-y-auto overscroll-contain bg-[var(--bg-overlay)] p-3 backdrop-blur-xl sm:grid sm:place-items-center sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="glass-card relative my-20 grid w-full max-w-6xl gap-6 overflow-hidden p-4 sm:my-0 sm:max-h-[90vh] sm:overflow-auto sm:p-5 md:p-6 xl:grid-cols-[1.1fr_0.9fr]"
+              className="glass-card relative my-20 grid w-full max-w-6xl gap-6 overflow-y-auto overscroll-contain p-4 sm:my-0 sm:max-h-[90vh] sm:p-5 md:p-6 xl:grid-cols-[1.1fr_0.9fr]"
+              ref={modalContentRef}
               initial={{ opacity: 0, y: 24, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.98 }}
@@ -324,6 +373,8 @@ export default function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="primary-button min-w-[10.5rem]"
+                      onPointerDown={stopProjectLink}
+                      onClick={stopProjectLink}
                     >
                       <FiArrowUpRight />
                       Live Demo
@@ -334,6 +385,8 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="secondary-button min-w-[10.5rem]"
+                    onPointerDown={stopProjectLink}
+                    onClick={stopProjectLink}
                   >
                     <FiGithub />
                     GitHub

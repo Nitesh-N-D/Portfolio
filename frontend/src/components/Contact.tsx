@@ -63,8 +63,7 @@ export default function Contact() {
         <Reveal>
           <SectionHeader
             label="Contact"
-            title="Contact section with a cleaner layout for all screen sizes"
-            description="Your details and form stay easy to reach while the layout feels lighter, sharper, and more balanced on mobile and desktop."
+            title="Let's Build Something Together"
           />
 
           <div className="relative grid items-start gap-10 lg:grid-cols-[0.95fr_1.05fr]">

@@ -35,21 +35,49 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
-    );
+    let frame = 0;
 
-    sections.forEach(id => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
+    const updateActiveSection = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const existingSections = sections
+          .map(id => document.getElementById(id))
+          .filter((element): element is HTMLElement => Boolean(element));
 
-    return () => observer.disconnect();
+        if (existingSections.length === 0) return;
+
+        const navOffset = 96;
+        const viewportAnchor = window.scrollY + navOffset + window.innerHeight * 0.22;
+        let currentSection = existingSections[0].id;
+
+        for (const section of existingSections) {
+          if (viewportAnchor >= section.offsetTop) {
+            currentSection = section.id;
+          }
+        }
+
+        const lastSection = existingSections[existingSections.length - 1];
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8) {
+          currentSection = lastSection.id;
+        }
+
+        setActive(currentSection);
+      });
+    };
+
+    updateActiveSection();
+    const retryAfterLazyMount = window.setTimeout(updateActiveSection, 350);
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("hashchange", updateActiveSection);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(retryAfterLazyMount);
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("hashchange", updateActiveSection);
+    };
   }, []);
 
   useEffect(() => {
@@ -94,6 +122,7 @@ export default function Navbar() {
                     isActive ? "text-amber-500" : "text-text-muted hover:text-text-primary"
                   }`}
                   data-cursor="hover"
+                  onClick={() => setActive(section)}
                 >
                   {section}
                   <span

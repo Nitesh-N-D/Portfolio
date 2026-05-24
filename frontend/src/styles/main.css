@@ -99,6 +99,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  section {
+    scroll-margin-top: calc(var(--navbar-h) + 18px);
+  }
+
   #root {
     min-height: 100vh;
   }
@@ -158,6 +162,26 @@
     isolation: isolate;
     overflow-x: hidden;
     background: var(--grad-hero-radial), var(--bg-base);
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 16px;
+    top: 12px;
+    z-index: 10000;
+    transform: translateY(-140%);
+    border: 1px solid var(--border-emphasis);
+    border-radius: var(--r-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    padding: 10px 14px;
+    transition: transform var(--t-fast);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
   }
 
   .app-shell::before {
@@ -254,6 +278,10 @@
     box-shadow: var(--shadow-card);
     backdrop-filter: blur(18px);
     contain: layout style;
+  }
+
+  .glass-card[role="button"] {
+    cursor: pointer;
   }
 
   .glass-card-soft {
@@ -602,5 +630,20 @@
 @media (max-width: 640px) {
   .section-kicker {
     letter-spacing: 0.18em;
+  }
+
+  .premium-section {
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .section-title {
+    overflow-wrap: anywhere;
   }
 }

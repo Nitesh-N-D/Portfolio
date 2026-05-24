@@ -11,8 +11,7 @@ export default function Education() {
         <Reveal>
           <SectionHeader
             label="Education"
-            title="A larger, centered academic timeline with stronger readability"
-            description="Education is presented as a larger vertical journey so credentials, timeline, and academic strengths are easier to scan without the section feeling cramped."
+            title="Education"
           />
 
           <div className="relative mx-auto max-w-5xl pl-6 sm:pl-8 md:pl-12">

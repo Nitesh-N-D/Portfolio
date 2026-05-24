@@ -38,6 +38,9 @@ export default function App() {
         <PageLoader key="loader" />
       ) : (
         <div className="app-shell">
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
           <div className="animated-grid" aria-hidden="true" />
           <div className="ambient-orb ambient-orb-left" aria-hidden="true" />
           <div className="ambient-orb ambient-orb-right" aria-hidden="true" />
@@ -46,7 +49,7 @@ export default function App() {
           <ScrollProgress />
           <Navbar />
 
-          <main>
+          <main id="main-content">
             <Suspense fallback={<SectionFallback />}>
               <Hero />
               <About />

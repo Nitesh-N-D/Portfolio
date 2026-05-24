@@ -87,8 +87,7 @@ export default function Skills() {
         <Reveal>
           <SectionHeader
             label="Skills"
-            title="Categorized skills with stronger scanability and visual hierarchy"
-            description="Languages, frameworks, tools, and databases are organized into clear cards so capability is easy to understand at a glance."
+            title="Technical Skills"
           />
 
           <div className="grid gap-10 md:grid-cols-2">

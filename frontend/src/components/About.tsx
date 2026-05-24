@@ -33,8 +33,7 @@ export default function About() {
         <Reveal>
           <SectionHeader
             label="About"
-            title="Centered presentation with more depth and stronger first impressions"
-            description={`${profile.title} focused on scalable applications, refined user interfaces, and dependable engineering execution across frontend and backend systems.`}
+            title="About Me"
           />
 
           <div className="grid items-start gap-8 lg:grid-cols-[55%_45%]">

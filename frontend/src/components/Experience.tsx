@@ -11,8 +11,7 @@ export default function Experience() {
         <Reveal>
           <SectionHeader
             label="Experience"
-            title="Practical engineering journey presented as a clear timeline"
-            description="Real delivery work, learning velocity, and technical ownership are highlighted in a vertical timeline with clearer hierarchy and more breathing room."
+            title="Experience"
           />
 
           <div className="relative mx-auto max-w-5xl pl-6 sm:pl-8 md:pl-12">

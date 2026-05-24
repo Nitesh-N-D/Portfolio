@@ -12,8 +12,7 @@ export default function Achievements() {
         <Reveal>
           <SectionHeader
             label="Achievements"
-            title="Recognitions and milestones with a cleaner presentation"
-            description="Achievements now sit in a polished grid with stronger emphasis on standout milestones and easier proof access."
+            title="Achievements"
           />
 
           <div className="grid auto-rows-fr gap-5 md:grid-cols-2">

@@ -12,8 +12,7 @@ export default function Certifications() {
         <Reveal>
           <SectionHeader
             label="Certifications"
-            title="Professional proof points presented in a cleaner card grid"
-            description="Each certification is surfaced as a clean credential card with stronger hierarchy, better whitespace, and clearer verification actions."
+            title="Certifications"
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">

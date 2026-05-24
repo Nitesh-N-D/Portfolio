@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 interface SectionHeaderProps {
   label: string;
   title: string;
-  description: string;
 }
 
 const sectionNumbers: Record<string, string> = {
@@ -19,8 +18,7 @@ const sectionNumbers: Record<string, string> = {
 
 export default function SectionHeader({
   label,
-  title,
-  description
+  title
 }: SectionHeaderProps) {
   const headingId = `${label.toLowerCase()}-heading`;
 
@@ -41,7 +39,6 @@ export default function SectionHeader({
       >
         {title}
       </motion.h2>
-      <p className="section-description">{description}</p>
     </header>
   );
 }
