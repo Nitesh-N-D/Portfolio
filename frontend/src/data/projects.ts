@@ -1,3 +1,10 @@
+export interface ProjectDetail {
+  summary: string;
+  challenge: string;
+  delivery: string[];
+  outcome: string;
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -12,6 +19,7 @@ export interface Project {
   github: string;
   live?: string;
   featured?: boolean;
+  detail?: ProjectDetail;
 }
 
 export const projects: Project[] = [
@@ -32,7 +40,20 @@ export const projects: Project[] = [
     image: "/projects/skillshare.png",
     github: "https://github.com/Nitesh-N-D/SKILL-SHARE_REPO",
     live: "https://student-helpdesk-f4987.web.app/",
-    featured: true
+    featured: true,
+    detail: {
+      summary:
+        "SkillShare was built as a peer learning product focused on helping students discover relevant courses, share expertise, and collaborate in a cleaner and more guided way.",
+      challenge:
+        "The main challenge was designing an experience that balanced course discovery, learner engagement, and platform simplicity without making the product feel cluttered.",
+      delivery: [
+        "Built the frontend and backend flow for course discovery, enrollment, and collaboration.",
+        "Structured the product so users could move from browsing to learning with minimal friction.",
+        "Focused on a clear application flow that supports practical product usage instead of a demo-only experience."
+      ],
+      outcome:
+        "This project demonstrates end-to-end product ownership, practical feature delivery, and the ability to ship a user-facing platform with real adoption potential."
+    }
   },
   {
     id: 2,
@@ -60,7 +81,20 @@ export const projects: Project[] = [
     image: "/projects/campusair.png",
     github: "https://github.com/Nitesh-N-D/Campus-Air",
     live: "https://campus-air.vercel.app/",
-    featured: true
+    featured: true,
+    detail: {
+      summary:
+        "Campus Air is a broader campus communication system designed to keep students informed through events, announcements, media, and real-time interactions inside a single platform.",
+      challenge:
+        "The project required coordinating multiple moving parts such as authentication, real-time communication, media handling, and admin-to-student publishing workflows.",
+      delivery: [
+        "Implemented the full-stack workflow across interface, backend APIs, and deployment.",
+        "Integrated real-time updates so announcements and events could reach the right audience immediately.",
+        "Used a modern stack to support scalable communication patterns and smoother campus operations."
+      ],
+      outcome:
+        "This project is a strong signal for system thinking because it combines product design, backend coordination, and live communication in one cohesive application."
+    }
   },
   {
     id: 3,
@@ -78,7 +112,20 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
     tech_stack: ["React", "Node.js", "MongoDB", "Express"],
     image: "/projects/lostfound.png",
     github: "https://github.com/Nitesh-N-D/Lost-Found-System",
-    live: "https://lost-found-system.vercel.app/"
+    live: "https://lost-found-system.vercel.app/",
+    detail: {
+      summary:
+        "The Lost and Found Management System was designed to solve a practical campus problem by making it easier to report, search, and recover items with clear data handling.",
+      challenge:
+        "The core challenge was turning a simple CRUD problem into a trustworthy workflow where users could quickly understand item status and recovery progress.",
+      delivery: [
+        "Built the reporting and recovery flow with structured item records and image support.",
+        "Connected the frontend experience with backend storage so item updates stayed organized and easy to follow.",
+        "Kept the interface focused on clarity, which is critical for utility-driven applications."
+      ],
+      outcome:
+        "This project shows practical engineering judgment, useful UX decisions, and the ability to build software that solves a direct real-world need."
+    }
   },
   {
   id: 4,
@@ -123,7 +170,20 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
   image: "/projects/arrakisintelligenceplatform.png",
   github: "https://github.com/Nitesh-N-D/Arrakis-Intelligence-Platform",
   live: "https://arrakis-intelligence-platform.vercel.app/",
-  featured: true
+  featured: true,
+  detail: {
+    summary:
+      "Arrakis Intelligence Platform is an AI-powered behavioral intelligence SaaS product focused on focus mastery, distraction reduction, and skill development through analytics and personalized roadmaps.",
+    challenge:
+      "The main challenge was connecting authentication, real-time updates, predictive insights, dashboards, and product workflows into one cohesive production-ready platform.",
+    delivery: [
+      "Engineered Google OAuth, JWT authentication, live Socket.io updates, and cloud deployment.",
+      "Built predictive burnout analysis, distraction intelligence, roadmap automation, and analytics dashboards.",
+      "Designed a polished SaaS experience that connects behavioral data with practical user action."
+    ],
+    outcome:
+      "This project demonstrates system architecture, full-stack delivery, product ownership, real-time communication, analytics, and deployment discipline."
+  }
 },
 {
   id: 5,
@@ -167,7 +227,20 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
   image: "/projects/carepath.png",
   github: "https://github.com/Nitesh-N-D/CarePath",
   live: "https://care-path-two.vercel.app/",
-  featured: true
+  featured: true,
+  detail: {
+    summary:
+      "CarePath is a healthcare management platform for records, health metrics, appointments, reminders, AI-assisted insights, and secure digital health journaling.",
+    challenge:
+      "The main challenge was organizing sensitive healthcare workflows into a secure, responsive, and easy-to-use full-stack application.",
+    delivery: [
+      "Built secure authentication, health record management, appointment scheduling, medication reminders, and analytics dashboards.",
+      "Integrated AI-powered assistance and cloud media workflows into the healthcare experience.",
+      "Delivered a responsive frontend backed by REST APIs, MongoDB data models, and cloud deployment."
+    ],
+    outcome:
+      "This project demonstrates secure full-stack engineering, healthcare domain thinking, AI integration, database architecture, and end-to-end product ownership."
+  }
 },
 {
   id: 6,
@@ -211,6 +284,19 @@ await notifyAdmins({
   image: "/projects/hostelhub.png",
   github: "https://github.com/Nitesh-N-D/HostelHub",
   live: "https://hostel-hub-gules.vercel.app/",
-  featured: false
+  featured: false,
+  detail: {
+    summary:
+      "HostelHub is a smart hostel management system that digitizes outpass approvals, complaint tracking, announcements, notifications, and student administration.",
+    challenge:
+      "The core challenge was replacing manual hostel workflows with role-based digital flows that stay fast, traceable, and practical for students and administrators.",
+    delivery: [
+      "Developed QR-enabled outpasses, PDF generation, complaint resolution workflows, announcements, and analytics dashboards.",
+      "Implemented authentication, authorization, MongoDB schemas, REST APIs, and real-time notifications.",
+      "Deployed a complete role-based hostel platform with a responsive frontend and cloud backend."
+    ],
+    outcome:
+      "This project demonstrates MEAN stack delivery, workflow automation, real-time communication, document generation, analytics, and production deployment."
+  }
 }
 ];
