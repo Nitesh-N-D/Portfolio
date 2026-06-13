@@ -298,5 +298,56 @@ await notifyAdmins({
     outcome:
       "This project demonstrates MEAN stack delivery, workflow automation, real-time communication, document generation, analytics, and production deployment."
   }
+},
+{
+id: 7,
+title: "CodeWatch – AI-Powered Local Code Review Dashboard",
+description:
+"A privacy-first, self-hosted platform that continuously monitors local Git repositories, analyzes commit diffs with local LLMs via Ollama, and visualizes code quality insights through an interactive dashboard.",
+role: "Founder • Full Stack Developer • AI Systems Engineer",
+impact:
+"Built an end-to-end local AI code review system featuring automated repository monitoring, commit diff analysis, severity-based issue detection, historical review tracking, and a modern analytics dashboard without exposing source code to external services.",
+recruiterSignal:
+"Demonstrates AI integration, developer tooling, Git automation, backend architecture, local-first system design, asynchronous job scheduling, data visualization, and full-stack product engineering.",
+codeLabel: "review-engine.py",
+spotlightCode: `for commit in repository.get_new_commits():
+diff = git_service.extract_diff(commit)
+
+
+review = ollama.analyze(
+    model="deepseek-coder:6.7b",
+    prompt=build_review_prompt(diff)
+)
+
+database.save_review(commit.hash, review)
+websocket.broadcast("review:completed", review)`,
+tech_stack: [
+"FastAPI",
+"Python",
+"SQLite",
+"SQLAlchemy",
+"GitPython",
+"APScheduler",
+"Ollama",
+"DeepSeek-Coder",
+"Docker"
+],
+image: "/projects/codewatch.png",
+github: "https://github.com/Nitesh-N-D/CodeWatch",
+featured:false,
+detail: {
+summary:
+"CodeWatch is a privacy-first AI code review platform that continuously scans local Git repositories, analyzes commit diffs using locally hosted language models through Ollama, and presents actionable engineering insights in a modern web dashboard.",
+challenge:
+  "The primary challenge was building an automated review pipeline capable of monitoring repositories, extracting meaningful code changes, coordinating local AI inference, and presenting historical quality metrics without relying on cloud-based services.",
+delivery: [
+  "Implemented continuous repository monitoring with automated commit detection and scheduled scanning.",
+  "Integrated Ollama-powered local LLM analysis to generate severity-based code reviews, maintainability recommendations, and security observations.",
+  "Designed a React dashboard with repository overviews, activity feeds, issue statistics, trend visualization, review history, and diff inspection.",
+  "Built the platform with a local-first architecture using FastAPI, SQLite, GitPython, and asynchronous background jobs to ensure complete source code privacy."
+],
+outcome:
+  "The project demonstrates expertise in AI-assisted developer tools, Git automation, full-stack architecture, local LLM integration, asynchronous processing, analytics visualization, and privacy-preserving software engineering."
+}
 }
 ];
