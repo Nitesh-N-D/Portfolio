@@ -4,7 +4,7 @@ export const education = [
     institution: "Madras Institute of Technology",
     duration: "2024 - 2028",
     location: "Chennai, India",
-    cgpa: "8.3 / 10",
+    cgpa: "8.5 / 10",
     details: [
       "Built a foundation in software engineering, algorithms, database systems, and application design.",
       "Applied academic concepts through full-stack project work focused on real product scenarios.",
