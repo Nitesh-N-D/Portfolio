@@ -3,7 +3,7 @@
 A modern, fully responsive **personal developer portfolio** showcasing my projects, skills, experience, certifications, and achievements.  
 Designed with a clean UI, smooth animations, and recruiter-friendly structure.
 
-🌐 **Live Website:** https://nitesh-nd-portfolio.vercel.app/
+🌐 **Live Website:** https://nitesh-nd-portfolio.vercel.app
 
 ---
 
