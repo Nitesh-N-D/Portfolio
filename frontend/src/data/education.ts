@@ -1,7 +1,7 @@
 export const education = [
   {
     degree: "Bachelor of Engineering - Computer Science and Engineering",
-    institution: "Madras Institute of Technology",
+    institution: "Madras Institute of Technology, Anna University",
     duration: "2024 - 2028",
     location: "Chennai, India",
     cgpa: "8.5 / 10",
@@ -12,14 +12,25 @@ export const education = [
     ]
   },
   {
-    degree: "Higher Secondary Education",
+    degree: "Higher Secondary Certificate (HSC)",
     institution: "Saradha Matriculation Higher Secondary School",
-    duration: "2010 - 2024",
-    location: "Tamil Nadu, India",
-    grade: "96.8 %",
+    duration: "2022 - 2024",
+    location: "Gingee, Villupuram, Tamil Nadu, India",
+    grade: "96.8%",
     details: [
-      "Specialized in Mathematics, Physics, and Computer Science.",
-      "Developed strong analytical reasoning and disciplined problem-solving fundamentals."
+      "Completed the Bio-Maths stream with a focus on Biology, Mathematics, Physics, and Chemistry.",
+      "Developed strong analytical thinking, quantitative reasoning, and scientific problem-solving skills through rigorous coursework."
+    ]
+  },
+  {
+    degree: "Secondary School Leaving Certificate (SSLC)",
+    institution: "Saradha Matriculation Higher Secondary School",
+    duration: "2010 - 2022",
+    location: "Gingee, Villupuram, Tamil Nadu, India",
+    grade: "95%",
+    details: [
+      "Built a strong foundation in Mathematics, Science, Social Science, and Languages.",
+      "Developed disciplined study habits, critical thinking, and problem-solving skills through consistent academic excellence."
     ]
   }
 ];
