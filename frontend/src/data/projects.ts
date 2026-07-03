@@ -157,7 +157,79 @@ export const projects: Project[] = [
     }
   },
   {
-    id: 4,
+  id: 4,
+  title: "Talkarox – AI-Powered School Communication Platform",
+  description:
+    "A production-ready communication platform built for schools that enables secure messaging, announcements, appointments, AI assistance, and real-time collaboration between teachers, parents, students, and administrators without exposing personal phone numbers.",
+  role:
+    "Founder • Full Stack Engineer • Product Architect",
+  impact:
+    "Designed, developed, and deployed a complete SaaS communication platform featuring JWT authentication, Google OAuth, PostgreSQL, Supabase, Socket.IO, Firebase notifications, AI-powered messaging, cloud deployment, and responsive dashboards for every school role.",
+  recruiterSignal:
+    "Demonstrates enterprise-level full-stack engineering, scalable REST APIs, PostgreSQL database design, secure authentication, AI integration, real-time communication, cloud deployment, responsive UI development, and complete product ownership.",
+  codeLabel:
+    "messages.gateway.ts",
+  spotlightCode: `io.on("connection", socket => {
+  socket.on("conversation:join", room => {
+    socket.join(room);
+  });
+
+  socket.on("message:send", async message => {
+    await saveMessage(message);
+
+    io.to(message.room).emit(
+      "message:new",
+      message
+    );
+  });
+
+  socket.on("typing:start", room => {
+    socket.to(room).emit("typing");
+  });
+});`,
+  tech_stack: [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "Supabase",
+    "Socket.IO",
+    "Firebase Cloud Messaging",
+    "JWT",
+    "Google OAuth",
+    "Cloudinary",
+    "Brevo",
+    "Gemini AI",
+    "Render",
+    "Vercel"
+  ],
+  image: "/projects/talkarox.png",
+  github:
+    "https://github.com/Nitesh-N-D/Talkarox",
+  live:
+    "https://talkarox.vercel.app/",
+  featured: true,
+  detail: {
+    summary:
+      "Talkarox is a production-ready AI-powered communication platform designed specifically for schools. It enables teachers, parents, students, and administrators to communicate securely through organized conversations, announcements, appointments, AI-powered assistance, collaborative tools, and real-time messaging while eliminating the need to share personal phone numbers.",
+    challenge:
+      "The primary challenge was designing a scalable communication ecosystem that combines secure authentication, real-time messaging, AI capabilities, notifications, appointment scheduling, role-based permissions, cloud deployment, and responsive user experiences into one cohesive SaaS platform.",
+    delivery: [
+      "Built a complete role-based communication platform supporting administrators, teachers, parents, and students.",
+      "Implemented secure JWT authentication, Google OAuth, refresh tokens, email verification, password reset, and profile management.",
+      "Developed real-time messaging with Socket.IO including online presence, typing indicators, conversation management, and instant notifications.",
+      "Integrated AI-powered message categorization, translation, announcement management, collaborative whiteboard, appointment scheduling, and Firebase push notifications.",
+      "Designed a PostgreSQL database architecture with Supabase, built scalable Express REST APIs, and deployed the production platform using Render and Vercel."
+    ],
+    outcome:
+      "Talkarox demonstrates enterprise-grade SaaS architecture, full-stack engineering, PostgreSQL database design, secure authentication workflows, AI integration, real-time communication, cloud deployment, responsive frontend development, and complete ownership from product design through production release."
+  }
+},
+  {
+    id: 5,
     title: "Lost & Found Management System",
     description:
       "Campus-based system to report, track, and recover lost items with image uploads.",
@@ -188,7 +260,7 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
     }
   },
   {
-  id: 5,
+  id: 6,
   title: "Arrakis Intelligence Platform",
   description:
     "An AI-powered behavioral intelligence platform that helps users master focus, reduce distractions, and accelerate skill development through real-time analytics, predictive insights, and personalized learning roadmaps.",
@@ -246,7 +318,7 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
   }
 },
 {
-  id: 6,
+  id: 7,
   title: "CarePath - AI-Powered Healthcare Management Platform",
   description:
     "A comprehensive healthcare platform that enables users to manage medical records, track health metrics, schedule appointments, receive medication reminders, access AI-assisted health insights, and maintain a secure digital health journal.",
@@ -303,7 +375,7 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
   }
 },
 {
-  id: 7,
+  id: 8,
   title: "HostelHub - Smart Hostel Management System",
   description:
     "A full-stack hostel management platform that digitizes outpass approvals, complaint tracking, announcements, notifications, and student administration through a modern role-based web application.",
@@ -360,7 +432,7 @@ await notifyAdmins({
   }
 },
 {
-id: 8,
+id: 9,
 title: "CodeWatch – AI-Powered Local Code Review Dashboard",
 description:
 "A privacy-first, self-hosted platform that continuously monitors local Git repositories, analyzes commit diffs with local LLMs via Ollama, and visualizes code quality insights through an interactive dashboard.",
