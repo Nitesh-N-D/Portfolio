@@ -24,7 +24,67 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 1,
+  id: 1,
+  title: "CollabCode – Real-Time Classroom Coding Intelligence Platform",
+  description:
+    "A production-ready classroom coding intelligence platform enabling instructors to monitor live coding sessions, detect struggling students, provide private assistance, replay classroom activity, and manage multiple classrooms through a VS Code extension, instructor dashboard, and student portal.",
+  role:
+    "Founder • Full Stack Engineer • Product Architect",
+  impact:
+    "Designed and deployed a complete educational SaaS ecosystem including a VS Code Marketplace extension, instructor dashboard, student portal, Express backend, Supabase authentication, Socket.IO real-time collaboration, AI-assisted hints, and cloud deployment.",
+  recruiterSignal:
+    "Demonstrates large-scale full-stack engineering, distributed systems, real-time communication, VS Code extension development, SaaS architecture, authentication, cloud deployment, AI integration, and complete product ownership.",
+  codeLabel:
+    "liveSession.gateway.ts",
+  spotlightCode: `io.on("connection", socket => {
+  socket.on("student:update", payload => {
+    io.to(payload.roomCode).emit("student:progress", payload);
+  });
+
+  socket.on("help:request", request => {
+    io.to(request.instructorId).emit("help:new", request);
+  });
+});`,
+  tech_stack: [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Node.js",
+    "Express",
+    "Socket.IO",
+    "Supabase",
+    "PostgreSQL",
+    "Google OAuth",
+    "VS Code Extension API",
+    "Gemini AI",
+    "Render",
+    "Vercel",
+    "Docker"
+  ],
+  image: "/projects/collabcode.png",
+  github:
+    "https://github.com/Nitesh-N-D/CollabCode",
+  live:
+    "https://collabcode-dashboard.vercel.app/",
+  featured: true,
+  detail: {
+    summary:
+      "CollabCode is a production-ready educational platform built to improve programming classrooms through live coding intelligence. It combines an instructor dashboard, student portal, backend services, AI-powered assistance, and a Visual Studio Code extension into one integrated ecosystem.",
+    challenge:
+      "The project required coordinating multiple distributed applications while maintaining secure authentication, real-time communication, classroom ownership, session persistence, AI integration, and scalable deployment.",
+    delivery: [
+      "Developed a real-time instructor dashboard with classroom analytics, replay, student monitoring, and intervention tools.",
+      "Built a student portal with secure classroom joining using Supabase authentication and Google OAuth.",
+      "Engineered a Visual Studio Code Marketplace extension enabling students to join classrooms, request help privately, and synchronize coding activity.",
+      "Designed an Express and Socket.IO backend supporting concurrent classrooms, live collaboration, AI-assisted hints, and session persistence.",
+      "Deployed the complete platform using Vercel, Render, Supabase, and Docker while integrating Google OAuth and marketplace distribution."
+    ],
+    outcome:
+      "CollabCode demonstrates advanced full-stack engineering, distributed system architecture, VS Code extension development, cloud deployment, AI integration, real-time collaboration, authentication workflows, and complete product ownership from design through production deployment."
+  }
+},
+  {
+    id: 2,
     title: "SkillShare Platform",
     description:
       "A peer-to-peer learning platform where users can share skills, enroll in courses, and collaborate.",
@@ -56,7 +116,7 @@ export const projects: Project[] = [
     }
   },
   {
-    id: 2,
+    id: 3,
     title: "Campus Air - Smart Campus Communication Platform",
     description:
       "A full-stack campus management platform that enables administrators to publish events, announcements, and real-time updates for students.",
@@ -97,7 +157,7 @@ export const projects: Project[] = [
     }
   },
   {
-    id: 3,
+    id: 4,
     title: "Lost & Found Management System",
     description:
       "Campus-based system to report, track, and recover lost items with image uploads.",
@@ -128,7 +188,7 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
     }
   },
   {
-  id: 4,
+  id: 5,
   title: "Arrakis Intelligence Platform",
   description:
     "An AI-powered behavioral intelligence platform that helps users master focus, reduce distractions, and accelerate skill development through real-time analytics, predictive insights, and personalized learning roadmaps.",
@@ -186,7 +246,7 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
   }
 },
 {
-  id: 5,
+  id: 6,
   title: "CarePath - AI-Powered Healthcare Management Platform",
   description:
     "A comprehensive healthcare platform that enables users to manage medical records, track health metrics, schedule appointments, receive medication reminders, access AI-assisted health insights, and maintain a secure digital health journal.",
@@ -243,7 +303,7 @@ await item.updateOne({ status: "claimed", claimedBy: userId });`,
   }
 },
 {
-  id: 6,
+  id: 7,
   title: "HostelHub - Smart Hostel Management System",
   description:
     "A full-stack hostel management platform that digitizes outpass approvals, complaint tracking, announcements, notifications, and student administration through a modern role-based web application.",
@@ -300,7 +360,7 @@ await notifyAdmins({
   }
 },
 {
-id: 7,
+id: 8,
 title: "CodeWatch – AI-Powered Local Code Review Dashboard",
 description:
 "A privacy-first, self-hosted platform that continuously monitors local Git repositories, analyzes commit diffs with local LLMs via Ollama, and visualizes code quality insights through an interactive dashboard.",
