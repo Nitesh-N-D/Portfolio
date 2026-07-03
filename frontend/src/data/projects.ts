@@ -228,6 +228,76 @@ export const projects: Project[] = [
       "Talkarox demonstrates enterprise-grade SaaS architecture, full-stack engineering, PostgreSQL database design, secure authentication workflows, AI integration, real-time communication, cloud deployment, responsive frontend development, and complete ownership from product design through production release."
   }
 },
+{
+  id: 5,
+  title: "ClinicQueue – Smart Real-Time Clinic Queue Management Platform",
+  description:
+    "A production-ready healthcare queue management platform that enables patients to join clinic queues through the web or SMS, receive intelligent wait-time predictions, and allows healthcare staff to manage appointments, walk-ins, and patient flow through a secure real-time dashboard.",
+  role:
+    "Founder • Full Stack Engineer • Product Architect",
+  impact:
+    "Designed, developed, and deployed a complete healthcare SaaS platform featuring Google Authentication, Supabase, Socket.IO real-time synchronization, multilingual support, ML-powered wait-time prediction, Twilio SMS integration, responsive dashboards, and cloud deployment.",
+  recruiterSignal:
+    "Demonstrates healthcare software engineering, full-stack architecture, real-time communication, authentication, database design, cloud deployment, multilingual applications, REST API development, and complete product ownership.",
+  codeLabel:
+    "queue.gateway.ts",
+  spotlightCode: `io.on("connection", socket => {
+  socket.on("patient:join", payload => {
+    queue.addPatient(payload);
+
+    io.to(payload.clinicId).emit(
+      "queue:update",
+      queue.getState(payload.clinicId)
+    );
+  });
+
+  socket.on("staff:callNext", clinicId => {
+    const patient = queue.callNext(clinicId);
+
+    io.to(clinicId).emit(
+      "patient:called",
+      patient
+    );
+  });
+});`,
+  tech_stack: [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Node.js",
+    "Express",
+    "Socket.IO",
+    "Supabase",
+    "PostgreSQL",
+    "Google OAuth",
+    "Twilio",
+    "Framer Motion",
+    "Render",
+    "Vercel"
+  ],
+  image: "/projects/clinicqueue.png",
+  github:
+    "https://github.com/Nitesh-N-D/ClinicQueue",
+  live:
+    "https://clinic-queue-opal.vercel.app/",
+  featured: true,
+  detail: {
+    summary:
+      "ClinicQueue is a production-ready healthcare queue management platform built for walk-in clinics and community health centers. It enables patients to join queues via web or SMS, provides intelligent wait-time prediction, supports multilingual communication, and allows staff to manage patient flow through a secure real-time dashboard.",
+    challenge:
+      "The primary challenge was building a scalable healthcare workflow that combines real-time synchronization, secure authentication, multilingual communication, SMS notifications, intelligent wait-time estimation, and responsive interfaces while remaining simple enough for both patients and healthcare staff.",
+    delivery: [
+      "Built a complete patient queue management workflow supporting web-based registration, SMS integration, multilingual interfaces, and real-time queue tracking.",
+      "Implemented secure Google Authentication alongside PIN-based staff access using Supabase Authentication and role-based authorization.",
+      "Developed Socket.IO-powered real-time synchronization between patient devices, staff dashboards, and waiting room display boards.",
+      "Integrated ML-based wait-time prediction, Twilio SMS notifications, responsive dashboards, and cloud deployment using Render, Vercel, and Supabase.",
+      "Designed a production-ready healthcare SaaS architecture focused on accessibility, low-cost deployment, and practical clinical workflows."
+    ],
+    outcome:
+      "ClinicQueue demonstrates production-grade healthcare software engineering, full-stack architecture, real-time communication, authentication workflows, multilingual application development, cloud deployment, intelligent wait-time prediction, and complete product ownership from concept through deployment."
+  }
+},
   {
     id: 5,
     title: "Lost & Found Management System",
