@@ -1,9 +1,6 @@
 export interface JourneyStop {
   id: string;
-  phase: string;
-  title: string;
-  location: string;
-  detail: string;
+  place: string;
   x: number;
   y: number;
   labelX: number;
@@ -19,25 +16,19 @@ export const journeyMap = {
   stops: [
     {
       id: "school",
-      phase: "School",
-      title: "Saradha Matriculation Higher Secondary School",
-      location: "Gingee, Villupuram Dt.",
-      detail: "Completed my schooling and built my academic foundation in Tamil Nadu.",
+      place: "Gingee, Villupuram Dt.",
       x: 24,
       y: 70,
       labelX: 8,
-      labelY: 56
+      labelY: 62
     },
     {
       id: "bachelors",
-      phase: "Bachelor's Degree",
-      title: "Madras Institute of Technology",
-      location: "Chrompet, Chengalpattu",
-      detail: "Studying Computer Science Engineering and building full-stack projects.",
+      place: "Chrompet, Chengalpattu",
       x: 76,
       y: 34,
       labelX: 71,
-      labelY: 10
+      labelY: 20
     }
   ] satisfies JourneyStop[]
 };

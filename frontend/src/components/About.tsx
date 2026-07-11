@@ -149,7 +149,7 @@ export default function About() {
               <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(212,146,42,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(212,146,42,0.08)_1px,transparent_1px)] [background-size:34px_34px]" aria-hidden="true" />
               <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_28%_72%,rgba(212,146,42,0.2)_0_2px,transparent_3px),radial-gradient(circle_at_68%_30%,rgba(212,146,42,0.16)_0_1px,transparent_2px)] [background-size:120px_90px]" aria-hidden="true" />
 
-              <div className="relative min-h-[520px] sm:min-h-[500px]">
+              <div className="relative min-h-[360px] sm:min-h-[420px]">
                 <svg
                   className="absolute inset-0 h-full w-full"
                   viewBox="0 0 100 100"
@@ -200,17 +200,14 @@ export default function About() {
                 {journeyMap.stops.map((stop, index) => (
                   <motion.div
                     key={stop.id}
-                    className={`absolute z-10 w-[min(17rem,44vw)] rounded-[var(--r-sm)] border border-white/10 bg-bg-base/72 p-3 shadow-[var(--shadow-card)] backdrop-blur-xl sm:w-[18rem] sm:p-4 ${getLabelTransform(stop)}`}
+                    className={`absolute z-10 w-fit max-w-[min(13rem,38vw)] rounded-full border border-white/10 bg-bg-base/78 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur-xl sm:max-w-[15rem] sm:px-4 ${getLabelTransform(stop)}`}
                     style={{ left: `${stop.labelX}%`, top: `${stop.labelY}%` }}
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: index * 0.12, ease: "easeOut" }}
                   >
-                    <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber-500">{stop.phase}</p>
-                    <h4 className="mt-1 text-[0.9rem] font-bold leading-snug text-text-primary sm:text-base md:text-lg">{stop.title}</h4>
-                    <p className="mt-1 text-xs font-semibold leading-tight text-text-primary/80 sm:text-sm">{stop.location}</p>
-                    <p className="mt-2 text-[0.72rem] leading-5 text-text-secondary sm:text-xs sm:leading-5 md:text-sm md:leading-6">{stop.detail}</p>
+                    <p className="text-xs font-bold leading-snug text-text-primary sm:text-sm md:text-base">{stop.place}</p>
                   </motion.div>
                 ))}
 
