@@ -1,16 +1,16 @@
 export const experience = [
   {
     id: 1,
-    role: "Computer Science Engineering Student",
-    company: "Madras Institute of Technology",
+    role: "Head of Social Media",
+    company: "ACM MIT Student Chapter",
     description:
-      "Building production-oriented academic and personal software projects while strengthening systems thinking, UI architecture, backend development, and collaborative engineering habits.",
-    start: "Jan 2024",
-    end: "Jun 2028",
+      "Driving the digital presence of the ACM MIT Student Chapter through strategic branding, content creation, and community engagement while promoting technical initiatives and student-led events.",
+    start: "July 2026",
+    end: "Present",
     highlights: [
-      "Delivered full-stack applications spanning learning, campus communication, and operational workflows.",
-      "Built experience across React, Node.js, MongoDB, Firebase, deployment, and real-time product patterns.",
-      "Focused on translating coursework into working software with clear user value and cleaner execution."
+      "Lead branding and social media strategy across LinkedIn and Instagram.",
+      "Create promotional campaigns for workshops, hackathons, technical talks, and community initiatives.",
+      "Work with the executive committee to expand the chapter's reach and strengthen student engagement."
     ]
   }
 ];
