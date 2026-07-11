@@ -36,7 +36,7 @@ export default function About() {
             title="About Me"
           />
 
-          <div className="grid items-start gap-8 lg:grid-cols-[55%_45%]">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)]">
             <motion.article
               className="glass-card p-6 md:p-9"
               initial={{ opacity: 0, y: 18 }}
@@ -71,25 +71,11 @@ export default function About() {
               </div>
             </motion.article>
 
-            <div className="grid gap-6">
-              <motion.div
-                className="glass-card-soft mx-auto grid aspect-square w-full max-w-[340px] place-items-center p-5"
-                initial={{ opacity: 0, scale: 0.94 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              >
-                <div className="relative grid h-full w-full place-items-center rounded-[var(--r-lg)] border border-[var(--border-default)] bg-[var(--grad-surface)]">
-                  <span className="absolute right-5 top-5 h-3 w-3 animate-[float-b_6s_ease-in-out_infinite] rounded-full bg-amber-500 shadow-[var(--shadow-amber-sm)]" />
-                  <span className="font-display text-[5rem] font-bold text-amber-500">ND</span>
-                </div>
-              </motion.div>
-
-              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 {profile.stats.map((stat, index) => (
                   <motion.article
                     key={stat.label}
-                    className="glass-card-soft p-5 transition duration-300 hover:border-[var(--border-emphasis)] hover:shadow-[var(--shadow-amber-sm)]"
+                    className="glass-card-soft min-w-0 p-5 transition duration-300 hover:border-[var(--border-emphasis)] hover:shadow-[var(--shadow-amber-sm)]"
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -101,7 +87,6 @@ export default function About() {
                     </p>
                   </motion.article>
                 ))}
-              </div>
             </div>
           </div>
 

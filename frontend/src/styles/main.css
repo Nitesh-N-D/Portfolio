@@ -85,6 +85,7 @@
     scroll-behavior: smooth;
     scroll-padding-top: var(--navbar-h);
     font-size: 16px;
+    overflow-x: hidden;
   }
 
   body {
@@ -115,6 +116,17 @@
   img {
     display: block;
     max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  a,
+  span {
+    overflow-wrap: anywhere;
   }
 
   button,
@@ -264,11 +276,13 @@
     max-width: var(--container-max);
     margin: 0 auto;
     width: 100%;
+    min-width: 0;
   }
 
   .glass-card,
   .glass-card-soft {
     position: relative;
+    min-width: 0;
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--r-lg);
@@ -396,6 +410,7 @@
   .secondary-button {
     display: inline-flex;
     min-height: 44px;
+    max-width: 100%;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -404,6 +419,8 @@
     font-family: "Syne", sans-serif;
     font-size: 0.88rem;
     font-weight: 700;
+    text-align: center;
+    white-space: normal;
     transition: all var(--t-spring);
   }
 
@@ -628,6 +645,13 @@
 }
 
 @media (max-width: 640px) {
+  :root {
+    --section-py: clamp(58px, 14vw, 82px);
+    --section-px: 18px;
+    --fs-hero: clamp(3rem, 17vw, 4.8rem);
+    --fs-display: clamp(2rem, 12vw, 3.25rem);
+  }
+
   .section-kicker {
     letter-spacing: 0.18em;
   }
@@ -641,9 +665,16 @@
   .secondary-button {
     width: 100%;
     min-width: 0;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   .section-title {
     overflow-wrap: anywhere;
+  }
+
+  .timeline-line,
+  .timeline-dot {
+    display: none;
   }
 }

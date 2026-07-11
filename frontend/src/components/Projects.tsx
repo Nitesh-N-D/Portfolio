@@ -30,29 +30,20 @@ function getProjectDetail(project: Project): ProjectDetail {
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const selectedProjectDetail = selectedProject ? getProjectDetail(selectedProject) : null;
-  const scrollPositionRef = useRef(0);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!selectedProject) return;
 
-    scrollPositionRef.current = window.scrollY;
-    const previousPosition = document.body.style.position;
-    const previousTop = document.body.style.top;
-    const previousWidth = document.body.style.width;
     const previousOverflow = document.body.style.overflow;
+    const previousOverscrollBehavior = document.body.style.overscrollBehavior;
 
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollPositionRef.current}px`;
-    document.body.style.width = "100%";
     document.body.style.overflow = "hidden";
+    document.body.style.overscrollBehavior = "contain";
 
     return () => {
-      document.body.style.position = previousPosition;
-      document.body.style.top = previousTop;
-      document.body.style.width = previousWidth;
       document.body.style.overflow = previousOverflow;
-      window.scrollTo({ top: scrollPositionRef.current, left: 0, behavior: "instant" });
+      document.body.style.overscrollBehavior = previousOverscrollBehavior;
     };
   }, [selectedProject]);
 
@@ -270,14 +261,14 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[1250] overflow-y-auto overscroll-contain bg-[var(--bg-overlay)] p-3 backdrop-blur-xl sm:grid sm:place-items-center sm:p-4"
+            className="fixed inset-0 z-[1250] grid overflow-hidden bg-[var(--bg-overlay)] p-3 backdrop-blur-xl sm:place-items-center sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="glass-card relative my-20 grid w-full max-w-6xl gap-6 overflow-y-auto overscroll-contain p-4 sm:my-0 sm:max-h-[90vh] sm:p-5 md:p-6 xl:grid-cols-[1.1fr_0.9fr]"
+              className="glass-card relative grid max-h-[calc(100svh-1.5rem)] w-full max-w-6xl gap-6 overflow-y-auto overscroll-contain p-4 sm:max-h-[90vh] sm:p-5 md:p-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]"
               ref={modalContentRef}
               initial={{ opacity: 0, y: 24, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
