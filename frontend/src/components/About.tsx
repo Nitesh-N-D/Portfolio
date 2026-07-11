@@ -3,6 +3,7 @@ import { FiBookOpen, FiHeart, FiMapPin } from "react-icons/fi";
 
 import Reveal from "./Reveal";
 import SectionHeader from "./SectionHeader";
+import { journeyMap, type JourneyStop } from "../data/journey";
 import { profile } from "../data/profile";
 
 const quickCards = [
@@ -26,22 +27,24 @@ const quickCards = [
   }
 ];
 
-const journeyStops = [
-  {
-    phase: "School",
-    place: "Gingee, Villupuram Dt.",
-    detail: "Built my academic foundation in Tamil Nadu.",
-    x: 24,
-    y: 70
-  },
-  {
-    phase: "Bachelor's Degree",
-    place: "Chrompet, Chengalpattu",
-    detail: "Studying Computer Science Engineering and building full-stack projects.",
-    x: 76,
-    y: 34
-  }
-];
+function buildRoutePath(stops: JourneyStop[]) {
+  if (stops.length === 0) return "";
+  if (stops.length === 1) return `M${stops[0].x} ${stops[0].y}`;
+
+  return stops
+    .slice(1)
+    .reduce((path, stop, index) => {
+      const previous = stops[index];
+      const controlX = (previous.x + stop.x) / 2;
+      return `${path} C${controlX} ${previous.y} ${controlX} ${stop.y} ${stop.x} ${stop.y}`;
+    }, `M${stops[0].x} ${stops[0].y}`);
+}
+
+function getLabelTransform(stop: JourneyStop) {
+  const horizontal = stop.labelX > 68 ? "-translate-x-full" : "";
+  const vertical = stop.labelY > 72 ? "-translate-y-1/2" : "";
+  return [horizontal, vertical].filter(Boolean).join(" ");
+}
 
 export default function About() {
   return (
@@ -136,10 +139,10 @@ export default function About() {
           >
             <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
               <div>
-                <p className="font-mono text-sm uppercase tracking-[0.24em] text-text-muted">Journey Map</p>
-                <h3 className="mt-2 text-2xl font-bold text-text-primary">Gingee to Chrompet</h3>
+                <p className="font-mono text-sm uppercase tracking-[0.24em] text-text-muted">{journeyMap.label}</p>
+                <h3 className="mt-2 text-2xl font-bold text-text-primary">{journeyMap.title}</h3>
               </div>
-              <span className="premium-pill">School to Computer Science Engineering</span>
+              <span className="premium-pill">{journeyMap.badge}</span>
             </div>
 
             <div className="relative overflow-hidden rounded-[var(--r-md)] border border-[var(--border-subtle)] bg-[radial-gradient(circle_at_22%_68%,rgba(212,146,42,0.2),transparent_18%),radial-gradient(circle_at_74%_34%,rgba(245,185,66,0.14),transparent_20%),linear-gradient(135deg,rgba(18,18,26,0.96),rgba(5,5,7,0.94))]">
@@ -152,17 +155,17 @@ export default function About() {
                   viewBox="0 0 100 100"
                   preserveAspectRatio="none"
                   role="img"
-                  aria-label="Education journey route from Gingee, Villupuram district to Chrompet, Chengalpattu"
+                  aria-label={journeyMap.ariaLabel}
                 >
                   <path
-                    d="M8 86 C18 80 22 77 32 72 C44 66 48 53 58 48 C68 43 72 36 88 20"
+                    d={buildRoutePath(journeyMap.stops)}
                     fill="none"
                     stroke="rgba(212,146,42,0.14)"
                     strokeWidth="12"
                     strokeLinecap="round"
                   />
                   <path
-                    d="M8 86 C18 80 22 77 32 72 C44 66 48 53 58 48 C68 43 72 36 88 20"
+                    d={buildRoutePath(journeyMap.stops)}
                     fill="none"
                     stroke="rgba(245,185,66,0.9)"
                     strokeWidth="1.4"
@@ -185,26 +188,34 @@ export default function About() {
                   />
                 </svg>
 
-                <div className="absolute left-[24%] top-[70%] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500 shadow-[0_0_0_10px_rgba(212,146,42,0.12),0_0_30px_rgba(212,146,42,0.45)]" aria-hidden="true" />
-                <div className="absolute left-[76%] top-[34%] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500 shadow-[0_0_0_10px_rgba(212,146,42,0.12),0_0_30px_rgba(212,146,42,0.45)]" aria-hidden="true" />
+                {journeyMap.stops.map(stop => (
+                  <div
+                    key={`${stop.id}-pin`}
+                    className="absolute h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500 shadow-[0_0_0_10px_rgba(212,146,42,0.12),0_0_30px_rgba(212,146,42,0.45)]"
+                    style={{ left: `${stop.x}%`, top: `${stop.y}%` }}
+                    aria-hidden="true"
+                  />
+                ))}
 
-                {journeyStops.map((stop, index) => (
+                {journeyMap.stops.map((stop, index) => (
                   <motion.div
-                    key={stop.phase}
-                    className={`absolute z-10 max-w-[14rem] ${index === 0 ? "left-[8%] top-[74%]" : "right-[7%] top-[12%]"}`}
+                    key={stop.id}
+                    className={`absolute z-10 max-w-[17rem] ${getLabelTransform(stop)}`}
+                    style={{ left: `${stop.labelX}%`, top: `${stop.labelY}%` }}
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: index * 0.12, ease: "easeOut" }}
                   >
                     <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber-500">{stop.phase}</p>
-                    <h4 className="mt-1 text-base font-bold leading-tight text-text-primary sm:text-xl">{stop.place}</h4>
+                    <h4 className="mt-1 text-base font-bold leading-tight text-text-primary sm:text-xl">{stop.title}</h4>
+                    <p className="mt-1 text-sm font-semibold leading-tight text-text-primary/80">{stop.location}</p>
                     <p className="mt-2 text-xs leading-6 text-text-secondary sm:text-sm">{stop.detail}</p>
                   </motion.div>
                 ))}
 
                 <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-amber-500/25 bg-bg-base/70 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-text-muted backdrop-blur-xl">
-                  Education Route
+                  {journeyMap.routeLabel}
                 </div>
               </div>
             </div>
