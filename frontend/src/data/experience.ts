@@ -5,7 +5,7 @@ export const experience = [
     company: "ACM MIT Student Chapter",
     description:
       "Driving the digital presence of the ACM MIT Student Chapter through strategic branding, content creation, and community engagement while promoting technical initiatives and student-led events.",
-    start: "June 2026",
+    start: "July 2026",
     end: "Present",
     highlights: [
       "Lead branding and social media strategy across LinkedIn and Instagram.",
