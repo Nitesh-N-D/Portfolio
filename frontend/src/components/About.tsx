@@ -42,7 +42,7 @@ function buildRoutePath(stops: JourneyStop[]) {
 
 function getLabelTransform(stop: JourneyStop) {
   const horizontal = stop.labelX > 68 ? "-translate-x-full" : "";
-  const vertical = stop.labelY > 72 ? "-translate-y-1/2" : "";
+  const vertical = stop.labelY > 68 ? "-translate-y-1/2" : "";
   return [horizontal, vertical].filter(Boolean).join(" ");
 }
 
@@ -149,7 +149,7 @@ export default function About() {
               <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(212,146,42,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(212,146,42,0.08)_1px,transparent_1px)] [background-size:34px_34px]" aria-hidden="true" />
               <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_28%_72%,rgba(212,146,42,0.2)_0_2px,transparent_3px),radial-gradient(circle_at_68%_30%,rgba(212,146,42,0.16)_0_1px,transparent_2px)] [background-size:120px_90px]" aria-hidden="true" />
 
-              <div className="relative min-h-[360px] sm:min-h-[420px]">
+              <div className="relative min-h-[420px] sm:min-h-[420px]">
                 <svg
                   className="absolute inset-0 h-full w-full"
                   viewBox="0 0 100 100"
@@ -200,7 +200,7 @@ export default function About() {
                 {journeyMap.stops.map((stop, index) => (
                   <motion.div
                     key={stop.id}
-                    className={`absolute z-10 max-w-[17rem] ${getLabelTransform(stop)}`}
+                    className={`absolute z-10 max-w-[min(16rem,42vw)] rounded-[var(--r-sm)] border border-white/5 bg-bg-base/55 p-3 backdrop-blur-md sm:max-w-[17rem] sm:p-0 sm:border-0 sm:bg-transparent sm:backdrop-blur-0 ${getLabelTransform(stop)}`}
                     style={{ left: `${stop.labelX}%`, top: `${stop.labelY}%` }}
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -208,9 +208,9 @@ export default function About() {
                     transition={{ duration: 0.45, delay: index * 0.12, ease: "easeOut" }}
                   >
                     <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber-500">{stop.phase}</p>
-                    <h4 className="mt-1 text-base font-bold leading-tight text-text-primary sm:text-xl">{stop.title}</h4>
-                    <p className="mt-1 text-sm font-semibold leading-tight text-text-primary/80">{stop.location}</p>
-                    <p className="mt-2 text-xs leading-6 text-text-secondary sm:text-sm">{stop.detail}</p>
+                    <h4 className="mt-1 text-sm font-bold leading-snug text-text-primary sm:text-lg md:text-xl">{stop.title}</h4>
+                    <p className="mt-1 text-xs font-semibold leading-tight text-text-primary/80 sm:text-sm">{stop.location}</p>
+                    <p className="mt-2 text-[0.72rem] leading-5 text-text-secondary sm:text-sm sm:leading-6">{stop.detail}</p>
                   </motion.div>
                 ))}
 
