@@ -26,7 +26,7 @@ export const journeyMap = {
       x: 24,
       y: 70,
       labelX: 8,
-      labelY: 72
+      labelY: 56
     },
     {
       id: "bachelors",
@@ -37,7 +37,7 @@ export const journeyMap = {
       x: 76,
       y: 34,
       labelX: 71,
-      labelY: 12
+      labelY: 10
     }
   ] satisfies JourneyStop[]
 };
