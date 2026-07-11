@@ -26,6 +26,23 @@ const quickCards = [
   }
 ];
 
+const journeyStops = [
+  {
+    phase: "School",
+    place: "Gingee, Villupuram Dt.",
+    detail: "Built my academic foundation in Tamil Nadu.",
+    x: 24,
+    y: 70
+  },
+  {
+    phase: "Bachelor's Degree",
+    place: "Chrompet, Chengalpattu",
+    detail: "Studying Computer Science Engineering and building full-stack projects.",
+    x: 76,
+    y: 34
+  }
+];
+
 export default function About() {
   return (
     <section id="about" aria-labelledby="about-heading" className="premium-section">
@@ -111,27 +128,85 @@ export default function About() {
           </div>
 
           <motion.div
-            className="glass-card mt-8 overflow-hidden p-4"
+            className="glass-card mt-8 overflow-hidden p-5 sm:p-6 md:p-7"
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.12 }}
           >
-            <div className="mb-4 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+            <div className="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
               <div>
-                <p className="font-mono text-sm uppercase tracking-[0.24em] text-text-muted">Map Preview</p>
-                <h3 className="mt-2 text-2xl font-bold text-text-primary">Chennai, Tamil Nadu</h3>
+                <p className="font-mono text-sm uppercase tracking-[0.24em] text-text-muted">Journey Map</p>
+                <h3 className="mt-2 text-2xl font-bold text-text-primary">Gingee to Chrompet</h3>
               </div>
-              <span className="premium-pill">Available for remote and onsite opportunities</span>
+              <span className="premium-pill">School to Computer Science Engineering</span>
             </div>
-            <div className="overflow-hidden rounded-[var(--r-md)] border border-[var(--border-subtle)]">
-              <iframe
-                src="https://www.google.com/maps?q=Chennai,TamilNadu&output=embed"
-                title="Chennai map preview"
-                className="h-[260px] w-full border-0 md:h-[320px]"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+
+            <div className="relative overflow-hidden rounded-[var(--r-md)] border border-[var(--border-subtle)] bg-[radial-gradient(circle_at_22%_68%,rgba(212,146,42,0.2),transparent_18%),radial-gradient(circle_at_74%_34%,rgba(245,185,66,0.14),transparent_20%),linear-gradient(135deg,rgba(18,18,26,0.96),rgba(5,5,7,0.94))]">
+              <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(212,146,42,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(212,146,42,0.08)_1px,transparent_1px)] [background-size:34px_34px]" aria-hidden="true" />
+              <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(circle_at_28%_72%,rgba(212,146,42,0.2)_0_2px,transparent_3px),radial-gradient(circle_at_68%_30%,rgba(212,146,42,0.16)_0_1px,transparent_2px)] [background-size:120px_90px]" aria-hidden="true" />
+
+              <div className="relative min-h-[360px] sm:min-h-[420px]">
+                <svg
+                  className="absolute inset-0 h-full w-full"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                  role="img"
+                  aria-label="Education journey route from Gingee, Villupuram district to Chrompet, Chengalpattu"
+                >
+                  <path
+                    d="M8 86 C18 80 22 77 32 72 C44 66 48 53 58 48 C68 43 72 36 88 20"
+                    fill="none"
+                    stroke="rgba(212,146,42,0.14)"
+                    strokeWidth="12"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M8 86 C18 80 22 77 32 72 C44 66 48 53 58 48 C68 43 72 36 88 20"
+                    fill="none"
+                    stroke="rgba(245,185,66,0.9)"
+                    strokeWidth="1.4"
+                    strokeDasharray="3 3"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M6 38 C18 34 24 42 34 36 C47 28 61 28 72 18"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.05)"
+                    strokeWidth="0.7"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M18 18 C28 26 42 20 54 28 C66 36 78 32 94 42"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.04)"
+                    strokeWidth="0.7"
+                    strokeLinecap="round"
+                  />
+                </svg>
+
+                <div className="absolute left-[24%] top-[70%] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500 shadow-[0_0_0_10px_rgba(212,146,42,0.12),0_0_30px_rgba(212,146,42,0.45)]" aria-hidden="true" />
+                <div className="absolute left-[76%] top-[34%] h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500 shadow-[0_0_0_10px_rgba(212,146,42,0.12),0_0_30px_rgba(212,146,42,0.45)]" aria-hidden="true" />
+
+                {journeyStops.map((stop, index) => (
+                  <motion.div
+                    key={stop.phase}
+                    className={`absolute z-10 max-w-[14rem] ${index === 0 ? "left-[8%] top-[74%]" : "right-[7%] top-[12%]"}`}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: index * 0.12, ease: "easeOut" }}
+                  >
+                    <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-amber-500">{stop.phase}</p>
+                    <h4 className="mt-1 text-base font-bold leading-tight text-text-primary sm:text-xl">{stop.place}</h4>
+                    <p className="mt-2 text-xs leading-6 text-text-secondary sm:text-sm">{stop.detail}</p>
+                  </motion.div>
+                ))}
+
+                <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-amber-500/25 bg-bg-base/70 px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-text-muted backdrop-blur-xl">
+                  Education Route
+                </div>
+              </div>
             </div>
           </motion.div>
         </Reveal>
