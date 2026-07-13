@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 import { charReveal, staggerContainer } from "../lib/variants";
 
 const roles = ["Software Developer", "Full Stack Engineer", "Problem Solver"];
-const floatingBadges = ["10+ Projects", "12+ Certifications", "2+ Internships"];
+const floatingBadges = ["10+ Projects", "2+ Certifications"];
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
