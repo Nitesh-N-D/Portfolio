@@ -1,16 +1,16 @@
 export const experience = [
   {
     id: 1,
-    role: "Head of Social Media",
+    role: "Member",
     company: "ACM MIT Student Chapter",
     description:
-      "Driving the digital presence of the ACM MIT Student Chapter through strategic branding, content creation, and community engagement while promoting technical initiatives and student-led events.",
+      "Active member of the ACM MIT Student Chapter, participating in technical workshops, hackathons, coding events, and community initiatives while collaborating with fellow students to promote learning and innovation.",
     start: "July 2026",
     end: "Present",
     highlights: [
-      "Lead branding and social media strategy across LinkedIn and Instagram.",
-      "Create promotional campaigns for workshops, hackathons, technical talks, and community initiatives.",
-      "Work with the executive committee to expand the chapter's reach and strengthen student engagement."
+      "Participate in technical workshops, hackathons, and coding competitions organized by the chapter.",
+      "Collaborate with fellow members on technical events and community initiatives.",
+      "Contribute to knowledge-sharing activities and help foster an active student developer community."
     ]
   }
 ];
