@@ -100,17 +100,17 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        <div className="premium-container flex h-full items-center justify-between px-5">
+        <div className="premium-container flex h-full min-w-0 items-center justify-between gap-4 px-4 sm:px-5">
           <a
             href="#home"
-            className="font-display text-[1.2rem] italic text-text-primary transition-transform duration-200 hover:scale-[1.03]"
+            className="shrink-0 whitespace-nowrap font-display text-[1.08rem] italic text-text-primary transition-transform duration-200 hover:scale-[1.03] sm:text-[1.2rem]"
             data-cursor="hover"
             onClick={() => setMenuOpen(false)}
           >
             N.D. <span className="text-amber-500">Nitesh</span>
           </a>
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden min-w-0 items-center gap-5 xl:flex 2xl:gap-8">
             {sections.map(section => {
               const isActive = active === section;
               return (
@@ -118,7 +118,7 @@ export default function Navbar() {
                   key={section}
                   href={`#${section}`}
                   aria-current={isActive ? "page" : undefined}
-                  className={`relative font-mono text-[0.78rem] capitalize tracking-[0.1em] transition-colors duration-300 ${
+                  className={`relative whitespace-nowrap font-mono text-[0.72rem] capitalize tracking-[0.1em] transition-colors duration-300 2xl:text-[0.78rem] ${
                     isActive ? "text-amber-500" : "text-zinc-300 hover:text-white"
                   }`}
                   data-cursor="hover"
@@ -137,7 +137,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="relative flex h-11 w-11 items-center justify-center border border-[var(--border-subtle)] bg-[var(--bg-glass)] lg:hidden"
+            className="relative flex h-11 w-11 shrink-0 items-center justify-center border border-white/20 bg-white/[0.08] shadow-[0_0_18px_rgba(255,255,255,0.05)] backdrop-blur-md transition-colors duration-300 hover:border-amber-500/60 hover:bg-amber-500/10 xl:hidden"
             onClick={() => setMenuOpen(open => !open)}
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
@@ -146,17 +146,17 @@ export default function Navbar() {
           >
             <span className="sr-only">Toggle navigation</span>
             <span
-              className={`absolute h-px w-5 bg-text-primary transition-all duration-300 ${
+              className={`absolute h-0.5 w-5 bg-zinc-100 transition-all duration-300 ${
                 menuOpen ? "rotate-45" : "-translate-y-1.5"
               }`}
             />
             <span
-              className={`absolute h-px w-5 bg-text-primary transition-all duration-300 ${
+              className={`absolute h-0.5 w-5 bg-zinc-100 transition-all duration-300 ${
                 menuOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`absolute h-px w-5 bg-text-primary transition-all duration-300 ${
+              className={`absolute h-0.5 w-5 bg-zinc-100 transition-all duration-300 ${
                 menuOpen ? "-rotate-45" : "translate-y-1.5"
               }`}
             />
@@ -174,7 +174,7 @@ export default function Navbar() {
         {menuOpen && (
           <motion.div
             id="mobile-navigation"
-            className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[var(--bg-overlay)] px-6 backdrop-blur-3xl lg:hidden"
+            className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[var(--bg-overlay)] px-6 backdrop-blur-3xl xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
