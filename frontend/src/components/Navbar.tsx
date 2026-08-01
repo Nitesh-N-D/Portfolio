@@ -119,7 +119,7 @@ export default function Navbar() {
                   href={`#${section}`}
                   aria-current={isActive ? "page" : undefined}
                   className={`relative font-mono text-[0.78rem] capitalize tracking-[0.1em] transition-colors duration-300 ${
-                    isActive ? "text-amber-500" : "text-text-muted hover:text-text-primary"
+                    isActive ? "text-amber-500" : "text-zinc-300 hover:text-white"
                   }`}
                   data-cursor="hover"
                   onClick={() => setActive(section)}
