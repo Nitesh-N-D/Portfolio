@@ -12,7 +12,10 @@ import {
   SiMongodb,
   SiMysql,
   SiNodedotjs,
-  SiReact
+  SiPostman,
+  SiReact,
+  SiRender,
+  SiVercel
 } from "react-icons/si";
 import type { JSX } from "react";
 
@@ -60,7 +63,10 @@ const skillGroups: SkillGroup[] = [
     title: "Tools & DevOps",
     skills: [
       { name: "Git", level: "Intermediate", icon: <SiGit /> },
-      { name: "GitHub", level: "Intermediate", icon: <SiGithub /> }
+      { name: "GitHub", level: "Intermediate", icon: <SiGithub /> },
+      { name: "Vercel", level: "Intermediate", icon: <SiVercel /> },
+      { name: "Render", level: "Intermediate", icon: <SiRender /> },
+      { name: "Postman", level: "Intermediate", icon: <SiPostman /> }
     ]
   },
   {
