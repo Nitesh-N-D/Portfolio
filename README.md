@@ -48,42 +48,6 @@ Hi, I’m **Nitesh N D**, a **Full Stack Developer & Computer Science Engineer**
 - Git & GitHub
 - Vercel
 
-## 📁 Project Structure
-
-```
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── Navbar.tsx
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Education.tsx
-│   │   ├── Skills.tsx
-│   │   ├── Projects.tsx
-│   │   ├── Experience.tsx
-│   │   ├── Certifications.tsx
-│   │   ├── Achievements.tsx
-│   │   ├── Contact.tsx
-│   │   └── Footer.tsx
-│   ├── data/
-│   │   ├── achievements.ts
-│   │   ├── certifications.ts
-│   │   ├── education.ts
-│   │   ├── experience.ts
-│   │   └── projects.ts
-│   ├── styles/
-│   │   └── main.css
-│   ├── App.tsx
-│   └── main.tsx
-├── public/
-│   └── Nitesh_Resume.pdf
-├── index.html
-├── package.json
-├── vite.config.ts
-└── tsconfig.json
-```
-
-
 ## ⚙️ Run Locally
 
 ```bash
