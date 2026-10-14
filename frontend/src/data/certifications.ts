@@ -17,6 +17,13 @@ export const certifications: Certification[] = [
     proof: "/certifications/python_basic certificate.pdf"
   },
   {
+    title: "Python for Data Science",
+    provider: "NPTEL",
+    issued: "2026",
+    type: "pdf",
+    proof: "/certifications/pythonfords_nptel.pdf"
+  },
+  {
     title: "Introduction to Linear Algebra with MATLAB",
     provider: "MATLAB Academy",
     issued: "2026",
