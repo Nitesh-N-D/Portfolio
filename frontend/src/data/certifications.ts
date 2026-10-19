@@ -24,6 +24,13 @@ export const certifications: Certification[] = [
     proof: "/certifications/python_basic certificate.pdf"
   },
   {
+  title: "SQL (Basic) Certificate",
+  provider: "HackerRank",
+  issued: "2026",
+  type: "link",
+  proof: "https://www.hackerrank.com/certificates/2a7e566acf51"
+  },
+  {
     title: "MATLAB Onramp",
     provider: "MATLAB Academy",
     issued: "2026",
