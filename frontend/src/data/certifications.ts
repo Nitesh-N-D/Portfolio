@@ -10,6 +10,13 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
+    title: "Python for Data Science",
+    provider: "NPTEL",
+    issued: "2026",
+    type: "pdf",
+    proof: "/certifications/pythonfords_nptel.pdf"
+  },
+  {
     title: "Python (Basic) Certification",
     provider: "HackerRank",
     issued: "2026",
@@ -17,11 +24,11 @@ export const certifications: Certification[] = [
     proof: "/certifications/python_basic certificate.pdf"
   },
   {
-    title: "Python for Data Science",
-    provider: "NPTEL",
+    title: "MATLAB Onramp",
+    provider: "MATLAB Academy",
     issued: "2026",
-    type: "pdf",
-    proof: "/certifications/pythonfords_nptel.pdf"
+    type: "link",
+    proof: "https://matlabacademy.mathworks.com/progress/share/certificate.html?id=570452e2-a4eb-4980-82d4-38ba2712acdc&"
   },
   {
     title: "Introduction to Linear Algebra with MATLAB",
